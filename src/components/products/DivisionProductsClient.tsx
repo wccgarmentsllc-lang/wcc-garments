@@ -100,14 +100,38 @@ const CATEGORY_IMAGES: Record<string, Record<string, string>> = {
     'barware': '/images/hos-1.png',
     'cookware': '/images/hos-2.png',
     'serving-tools': '/images/hos-3.png',
+    'kitchen-tools': '/images/hos-3.png',
     'cutlery': '/images/hos-4.png',
     'storage-serving': '/images/hos-5.png',
+    'storage': '/images/hos-5.png',
+    'serving': '/images/hos-3.png',
   },
   households: {
     'cookware': '/images/hh-1.png',
     'cutlery': '/images/hh-2.png',
     'table-top': '/images/hh-3.png',
     'utility': '/images/hh-4.png',
+  },
+  uniforms: {
+    'corporate-workwear': '/images/uniform-workwear.png',
+    'security-attire': '/images/uniform-workwear.png',
+    'industrial-ppe': '/images/uniform-workwear.png',
+    'chef-kitchen-wear': '/images/uniform-workwear.png',
+    'protective-aprons': '/images/uniform-workwear.png',
+    'medical-scrubs': '/images/uniform-workwear.png',
+  },
+  home: {
+    'bedsheets': '/images/home furnishing.png',
+    'bath-textiles': '/images/home furnishing.png',
+    'luxury-throws': '/images/home furnishing.png',
+    'table-linen': '/images/home furnishing.png',
+  },
+  fragrance: {
+    'arabian-oud': '/images/fragrance.png',
+    'bakhoor-incense': '/images/fragrance.png',
+    'eau-de-parfum': '/images/fragrance.png',
+    'private-label': '/images/fragrance.png',
+    'raw-materials': '/images/fragrance.png',
   }
 }
 
@@ -116,14 +140,38 @@ const STYLE_COUNT: Record<string, Record<string, string>> = {
     'barware': '110+ Styles',
     'cookware': '80+ Styles',
     'serving-tools': '75+ Styles',
+    'kitchen-tools': '75+ Styles',
     'cutlery': '120+ Styles',
     'storage-serving': '90+ Styles',
+    'storage': '90+ Styles',
+    'serving': '60+ Styles',
   },
   households: {
     'cookware': '80+ Styles',
     'cutlery': '120+ Styles',
     'table-top': '95+ Styles',
     'utility': '60+ Styles',
+  },
+  uniforms: {
+    'corporate-workwear': '150+ Styles',
+    'security-attire': '80+ Styles',
+    'industrial-ppe': '120+ Styles',
+    'chef-kitchen-wear': '90+ Styles',
+    'protective-aprons': '70+ Styles',
+    'medical-scrubs': '60+ Styles',
+  },
+  home: {
+    'bedsheets': '120+ Styles',
+    'bath-textiles': '90+ Styles',
+    'luxury-throws': '80+ Styles',
+    'table-linen': '50+ Styles',
+  },
+  fragrance: {
+    'arabian-oud': '40+ Styles',
+    'bakhoor-incense': '35+ Styles',
+    'eau-de-parfum': '60+ Styles',
+    'private-label': '20+ Styles',
+    'raw-materials': '15+ Styles',
   }
 }
 
