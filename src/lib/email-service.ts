@@ -30,9 +30,10 @@ export interface SendEmailParams {
   to: string | string[]
   subject: string
   html: string
+  attachments?: any[]
 }
 
-export async function sendEmail({ to, subject, html }: SendEmailParams): Promise<boolean> {
+export async function sendEmail({ to, subject, html, attachments }: SendEmailParams): Promise<boolean> {
   const recipients = Array.isArray(to) ? to : [to]
 
   // Try 1: Resend (Dedicated enterprise delivery provider)
@@ -45,6 +46,7 @@ export async function sendEmail({ to, subject, html }: SendEmailParams): Promise
         to: recipients,
         subject,
         html,
+        attachments,
       })
       console.log(`Email dispatched via Resend to: ${recipients.join(', ')}`)
       return true
@@ -63,6 +65,7 @@ export async function sendEmail({ to, subject, html }: SendEmailParams): Promise
         to: recipientString,
         subject,
         html,
+        attachments,
       })
       console.log(`Email dispatched via Gmail SMTP to: ${recipientString}`)
       return true

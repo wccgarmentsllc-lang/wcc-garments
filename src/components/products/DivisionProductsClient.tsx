@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRight, ArrowRight, ArrowUpRight, Tag, Clock, SlidersHorizontal, X, Layers } from 'lucide-react'
+import { ChevronRight, ArrowRight, ArrowUpRight, Tag, Clock, SlidersHorizontal, X, Layers, BookOpen, Building2, Mail, CheckCircle2, Loader2 } from 'lucide-react'
 import { ProductCard } from './ProductCard'
+import { api } from '@/lib/api'
 
 interface Category {
   id: string
@@ -144,6 +145,45 @@ export function DivisionProductsClient({
   const searchParams = useSearchParams()
   const router = useRouter()
   const filterBarRef = useRef<HTMLDivElement>(null)
+
+  const [isCatalogueOpen, setIsCatalogueOpen] = useState(false)
+  const [catalogueName, setCatalogueName] = useState('')
+  const [catalogueEmail, setCatalogueEmail] = useState('')
+  const [catalogueCompany, setCatalogueCompany] = useState('')
+  const [catalogueState, setCatalogueState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [catalogueError, setCatalogueError] = useState('')
+
+  const handleCatalogueSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!catalogueName || !catalogueEmail) {
+      setCatalogueError('Name and Email are required')
+      setCatalogueState('error')
+      return
+    }
+    setCatalogueState('submitting')
+    setCatalogueError('')
+    try {
+      const res = await api.submitCatalogueRequest({
+        name: catalogueName,
+        email: catalogueEmail,
+        company: catalogueCompany || null,
+        brand_slug: activeBrand?.slug,
+      })
+      if (res.success) {
+        setCatalogueState('success')
+        // Reset form
+        setCatalogueName('')
+        setCatalogueEmail('')
+        setCatalogueCompany('')
+      } else {
+        setCatalogueError(res.error || 'Failed to submit request')
+        setCatalogueState('error')
+      }
+    } catch (err: any) {
+      setCatalogueError(err.message || 'An unexpected error occurred')
+      setCatalogueState('error')
+    }
+  }
 
   const urlCategory = searchParams.get('category') || initialCategorySlug || 'all'
   const urlBrand = searchParams.get('brand') || initialBrandSlug || 'all'
@@ -472,6 +512,30 @@ export function DivisionProductsClient({
                     </button>
                   </div>
                 </div>
+
+                {/* Catalogue Request CTA Bar */}
+                {(activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft') && (
+                  <div className="mt-6 border border-dashed border-gold/30 bg-gold/5 p-6 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono">
+                    <div className="flex items-center gap-3.5">
+                      <div className="h-10 w-10 shrink-0 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
+                        <BookOpen className="h-5 w-5 text-gold" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Request WCC {activeBrand.name} Catalogue</h4>
+                        <p className="text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setIsCatalogueOpen(true)}
+                      className="relative shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 shadow-xl transition-all cursor-pointer group"
+                    >
+                      <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+                        <div className="w-8 bg-white/20" />
+                      </div>
+                      Request Catalogue
+                    </button>
+                  </div>
+                )}
               </section>
             )}
 
@@ -731,6 +795,156 @@ export function DivisionProductsClient({
           </Link>
         </div>
       </section>
+
+      {/* Catalogue Request Modal Popup */}
+      <AnimatePresence>
+        {isCatalogueOpen && activeBrand && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => {
+                setIsCatalogueOpen(false)
+                setCatalogueState('idle')
+                setCatalogueError('')
+              }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: 'spring', duration: 0.5 }}
+              className="relative z-10 w-full max-w-md overflow-hidden border border-gold/30 bg-[var(--bg)] p-8 shadow-2xl text-[var(--text)] font-sans"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setIsCatalogueOpen(false)
+                  setCatalogueState('idle')
+                  setCatalogueError('')
+                }}
+                className="absolute right-4 top-4 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors cursor-pointer"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {catalogueState === 'success' ? (
+                <div className="flex flex-col items-center justify-center text-center py-8 space-y-4">
+                  <div className="h-16 w-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
+                    <CheckCircle2 className="h-8 w-8 text-emerald-500" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold uppercase tracking-wider text-emerald-500">
+                    Request Received
+                  </h3>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed max-w-sm">
+                    Thank you! Your request has been logged successfully. The administrator will approve it shortly and dispatch the digital catalogue to your mail in a few minutes.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsCatalogueOpen(false)
+                      setCatalogueState('idle')
+                    }}
+                    className="mt-4 px-6 py-2.5 bg-gold hover:bg-gold-light text-white font-mono text-[10px] font-bold uppercase tracking-widest transition-all cursor-pointer"
+                  >
+                    Done
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div>
+                    <span className="font-mono text-[9px] font-bold tracking-widest text-gold uppercase block mb-1">
+                      Exclusive Access
+                    </span>
+                    <h3 className="font-display text-xl font-bold uppercase tracking-tight text-[var(--text)]">
+                      Request {activeBrand.name} Catalogue
+                    </h3>
+                    <p className="text-[11px] text-[var(--text-muted)] mt-1 font-light leading-relaxed">
+                      Please enter your contact details. Our team will verify and deliver the complete catalogue PDF containing unit prices, dimensions and options.
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleCatalogueSubmit} className="space-y-4 font-mono text-xs">
+                    <div className="space-y-1.5">
+                      <label className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] font-bold text-left">
+                        Full Name *
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          required
+                          value={catalogueName}
+                          onChange={(e) => setCatalogueName(e.target.value)}
+                          placeholder="John Doe"
+                          className="w-full border border-[var(--border)] bg-[var(--surface)] py-3 px-4 text-[var(--text)] placeholder-[var(--text-muted)]/40 focus:border-gold focus:outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] font-bold text-left">
+                        Business Email *
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--text-muted)]/40" />
+                        <input
+                          type="email"
+                          required
+                          value={catalogueEmail}
+                          onChange={(e) => setCatalogueEmail(e.target.value)}
+                          placeholder="corporate@company.com"
+                          className="w-full border border-[var(--border)] bg-[var(--surface)] py-3 pl-10 pr-4 text-[var(--text)] placeholder-[var(--text-muted)]/40 focus:border-gold focus:outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="block text-[9px] uppercase tracking-wider text-[var(--text-muted)] font-bold text-left">
+                        Company Name
+                      </label>
+                      <div className="relative">
+                        <Building2 className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[var(--text-muted)]/40" />
+                        <input
+                          type="text"
+                          value={catalogueCompany}
+                          onChange={(e) => setCatalogueCompany(e.target.value)}
+                          placeholder="Acme Corporation"
+                          className="w-full border border-[var(--border)] bg-[var(--surface)] py-3 pl-10 pr-4 text-[var(--text)] placeholder-[var(--text-muted)]/40 focus:border-gold focus:outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {catalogueError && (
+                      <p className="text-[10px] text-red-500 font-sans mt-2 text-left">
+                        {catalogueError}
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={catalogueState === 'submitting'}
+                      className="w-full bg-gold hover:bg-gold-light text-white font-mono text-[10px] font-bold uppercase tracking-widest py-4 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
+                    >
+                      {catalogueState === 'submitting' ? (
+                        <>
+                          <Loader2 className="h-4.5 w-4.5 animate-spin" />
+                          <span>Submitting Request...</span>
+                        </>
+                      ) : (
+                        <span>Submit Catalogue Request</span>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

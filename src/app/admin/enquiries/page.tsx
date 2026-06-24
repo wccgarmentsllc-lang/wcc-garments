@@ -94,7 +94,7 @@ export default function AdminEnquiriesPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 font-mono text-xs">
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-2 sm:pb-0 font-mono text-xs">
           {(['all', 'new', 'contacted', 'quoted', 'converted'] as const).map(tab => (
             <button
               key={tab}

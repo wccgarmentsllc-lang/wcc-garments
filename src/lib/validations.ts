@@ -56,3 +56,13 @@ export type EnquiryFormData = z.infer<typeof EnquirySchema>
 export type ProductFormData = z.infer<typeof ProductSchema>
 export type LoginFormData = z.infer<typeof LoginSchema>
 export type CategoryFormData = z.infer<typeof CategorySchema>
+
+export const CatalogueRequestSchema = z.object({
+  name: z.string().min(2, 'Name is required'),
+  email: z.string().email('Valid email is required'),
+  company: z.string().optional().nullable(),
+  brand_slug: z.string().min(2, 'Brand slug is required'),
+})
+
+export type CatalogueRequestFormData = z.infer<typeof CatalogueRequestSchema>
+

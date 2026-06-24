@@ -96,6 +96,12 @@ export const api = {
       body: JSON.stringify(data),
     }),
 
+  submitCatalogueRequest: (data: Record<string, unknown>) =>
+    fetcher('/api/catalogue-request', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
   admin: {
     login: (credentials: { email: string; password: string }) =>
       fetcher('/api/admin/auth', {
@@ -238,6 +244,18 @@ export const api = {
         method: 'PUT',
         headers: token ? { Authorization: `Bearer ${token}` } : undefined,
         body: JSON.stringify(data),
+      }),
+
+    getCatalogueRequests: (token?: string) =>
+      fetcher('/api/admin/catalogue-requests', {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      }),
+
+    updateCatalogueRequest: (token: string | undefined, id: string, data: Record<string, unknown>) =>
+      fetcher('/api/admin/catalogue-requests', {
+        method: 'PUT',
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        body: JSON.stringify({ id, ...data }),
       }),
   },
 }
