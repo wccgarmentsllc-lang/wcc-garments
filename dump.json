@@ -1,0 +1,1209 @@
+{
+  "divisions": [
+    {
+      "name": "Garments",
+      "slug": "garments",
+      "icon": "DIV-01",
+      "status": "flagship",
+      "description": "Premium garment manufacturing for global export",
+      "metaTitle": "Wholesale Garments Manufacturer UAE | Bulk Cotton Shirts, Polos & Formal Wear — WCC Garments",
+      "metaDescription": "B2B wholesale garment manufacturer in Dubai, UAE. Premium cotton shirts, polo shirts, formal wear & blazers. Export-grade QC. MOQ from 50 units. Get a bulk quote today.",
+      "keywords": [
+        "wholesale garments manufacturer UAE",
+        "bulk t-shirt manufacturer Dubai",
+        "cotton shirts wholesale UAE",
+        "garment factory Dubai",
+        "polo shirt bulk order UAE",
+        "formal shirts wholesale Dubai",
+        "B2B garment supplier UAE",
+        "custom garment manufacturer Middle East",
+        "blazer manufacturer UAE",
+        "corporate wear bulk Dubai"
+      ],
+      "heroHeading": "Premium Garments. Precision-Built for Global Wholesale.",
+      "heroSubtitle": "From cotton formal shirts to velvet blazers — crafted for large-scale B2B buyers across 50+ countries.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "50 Units",
+      "stat2Label": "Lead Time",
+      "stat2Value": "12–25 Days",
+      "stat3Label": "Export QC",
+      "stat3Value": "Grade A",
+      "categories": [
+        {
+          "id": "GAR-CAT-01",
+          "name": "Formal Shirts",
+          "slug": "formal-shirts",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": []
+        },
+        {
+          "id": "GAR-CAT-02",
+          "name": "Blazers & Suits",
+          "slug": "blazers-suits",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": []
+        },
+        {
+          "id": "GAR-CAT-03",
+          "name": "Jeans & Denims",
+          "slug": "jeans-denims",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": []
+        },
+        {
+          "id": "GAR-CAT-04",
+          "name": "Polo & T-Shirts",
+          "slug": "polo-tshirts",
+          "status": "active",
+          "displayOrder": 4,
+          "subCategories": []
+        },
+        {
+          "id": "GAR-CAT-05",
+          "name": "Trousers & Chinos",
+          "slug": "trousers",
+          "status": "active",
+          "displayOrder": 5,
+          "subCategories": []
+        },
+        {
+          "id": "GAR-CAT-06",
+          "name": "Outerwear & Jackets",
+          "slug": "jackets",
+          "status": "active",
+          "displayOrder": 6,
+          "subCategories": []
+        }
+      ]
+    },
+    {
+      "name": "Uniforms",
+      "slug": "uniforms",
+      "icon": "DIV-02",
+      "status": "established",
+      "description": "Professional uniform solutions for all sectors",
+      "metaTitle": "Uniform Supplier Dubai | Bulk Workwear, Security & Corporate Uniforms — WCC Garments",
+      "metaDescription": "UAE-based uniform manufacturer supplying workwear, security uniforms, corporate attire & industrial PPE in bulk. Serving hotels, hospitals, oil & gas. Request a quote.",
+      "keywords": [
+        "uniform supplier Dubai",
+        "workwear manufacturer UAE",
+        "corporate uniform bulk order",
+        "security uniform supplier UAE",
+        "industrial workwear Dubai",
+        "hotel staff uniform manufacturer",
+        "safety uniform UAE",
+        "bulk uniform order Middle East",
+        "tactical uniform supplier",
+        "B2B uniform factory Dubai"
+      ],
+      "heroHeading": "Professional Uniforms for Every Sector.",
+      "heroSubtitle": "From industrial cargo wear to tactical security suites — bulk uniform solutions engineered for performance and compliance.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "100 Units",
+      "stat2Label": "Lead Time",
+      "stat2Value": "15–30 Days",
+      "stat3Label": "Sectors",
+      "stat3Value": "10+",
+      "categories": [
+        {
+          "id": "UNI-CAT-01",
+          "name": "Corporate Workwear",
+          "slug": "corporate-workwear",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": []
+        },
+        {
+          "id": "UNI-CAT-02",
+          "name": "Security Attire",
+          "slug": "security-attire",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": []
+        },
+        {
+          "id": "UNI-CAT-03",
+          "name": "Industrial & PPE",
+          "slug": "industrial-ppe",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": []
+        },
+        {
+          "id": "UNI-CAT-04",
+          "name": "Chef & Kitchen Wear",
+          "slug": "chef-kitchen-wear",
+          "status": "active",
+          "displayOrder": 4,
+          "subCategories": []
+        },
+        {
+          "id": "UNI-CAT-05",
+          "name": "Protective Aprons",
+          "slug": "protective-aprons",
+          "status": "active",
+          "displayOrder": 5,
+          "subCategories": []
+        },
+        {
+          "id": "UNI-CAT-06",
+          "name": "Medical & Scrubs",
+          "slug": "medical-scrubs",
+          "status": "coming-soon",
+          "displayOrder": 6,
+          "subCategories": []
+        }
+      ]
+    },
+    {
+      "name": "Hospitality",
+      "slug": "hospitality",
+      "icon": "DIV-03",
+      "status": "expanding",
+      "description": "Premium hospitality textiles and uniforms",
+      "metaTitle": "Hotel Linen & Hospitality Uniform Supplier UAE | Bed Linen, Chef Wear — WCC Garments",
+      "metaDescription": "Wholesale hospitality textiles from Dubai. Hotel bed linen sets, chef uniforms, restaurant wear & spa towels. Commercial laundering-grade. Bulk supply for hotels & resorts.",
+      "keywords": [
+        "hotel linen supplier UAE",
+        "hospitality uniform manufacturer Dubai",
+        "hotel bed linen wholesale",
+        "chef uniform bulk order UAE",
+        "restaurant staff uniform Dubai",
+        "hotel towel supplier",
+        "hospitality textile manufacturer",
+        "spa linen wholesale UAE",
+        "resort uniform supplier",
+        "bulk hotel amenities Dubai"
+      ],
+      "heroHeading": "Hospitality Textiles Trusted by 5-Star Properties.",
+      "heroSubtitle": "Hotel bed linen, chef uniforms & spa textiles engineered for commercial laundering and five-star presentation.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "100 Sets",
+      "stat2Label": "Lead Time",
+      "stat2Value": "12–20 Days",
+      "stat3Label": "Hotels Served",
+      "stat3Value": "500+",
+      "categories": [
+        {
+          "id": "HOS-CAT-01",
+          "name": "Bed Linen Sets",
+          "slug": "bed-linen-sets",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": []
+        },
+        {
+          "id": "HOS-CAT-02",
+          "name": "Chef Uniforms",
+          "slug": "chef-uniforms",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": []
+        },
+        {
+          "id": "HOS-CAT-03",
+          "name": "Spa & Bath Towels",
+          "slug": "spa-bath-towels",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": []
+        },
+        {
+          "id": "HOS-CAT-04",
+          "name": "Restaurant Staff Wear",
+          "slug": "restaurant-wear",
+          "status": "active",
+          "displayOrder": 4,
+          "subCategories": []
+        },
+        {
+          "id": "HOS-CAT-05",
+          "name": "Pool & Beach Towels",
+          "slug": "pool-beach-towels",
+          "status": "coming-soon",
+          "displayOrder": 5,
+          "subCategories": []
+        },
+        {
+          "id": "HOS-CAT-06",
+          "name": "Bathrobes & Slippers",
+          "slug": "bathrobes-slippers",
+          "status": "coming-soon",
+          "displayOrder": 6,
+          "subCategories": []
+        }
+      ]
+    },
+    {
+      "name": "Home",
+      "slug": "home",
+      "icon": "DIV-04",
+      "status": "expanding",
+      "description": "Luxury home linen and furnishing textiles",
+      "metaTitle": "Home Linen Wholesale UAE | Bedsheets, Bath Towels & Luxury Throws — WCC Garments",
+      "metaDescription": "Bulk home textile manufacturer in Dubai. Premium bedsheets, bath towels, cashmere throws & home furnishing textiles. Wholesale pricing for retailers & distributors.",
+      "keywords": [
+        "home linen wholesale UAE",
+        "bedsheet manufacturer Dubai",
+        "bath towel bulk order UAE",
+        "home textile supplier Middle East",
+        "luxury throws wholesale",
+        "cotton bedding manufacturer UAE",
+        "wholesale home furnishing textiles",
+        "cashmere blanket bulk supplier",
+        "ring spun towel manufacturer Dubai",
+        "B2B home linen distributor"
+      ],
+      "heroHeading": "Luxury Home Textiles for Retailers & Distributors.",
+      "heroSubtitle": "Premium bedsheets, plush bath towels, and cashmere throws — built for bulk retail and private-label distribution.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "100 Units",
+      "stat2Label": "Lead Time",
+      "stat2Value": "10–30 Days",
+      "stat3Label": "Thread Count",
+      "stat3Value": "Up to 600TC",
+      "categories": [
+        {
+          "id": "HOME-CAT-01",
+          "name": "Bedsheets",
+          "slug": "bedsheets",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": [
+            {
+              "id": "HOME-SUB-01",
+              "name": "Fitted Sheets",
+              "slug": "fitted-sheets",
+              "status": "active",
+              "displayOrder": 1
+            },
+            {
+              "id": "HOME-SUB-02",
+              "name": "Flat Sheets",
+              "slug": "flat-sheets",
+              "status": "active",
+              "displayOrder": 2
+            },
+            {
+              "id": "HOME-SUB-03",
+              "name": "Pillow Covers",
+              "slug": "pillow-covers",
+              "status": "active",
+              "displayOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "HOME-CAT-02",
+          "name": "Bath Textiles",
+          "slug": "bath-textiles",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": [
+            {
+              "id": "HOME-SUB-04",
+              "name": "Bath Towels",
+              "slug": "bath-towels",
+              "status": "active",
+              "displayOrder": 1
+            },
+            {
+              "id": "HOME-SUB-05",
+              "name": "Hand Towels",
+              "slug": "hand-towels",
+              "status": "active",
+              "displayOrder": 2
+            },
+            {
+              "id": "HOME-SUB-06",
+              "name": "Bath Sheets",
+              "slug": "bath-sheets",
+              "status": "active",
+              "displayOrder": 3
+            }
+          ]
+        },
+        {
+          "id": "HOME-CAT-03",
+          "name": "Luxury Throws",
+          "slug": "luxury-throws",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": [
+            {
+              "id": "HOME-SUB-07",
+              "name": "Cashmere Throws",
+              "slug": "cashmere-throws",
+              "status": "active",
+              "displayOrder": 1
+            },
+            {
+              "id": "HOME-SUB-08",
+              "name": "Merino Wool Blankets",
+              "slug": "merino-blankets",
+              "status": "active",
+              "displayOrder": 2
+            }
+          ]
+        },
+        {
+          "id": "HOME-CAT-04",
+          "name": "Table Linen",
+          "slug": "table-linen",
+          "status": "coming-soon",
+          "displayOrder": 4,
+          "subCategories": [
+            {
+              "id": "HOME-SUB-09",
+              "name": "Table Runners",
+              "slug": "table-runners",
+              "status": "coming-soon",
+              "displayOrder": 1
+            },
+            {
+              "id": "HOME-SUB-10",
+              "name": "Placemats",
+              "slug": "placemats",
+              "status": "coming-soon",
+              "displayOrder": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fragrance",
+      "slug": "fragrance",
+      "icon": "DIV-05",
+      "status": "newly-started",
+      "description": "Perfumes, raw materials and private label",
+      "metaTitle": "Wholesale Perfume & Fragrance Manufacturer UAE | Oud, Bakhoor, Private Label — WCC Garments",
+      "metaDescription": "UAE-based fragrance manufacturer offering Arabian Oud, Bakhoor, Eau de Parfum & private label fragrance solutions in bulk. Ideal for retail, duty-free & gift shops.",
+      "keywords": [
+        "wholesale perfume manufacturer UAE",
+        "oud fragrance supplier Dubai",
+        "private label perfume UAE",
+        "bakhoor supplier wholesale",
+        "Arabian fragrance manufacturer",
+        "Eau de Parfum bulk order",
+        "incense wholesale UAE",
+        "fragrance raw material supplier Dubai",
+        "luxury perfume B2B UAE",
+        "custom fragrance manufacturer Middle East"
+      ],
+      "heroHeading": "Authentic Arabian Fragrances. Private Label Ready.",
+      "heroSubtitle": "Oud, Bakhoor, Eau de Parfum — crafted in the UAE for retail chains, duty-free operators, and private label buyers worldwide.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "100 Units",
+      "stat2Label": "Lead Time",
+      "stat2Value": "10–16 Days",
+      "stat3Label": "Label Options",
+      "stat3Value": "Private Label",
+      "categories": [
+        {
+          "id": "FRA-CAT-01",
+          "name": "Arabian Oud",
+          "slug": "arabian-oud",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": []
+        },
+        {
+          "id": "FRA-CAT-02",
+          "name": "Bakhoor & Incense",
+          "slug": "bakhoor-incense",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": []
+        },
+        {
+          "id": "FRA-CAT-03",
+          "name": "Eau de Parfum",
+          "slug": "eau-de-parfum",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": []
+        },
+        {
+          "id": "FRA-CAT-04",
+          "name": "Private Label",
+          "slug": "private-label",
+          "status": "active",
+          "displayOrder": 4,
+          "subCategories": []
+        },
+        {
+          "id": "FRA-CAT-05",
+          "name": "Raw Materials",
+          "slug": "raw-materials",
+          "status": "coming-soon",
+          "displayOrder": 5,
+          "subCategories": []
+        }
+      ]
+    },
+    {
+      "name": "Households",
+      "slug": "households",
+      "icon": "DIV-06",
+      "status": "active",
+      "description": "Essential household products for bulk supply",
+      "metaTitle": "Household Products Wholesale UAE | Microfiber Cloths, Bar Mops & Cleaning Supplies — WCC Garments",
+      "metaDescription": "Bulk household and cleaning product supplier in Dubai. Microfiber cleaning cloths, commercial bar mops, terry cleaning supplies. Industrial-grade. Wholesale pricing.",
+      "keywords": [
+        "household products wholesale UAE",
+        "microfiber cloth manufacturer Dubai",
+        "cleaning supplies bulk UAE",
+        "bar mop wholesale supplier",
+        "industrial cleaning cloth Dubai",
+        "commercial cleaning products UAE",
+        "terry cloth bulk order",
+        "janitorial supplies wholesale Dubai",
+        "B2B household supplier UAE",
+        "cleaning textile manufacturer Middle East"
+      ],
+      "heroHeading": "Industrial-Grade Household Products at Scale.",
+      "heroSubtitle": "Microfiber cloths, terry bar mops & commercial cleaning textiles — bulk supply for hotels, healthcare, and industrial facilities.",
+      "stat1Label": "MOQ From",
+      "stat1Value": "2,500 Units",
+      "stat2Label": "Lead Time",
+      "stat2Value": "7–14 Days",
+      "stat3Label": "Wash Rating",
+      "stat3Value": "90°C Safe",
+      "categories": [
+        {
+          "id": "HH-CAT-01",
+          "name": "Kitchen",
+          "slug": "kitchen",
+          "status": "active",
+          "displayOrder": 1,
+          "subCategories": [
+            {
+              "id": "HH-SUB-01",
+              "name": "Cutlery",
+              "slug": "cutlery",
+              "status": "active",
+              "displayOrder": 1
+            },
+            {
+              "id": "HH-SUB-02",
+              "name": "Cookware",
+              "slug": "cookware",
+              "status": "active",
+              "displayOrder": 2
+            },
+            {
+              "id": "HH-SUB-03",
+              "name": "Utility",
+              "slug": "utility",
+              "status": "active",
+              "displayOrder": 3
+            },
+            {
+              "id": "HH-SUB-04",
+              "name": "Kitchen Essentials",
+              "slug": "kitchen-essentials",
+              "status": "active",
+              "displayOrder": 4
+            },
+            {
+              "id": "HH-SUB-05",
+              "name": "Dinnerware",
+              "slug": "dinnerware",
+              "status": "coming-soon",
+              "displayOrder": 5
+            },
+            {
+              "id": "HH-SUB-06",
+              "name": "Barware",
+              "slug": "barware",
+              "status": "coming-soon",
+              "displayOrder": 6
+            },
+            {
+              "id": "HH-SUB-07",
+              "name": "Kitchen Utensils",
+              "slug": "kitchen-utensils",
+              "status": "coming-soon",
+              "displayOrder": 7
+            }
+          ]
+        },
+        {
+          "id": "HH-CAT-02",
+          "name": "Microfiber & Cleaning",
+          "slug": "microfiber-cleaning",
+          "status": "active",
+          "displayOrder": 2,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-03",
+          "name": "Bulk Liquids & Sanitizers",
+          "slug": "bulk-liquids-sanitizers",
+          "status": "active",
+          "displayOrder": 3,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-04",
+          "name": "Institutional Linens",
+          "slug": "institutional-linens",
+          "status": "active",
+          "displayOrder": 4,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-05",
+          "name": "OEM Custom Essentials",
+          "slug": "oem-custom-essentials",
+          "status": "active",
+          "displayOrder": 5,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-06",
+          "name": "Table Top",
+          "slug": "table-top",
+          "status": "coming-soon",
+          "displayOrder": 6,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-07",
+          "name": "Bathroom Accessories",
+          "slug": "bathroom-accessories",
+          "status": "coming-soon",
+          "displayOrder": 7,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-08",
+          "name": "Horeca Products",
+          "slug": "horeca-products",
+          "status": "coming-soon",
+          "displayOrder": 8,
+          "subCategories": []
+        },
+        {
+          "id": "HH-CAT-09",
+          "name": "Seasonal Gifting",
+          "slug": "seasonal-gifting",
+          "status": "coming-soon",
+          "displayOrder": 9,
+          "subCategories": []
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Egyptian Cotton Premium Shirts",
+      "slug": "egyptian-cotton-premium-shirts",
+      "division": "Garments",
+      "division_slug": "garments",
+      "category": "Formal Shirts",
+      "short_description": "Premium 100% Egyptian cotton shirts crafted for global wholesale distribution. Available in multiple fits and finishes.",
+      "moq": "500 units",
+      "lead_time": "15-25 working days",
+      "images": [
+        "/images/products/egyptian_cotton_shirt.png",
+        "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "certifications": [
+        "Export Grade QC"
+      ],
+      "specifications": {
+        "material": "100% Egyptian Cotton",
+        "thread_count": "300 TC",
+        "weight": "120 GSM",
+        "sizes": "S, M, L, XL, XXL",
+        "colors": "White, Sky Blue, Navy, Black"
+      },
+      "suitable_for": [
+        "Corporate",
+        "Retail",
+        "Hotels"
+      ],
+      "tags": [
+        "cotton",
+        "formal",
+        "premium"
+      ],
+      "brand_slug": "treasure"
+    },
+    {
+      "id": "2",
+      "name": "Industrial Cargo Work Pants",
+      "slug": "industrial-cargo-work-pants",
+      "division": "Uniforms",
+      "division_slug": "uniforms",
+      "category": "Workwear",
+      "short_description": "Heavy-duty cargo work pants built for industrial environments. Reinforced stitching and multiple utility pockets.",
+      "moq": "300 units",
+      "lead_time": "20-30 working days",
+      "images": [
+        "/images/products/cargo_work_pants.png",
+        "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": true,
+      "offer_label": "Bulk Discount",
+      "offer_start": "2026-05-01",
+      "offer_end": "2026-06-30",
+      "offer_terms": "Applicable for orders above 1,000 units. Subject to production slot confirmation.",
+      "featured": true,
+      "custom_branding": true,
+      "certifications": [
+        "Industrial Workwear QA"
+      ],
+      "specifications": {
+        "material": "Poly-Cotton Blend 65/35",
+        "weight": "280 GSM",
+        "sizes": "28-44 Waist",
+        "colors": "Khaki, Navy, Black, Olive"
+      },
+      "suitable_for": [
+        "Construction",
+        "Manufacturing",
+        "Oil & Gas"
+      ],
+      "tags": [
+        "workwear",
+        "industrial",
+        "cargo"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Hotel Bed Linen Collection",
+      "slug": "hotel-bed-linen-collection",
+      "division": "Hospitality",
+      "division_slug": "hospitality",
+      "category": "Bed Linen",
+      "short_description": "Luxury hotel-grade bed linen sets. Sateen weave finish with exceptional durability for commercial laundering.",
+      "moq": "200 sets",
+      "lead_time": "15-20 working days",
+      "images": [
+        "/images/products/hotel_bed_linen.png",
+        "https://images.unsplash.com/photo-1616627561839-074385245ff6?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "certifications": [
+        "Hospitality Textile QC"
+      ],
+      "specifications": {
+        "material": "100% Combed Cotton",
+        "thread_count": "300-600 TC",
+        "weave": "Sateen",
+        "sizes": "Single, Double, Queen, King"
+      },
+      "suitable_for": [
+        "Hotels",
+        "Resorts",
+        "Airlines"
+      ],
+      "tags": [
+        "hotel",
+        "linen",
+        "luxury"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Luxury Bath Towel Set",
+      "slug": "luxury-bath-towel-set",
+      "division": "Home",
+      "division_slug": "home",
+      "category": "Bath Textiles",
+      "short_description": "Ultra-soft ring spun cotton towels with superior absorbency. Double-stitched hems for commercial durability.",
+      "moq": "1000 units",
+      "lead_time": "10-15 working days",
+      "images": [
+        "/images/products/luxury_bath_towels.png",
+        "https://images.unsplash.com/photo-1616627561839-074385245ff6?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": true,
+      "offer_label": "Seasonal Special",
+      "offer_start": "2026-05-10",
+      "offer_end": "2026-07-10",
+      "offer_terms": "Offer applies to container-load and mixed-SKU bulk enquiries only.",
+      "featured": false,
+      "custom_branding": true,
+      "specifications": {
+        "material": "100% Ring Spun Cotton",
+        "weight": "500-700 GSM",
+        "sizes": "Hand, Bath, Bath Sheet",
+        "colors": "White, Ivory, Grey, Navy"
+      },
+      "suitable_for": [
+        "Hotels",
+        "Retail",
+        "Healthcare"
+      ],
+      "tags": [
+        "towel",
+        "bath",
+        "cotton"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Arabian Oud Collection",
+      "slug": "arabian-oud-collection",
+      "division": "Fragrance",
+      "division_slug": "fragrance",
+      "category": "Premium Fragrances",
+      "short_description": "Authentic Arabian Oud fragrances crafted from rare aged agarwood. Private label options available.",
+      "moq": "100 units",
+      "lead_time": "10-15 working days",
+      "images": [
+        "/images/products/arabian_oud_perfume.png",
+        "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "specifications": {
+        "type": "Eau de Parfum",
+        "concentration": "18-22%",
+        "sizes": "50ml, 100ml",
+        "notes": "Oud, Rose, Amber, Musk"
+      },
+      "suitable_for": [
+        "Retail",
+        "Duty Free",
+        "Gift Shops"
+      ],
+      "tags": [
+        "fragrance",
+        "oud",
+        "luxury"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Premium Chef Uniform Set",
+      "slug": "premium-chef-uniform-set",
+      "division": "Hospitality",
+      "division_slug": "hospitality",
+      "category": "Chef Uniforms",
+      "short_description": "Professional chef coats with breathable fabric and stain resistance. Double-breasted design with cloth buttons.",
+      "moq": "100 units",
+      "lead_time": "12-18 working days",
+      "images": [
+        "/images/products/chef_uniform.png",
+        "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "specifications": {
+        "material": "Poly-Cotton Twill",
+        "weight": "200 GSM",
+        "sizes": "XS-3XL",
+        "colors": "White, Black, Grey"
+      },
+      "suitable_for": [
+        "Restaurants",
+        "Hotels",
+        "Catering"
+      ],
+      "tags": [
+        "chef",
+        "uniform",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Microfiber Cleaning Cloths",
+      "slug": "microfiber-cleaning-cloths",
+      "division": "Households",
+      "division_slug": "households",
+      "category": "Cleaning Products",
+      "short_description": "Industrial grade microfiber cleaning cloths. Ultra-absorbent, lint-free, and reusable for hundreds of wash cycles.",
+      "moq": "5000 units",
+      "lead_time": "7-10 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=800&q=85",
+        "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": true,
+      "offer_label": "Clearance",
+      "offer_start": "2026-04-20",
+      "offer_end": "2026-05-31",
+      "offer_terms": "Limited to available warehouse inventory. Bulk dispatch scheduling applies.",
+      "featured": false,
+      "specifications": {
+        "material": "80% Polyester / 20% Polyamide",
+        "weight": "300 GSM",
+        "sizes": "30x30cm, 40x40cm",
+        "colors": "Blue, Green, Yellow, Red"
+      },
+      "suitable_for": [
+        "Hotels",
+        "Healthcare",
+        "Industrial"
+      ],
+      "tags": [
+        "cleaning",
+        "microfiber",
+        "household"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Executive Polo Collection",
+      "slug": "executive-polo-collection",
+      "division": "Garments",
+      "division_slug": "garments",
+      "category": "Polo Shirts",
+      "short_description": "Premium pique cotton polo shirts with corporate customization. Ribbed collar and cuffs for refined appearance.",
+      "moq": "250 units",
+      "lead_time": "12-18 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&q=85",
+        "https://images.unsplash.com/photo-1622445262465-248197307967?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": false,
+      "custom_branding": true,
+      "specifications": {
+        "material": "100% Pique Cotton",
+        "weight": "220 GSM",
+        "sizes": "S-3XL",
+        "colors": "White, Navy, Black, Burgundy, Forest Green"
+      },
+      "suitable_for": [
+        "Corporate",
+        "Hotels",
+        "Events"
+      ],
+      "tags": [
+        "polo",
+        "corporate",
+        "cotton"
+      ],
+      "brand_slug": "tom-jack"
+    },
+    {
+      "id": "9",
+      "name": "Executive Velvet Blazer",
+      "slug": "executive-velvet-blazer",
+      "division": "Garments",
+      "division_slug": "garments",
+      "category": "Formal Outerwear",
+      "short_description": "Luxury tailored velvet blazers engineered for VIP hospitality and front-of-house attire. Stain resistant coating.",
+      "moq": "50 units",
+      "lead_time": "14-20 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&q=85",
+        "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": true,
+      "offer_label": "VIP Package",
+      "offer_start": "2026-05-15",
+      "offer_end": "2026-08-15",
+      "offer_terms": "Bundle includes branded packaging and priority sampling for qualified buyers.",
+      "featured": true,
+      "custom_branding": true,
+      "specifications": {
+        "material": "Italian Cotton Velvet",
+        "weight": "320 GSM",
+        "sizes": "36-48 Chest",
+        "colors": "Midnight Blue, Royal Black, Emerald"
+      },
+      "suitable_for": [
+        "Boutique Hotels",
+        "Luxury Lounges",
+        "Private Clubs"
+      ],
+      "tags": [
+        "blazer",
+        "velvet",
+        "vip"
+      ],
+      "brand_slug": "treasure"
+    },
+    {
+      "id": "10",
+      "name": "Tactical Security Uniform Suite",
+      "slug": "tactical-security-uniform-suite",
+      "division": "Uniforms",
+      "division_slug": "uniforms",
+      "category": "Security Attire",
+      "short_description": "Industrial ripstop tactical uniforms engineered for VIP security and protocol forces. Water and abrasion resistant coating.",
+      "moq": "200 units",
+      "lead_time": "18-25 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=85",
+        "https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "certifications": [
+        "Compliance-Ready Fabrics"
+      ],
+      "specifications": {
+        "material": "65% Polyester / 35% Cotton Ripstop",
+        "weight": "260 GSM",
+        "sizes": "S-4XL",
+        "colors": "Navy, Black, Desert Tan"
+      },
+      "suitable_for": [
+        "Security Firms",
+        "Hotels",
+        "Aviation"
+      ],
+      "tags": [
+        "tactical",
+        "uniform",
+        "security"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Cashmere Merino Hospitality Blanket",
+      "slug": "cashmere-merino-hospitality-blanket",
+      "division": "Home",
+      "division_slug": "home",
+      "category": "Luxury Throws",
+      "short_description": "Exquisite blended cashmere and merino wool throws designed for five-star presidential suites and VIP aviation lounges.",
+      "moq": "100 units",
+      "lead_time": "20-30 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1580301762395-21ce84d00bc6?w=800&q=85",
+        "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "specifications": {
+        "material": "30% Mongolian Cashmere / 70% Merino Wool",
+        "weight": "450 GSM",
+        "dimensions": "180x220cm",
+        "colors": "Warm Taupe, Charcoal, Oatmeal"
+      },
+      "suitable_for": [
+        "Luxury Hotels",
+        "Private Jets",
+        "High-End Retail"
+      ],
+      "tags": [
+        "cashmere",
+        "blanket",
+        "home"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Royal Majalis Bakhoor Infusion",
+      "slug": "royal-majalis-bakhoor-infusion",
+      "division": "Fragrance",
+      "division_slug": "fragrance",
+      "category": "Incense & Home Fragrance",
+      "short_description": "Traditional royal Bakhoor compressed tablets rich in natural sandalwood, ambergris, and Taif rose essential oils.",
+      "moq": "300 boxes",
+      "lead_time": "12-16 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?w=800&q=85",
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "custom_branding": true,
+      "specifications": {
+        "format": "Compressed Incense Tablets",
+        "weight": "150g per box",
+        "origin": "UAE Crafted",
+        "notes": "Sandalwood, Amber, Taif Rose"
+      },
+      "suitable_for": [
+        "Palaces",
+        "Luxury Hotels",
+        "Boutique Spas"
+      ],
+      "tags": [
+        "bakhoor",
+        "fragrance",
+        "majalis"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Heavy-Duty Industrial Apron Set",
+      "slug": "heavy-duty-industrial-apron-set",
+      "division": "Uniforms",
+      "division_slug": "uniforms",
+      "category": "Protective Workwear",
+      "short_description": "Waxed cotton canvas aprons with genuine leather harness straps and solid brass hardware. Built for artisan workshops.",
+      "moq": "150 units",
+      "lead_time": "15-20 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1602573991155-21f0143bb45c?w=800&q=85",
+        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": false,
+      "custom_branding": true,
+      "specifications": {
+        "material": "16oz Waxed Cotton Canvas",
+        "straps": "Full Grain Leather",
+        "hardware": "Solid Brass",
+        "sizes": "Adjustable One Size"
+      },
+      "suitable_for": [
+        "Coffee Roasters",
+        "Woodworking",
+        "Bespoke Kitchens"
+      ],
+      "tags": [
+        "apron",
+        "workwear",
+        "canvas"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Commercial Terry Bar Mops",
+      "slug": "commercial-terry-bar-mops",
+      "division": "Households",
+      "division_slug": "households",
+      "category": "Cleaning Supplies",
+      "short_description": "Industrial bulk pack terry bar mops engineered for high-volume commercial kitchens and sanitation workflows.",
+      "moq": "2500 units",
+      "lead_time": "10-14 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1616627561839-074385245ff6?w=800&q=85",
+        "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=800&q=85"
+      ],
+      "is_new": false,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": true,
+      "specifications": {
+        "material": "100% Virgin Cotton Terry",
+        "weight": "350 GSM",
+        "pack": "50 units per bundle",
+        "laundering": "90C Industrial Wash Safe"
+      },
+      "suitable_for": [
+        "Restaurants",
+        "Bars",
+        "Industrial Caterers"
+      ],
+      "tags": [
+        "cleaning",
+        "barmop",
+        "terry"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Premium Silk Tie Collection",
+      "slug": "premium-silk-tie-collection",
+      "division": "Garments",
+      "division_slug": "garments",
+      "category": "Corporate Accessories",
+      "short_description": "Handcrafted jacquard woven 100% mulberry silk neckties. Custom monogramming and corporate gift box packaging available.",
+      "moq": "300 units",
+      "lead_time": "20-25 working days",
+      "images": [
+        "https://images.unsplash.com/photo-1589756823695-278bc923f962?w=800&q=85",
+        "https://images.unsplash.com/photo-1617137953288-c89b33a75908?w=800&q=85"
+      ],
+      "is_new": true,
+      "is_offer": false,
+      "offer_label": null,
+      "featured": false,
+      "custom_branding": true,
+      "specifications": {
+        "material": "100% Mulberry Silk",
+        "width": "8cm Classic Width",
+        "finish": "Jacquard Weave",
+        "lining": "100% Wool Interlining"
+      },
+      "suitable_for": [
+        "Corporate Gifts",
+        "Airlines",
+        "Executive Protocol"
+      ],
+      "tags": [
+        "silk",
+        "tie",
+        "corporate"
+      ],
+      "brand_slug": "tom-jack"
+    }
+  ],
+  "brands": [
+    {
+      "id": "b1",
+      "name": "TREASURE",
+      "slug": "treasure",
+      "tagline": "Sleek Corporate Tailoring & Bespoke Formal Wear",
+      "description": "A distinguished name in executive and protocol apparel. Known for premium-cut 100% Egyptian cotton shirts, velvet blazers, and luxury formal trousers representing the apex of B2B corporate wear.",
+      "logo_mobile": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",
+      "logo_desktop": "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=1200&q=80",
+      "featured": true,
+      "display_order": 1,
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "b2",
+      "name": "VANDEGRAFF",
+      "slug": "vandegraff",
+      "tagline": "Heavy-Duty Corporate Attire & Technical Workwear",
+      "description": "Engineered for absolute performance, high-grade twill corporate trousers, heavy-duty cargo wear, and premium corporate uniforms constructed with reinforced stitching and stain-resistant treatment.",
+      "logo_mobile": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
+      "logo_desktop": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80",
+      "featured": true,
+      "display_order": 2,
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "b3",
+      "name": "TOM & JACK",
+      "slug": "tom-jack",
+      "tagline": "Contemporary Active Apparel & Refined Team Wear",
+      "description": "Modern, high-comfort garments designed for luxury hospitality staff, VIP events, and professional team environments. Specialists in double-mercerized cotton polo shirts and elegant corporate accessories.",
+      "logo_mobile": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600&q=80",
+      "logo_desktop": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=1200&q=80",
+      "featured": true,
+      "display_order": 3,
+      "created_at": "2026-01-01T00:00:00Z"
+    }
+  ]
+}

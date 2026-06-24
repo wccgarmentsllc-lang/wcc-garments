@@ -1,0 +1,7 @@
+/* Style for the image within the label */
+.wc_payment_method label img {
+    width: 150px;
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 10px; /* Space between text and image */
+    display: inline-flex;
+}
