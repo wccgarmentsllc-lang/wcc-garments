@@ -29,10 +29,13 @@ import {
   DEFAULT_EXPANSION,
   DEFAULT_DUBAI_PIPELINE,
   DEFAULT_NEWSLETTER,
-  DEFAULT_ABOUT
+  DEFAULT_ABOUT,
+  DEFAULT_UNIFORMS,
+  DEFAULT_HOME_SHOWCASE,
+  DEFAULT_FRAGRANCE
 } from './defaults'
 
-type ActiveSection = 'global' | 'bulk' | 'hero' | 'who' | 'garment' | 'household' | 'hospitality' | 'expansion' | 'pipeline' | 'newsletter' | 'aboutPage'
+type ActiveSection = 'global' | 'bulk' | 'hero' | 'who' | 'garment' | 'hospitality' | 'household' | 'uniforms' | 'homeShowcase' | 'fragrance' | 'expansion' | 'pipeline' | 'newsletter' | 'aboutPage'
 
 export default function AdminSectionsPage() {
   const [activeTab, setActiveTab] = useState<ActiveSection>('hero')
@@ -44,6 +47,9 @@ export default function AdminSectionsPage() {
   const [garments, setGarments] = useState<any>(null)
   const [households, setHouseholds] = useState<any>(null)
   const [hospitality, setHospitality] = useState<any>(null)
+  const [uniforms, setUniforms] = useState<any>(null)
+  const [homeShowcase, setHomeShowcase] = useState<any>(null)
+  const [fragrance, setFragrance] = useState<any>(null)
   const [expansion, setExpansion] = useState<any>(null)
   const [dubaiPipeline, setDubaiPipeline] = useState<any>(null)
   const [newsletter, setNewsletter] = useState<any>(null)
@@ -71,6 +77,9 @@ export default function AdminSectionsPage() {
         setGarments(getSec('garments-showcase', DEFAULT_GARMENTS))
         setHouseholds(getSec('households-showcase-v2', DEFAULT_HOUSEHOLDS))
         setHospitality(getSec('hospitality-showcase-v2', DEFAULT_HOSPITALITY))
+        setUniforms(getSec('uniforms-showcase', DEFAULT_UNIFORMS))
+        setHomeShowcase(getSec('home-showcase', DEFAULT_HOME_SHOWCASE))
+        setFragrance(getSec('fragrance-showcase', DEFAULT_FRAGRANCE))
         setExpansion(getSec('strategic-expansion', DEFAULT_EXPANSION))
         setDubaiPipeline(getSec('dubai-pipeline', DEFAULT_DUBAI_PIPELINE))
         setNewsletter(getSec('newsletter', DEFAULT_NEWSLETTER))
@@ -137,6 +146,10 @@ export default function AdminSectionsPage() {
             <Layers className="h-4 w-4 shrink-0" />
             <span>3. Garments Categories</span>
           </button>
+          <button onClick={() => setActiveTab('uniforms')} className={tabClass('uniforms')}>
+            <Layers className="h-4 w-4 shrink-0" />
+            <span>3.5 Uniforms Showcase</span>
+          </button>
           <button onClick={() => setActiveTab('hospitality')} className={tabClass('hospitality')}>
             <Layers className="h-4 w-4 shrink-0" />
             <span>4. Hospitality Showcase</span>
@@ -144,6 +157,14 @@ export default function AdminSectionsPage() {
           <button onClick={() => setActiveTab('household')} className={tabClass('household')}>
             <Layers className="h-4 w-4 shrink-0" />
             <span>5. Household Showcase</span>
+          </button>
+          <button onClick={() => setActiveTab('homeShowcase')} className={tabClass('homeShowcase')}>
+            <Layers className="h-4 w-4 shrink-0" />
+            <span>5.2 Home Showcase</span>
+          </button>
+          <button onClick={() => setActiveTab('fragrance')} className={tabClass('fragrance')}>
+            <Layers className="h-4 w-4 shrink-0" />
+            <span>5.5 Fragrance Showcase</span>
           </button>
           <button onClick={() => setActiveTab('bulk')} className={tabClass('bulk')}>
             <Sliders className="h-4 w-4 shrink-0" />
@@ -193,13 +214,13 @@ export default function AdminSectionsPage() {
                   matrixTitle="Garment Categories Matrix (6 Symmetrical Cards)"
                 />
               )}
-              {activeTab === 'household' && households && (
+              {activeTab === 'uniforms' && uniforms && (
                 <ShowcaseEditor 
-                  initialData={households} 
-                  sectionId="households-showcase-v2"
-                  title="6. Household Manufacturing Showcase"
-                  subtitle="Configure active household items, description parameters, MOQ values, and card images"
-                  matrixTitle="Household Categories Matrix (4 Cinematic Cards)"
+                  initialData={uniforms} 
+                  sectionId="uniforms-showcase"
+                  title="5.2 Uniforms Manufacturing Showcase"
+                  subtitle="Configure active uniforms categories, descriptions, and card images"
+                  matrixTitle="Uniforms Categories Matrix (6 Symmetrical Cards)"
                 />
               )}
               {activeTab === 'hospitality' && hospitality && (
@@ -209,6 +230,33 @@ export default function AdminSectionsPage() {
                   title="6.5 Hospitality Manufacturing Showcase"
                   subtitle="Configure active hospitality items, description parameters, MOQ values, and card images"
                   matrixTitle="Hospitality Categories Matrix (5 Portrait Cards)"
+                />
+              )}
+              {activeTab === 'household' && households && (
+                <ShowcaseEditor 
+                  initialData={households} 
+                  sectionId="households-showcase-v2"
+                  title="6. Household Manufacturing Showcase"
+                  subtitle="Configure active household items, description parameters, MOQ values, and card images"
+                  matrixTitle="Household Categories Matrix (4 Cinematic Cards)"
+                />
+              )}
+              {activeTab === 'homeShowcase' && homeShowcase && (
+                <ShowcaseEditor 
+                  initialData={homeShowcase} 
+                  sectionId="home-showcase"
+                  title="6.2 Home Furnishings Showcase"
+                  subtitle="Configure active home furnishing items, descriptions, and card images"
+                  matrixTitle="Home Furnishing Categories Matrix (4 Cinematic Cards)"
+                />
+              )}
+              {activeTab === 'fragrance' && fragrance && (
+                <ShowcaseEditor 
+                  initialData={fragrance} 
+                  sectionId="fragrance-showcase"
+                  title="6.8 Fragrance Showcase"
+                  subtitle="Configure active fragrance items, descriptions, and card images"
+                  matrixTitle="Fragrance Categories Matrix (5 Portrait Cards)"
                 />
               )}
 

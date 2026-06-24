@@ -16,9 +16,10 @@ const DEFAULT_HOSPITALITY = {
   categories: [
     { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ MOQ', image: '/images/hos-1.png' },
     { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ MOQ', image: '/images/hos-2.png' },
-    { name: 'Serving & Kitchen Tools', slug: 'serving-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
+    { name: 'Kitchen Tools', slug: 'kitchen-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
     { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ MOQ', image: '/images/hos-4.png' },
-    { name: 'Storage & Serving', slug: 'storage-serving', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' }
+    { name: 'Storage', slug: 'storage', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' },
+    { name: 'Serving', slug: 'serving', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ MOQ', image: '/images/hos-3.png' }
   ]
 }
 
@@ -62,8 +63,8 @@ export function HospitalityShowcase() {
           </motion.p>
         </div>
 
-        {/* 5-Column Portrait Grid */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {/* 3x2 Portrait Grid */}
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {data.categories.map((category: any, index: number) => (
             <motion.div
               key={category.slug || index}
