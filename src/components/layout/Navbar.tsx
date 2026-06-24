@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, ChevronDown, Building2, ShieldCheck, Factory, Briefcase, Home, Package, ArrowRight, Award, Clock, Mail, MessageCircle, Globe, Flame, Sparkles, Layers } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, Building2, ShieldCheck, Factory, Briefcase, Home, Package, ArrowRight, Award, Clock, Mail, MessageCircle, Globe, Flame, Sparkles, Layers, Search, X, Loader2, AlertCircle } from 'lucide-react'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { NAV_LINKS, SITE_CONFIG } from '@/lib/constants'
 import { contentStore } from '@/lib/content-store'
@@ -17,10 +17,38 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [isSearching, setIsSearching] = useState(false)
   const { data: config } = useWebsiteContent('site_config', SITE_CONFIG)
   const pathname = usePathname()
 
   const isAdmin = pathname.startsWith('/admin')
+
+  // Real-time debounced product search
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([])
+      return
+    }
+
+    setIsSearching(true)
+    const delayDebounceFn = setTimeout(async () => {
+      try {
+        const res = await api.getProducts({ search: searchQuery, limit: 8 })
+        if (res.success && res.data) {
+          setSearchResults(res.data)
+        }
+      } catch (err) {
+        console.error('Search failed:', err)
+      } finally {
+        setIsSearching(false)
+      }
+    }, 250)
+
+    return () => clearTimeout(delayDebounceFn)
+  }, [searchQuery])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -104,11 +132,11 @@ export function Navbar() {
     })
   }
 
-  // Prevent scroll when mobile menu is open
+  // Prevent scroll when mobile menu or search is open
   useEffect(() => {
-    document.body.style.overflow = isMobileOpen ? 'hidden' : ''
+    document.body.style.overflow = (isMobileOpen || isSearchOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [isMobileOpen])
+  }, [isMobileOpen, isSearchOpen])
 
   if (isAdmin) return null
 
@@ -177,6 +205,14 @@ export function Navbar() {
 
           {/* Right Side Controls */}
           <div className="flex items-center gap-4">
+            {/* Search Icon Button */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200/50 dark:border-neutral-800/80 bg-neutral-100/50 dark:bg-neutral-900/50 text-black dark:text-white transition-colors hover:text-gold dark:hover:text-gold shadow-sm"
+              aria-label="Search products"
+            >
+              <Search className="h-4 w-4" />
+            </button>
             <ThemeToggle className="hidden sm:flex" />
             <Link
               href="/contact"
@@ -480,6 +516,130 @@ export function Navbar() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* ── GLOBAL SEARCH OVERLAY ── */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex flex-col bg-white/95 dark:bg-black/95 backdrop-blur-2xl px-6 py-8 font-sans text-neutral-900 dark:text-white"
+          >
+            {/* Header / Top controls */}
+            <div className="mx-auto flex w-full max-w-4xl items-center justify-between border-b border-neutral-200 dark:border-white/10 pb-4">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-gold">Product Finder</span>
+              <button
+                onClick={() => {
+                  setIsSearchOpen(false)
+                  setSearchQuery('')
+                }}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 dark:border-white/10 hover:border-neutral-300 dark:hover:border-white/30 text-neutral-500 hover:text-neutral-900 dark:text-white/60 dark:hover:text-white transition-colors"
+                aria-label="Close search"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Input Container */}
+            <div className="mx-auto mt-12 w-full max-w-4xl relative">
+              <Search className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 text-neutral-400 dark:text-white/40" />
+              <input
+                type="text"
+                autoFocus
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Type to search garments, cookware, tableware, linen..."
+                className="w-full bg-transparent py-6 pl-14 pr-12 text-2xl font-light text-neutral-900 placeholder-neutral-400 focus:outline-none dark:text-white dark:placeholder-white/30 border-b-2 border-neutral-200 dark:border-white/10 focus:border-neutral-300 dark:focus:border-white/30 transition-colors"
+              />
+              {isSearching && (
+                <Loader2 className="absolute right-4 top-1/2 h-6 w-6 -translate-y-1/2 animate-spin text-gold" />
+              )}
+              {searchQuery && !isSearching && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-900 dark:text-white/40 dark:hover:text-white transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+
+            {/* Results Container */}
+            <div className="mx-auto mt-10 w-full max-w-4xl flex-1 overflow-y-auto pb-12 scrollbar-hide">
+              {searchQuery.trim() === '' ? (
+                // Quick suggestions
+                <div className="space-y-6">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-white/40">Suggested Categories</p>
+                  <div className="flex flex-wrap gap-2.5">
+                    {[
+                      { name: 'Formal Shirts', href: '/products/garments?category=formal-shirts' },
+                      { name: 'Blazers & Suits', href: '/products/garments?category=blazers-suits' },
+                      { name: 'Hospitality', href: '/products/households' },
+                      { name: 'Triply Cookware', href: '/products/households' },
+                    ].map((s) => (
+                      <Link
+                        key={s.name}
+                        href={s.href}
+                        onClick={() => {
+                          setIsSearchOpen(false)
+                          setSearchQuery('')
+                        }}
+                        className="rounded-full border border-neutral-200 px-4 py-2 text-xs font-mono font-semibold text-neutral-600 hover:border-gold hover:text-gold dark:border-white/10 dark:text-white/60 dark:hover:border-gold dark:hover:text-gold transition-colors"
+                      >
+                        {s.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : searchResults.length > 0 ? (
+                <div className="space-y-8">
+                  <div className="flex items-center justify-between border-b border-neutral-200 dark:border-white/5 pb-2">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-400 dark:text-white/40">Search Results</span>
+                    <span className="font-mono text-[10px] text-gold font-bold">{searchResults.length} matching products</span>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {searchResults.map((product) => {
+                      const img = product.images?.[0] || 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&q=80'
+                      const href = getProductHref(product.division_slug || product.division?.slug, product.slug)
+                      
+                      return (
+                        <Link
+                          key={product.id}
+                          href={href}
+                          onClick={() => {
+                            setIsSearchOpen(false)
+                            setSearchQuery('')
+                          }}
+                          className="group flex items-center gap-4 rounded-xl border border-neutral-200/60 dark:border-white/10 bg-neutral-50/50 dark:bg-white/5 p-3.5 hover:border-gold hover:bg-gold/5 dark:hover:border-gold dark:hover:bg-gold/5 transition-all duration-300"
+                        >
+                          <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-white border border-neutral-200 dark:border-white/10 rounded-lg p-0.5 shadow-sm">
+                            <div className="relative w-full h-full bg-white">
+                              <Image src={img} alt={product.name} fill className="object-contain transition-transform group-hover:scale-105 duration-300" sizes="64px" />
+                            </div>
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="font-semibold text-sm text-neutral-900 dark:text-white group-hover:text-gold truncate transition-colors">{product.name}</h4>
+                            <p className="text-xs text-neutral-500 dark:text-white/50 capitalize font-mono mt-0.5">{product.division?.name || product.division || ''} · {product.category?.name || product.category || ''}</p>
+                            <span className="inline-block font-mono text-[10px] text-gold font-bold mt-1">MOQ: {product.moq || '500 Pcs'}</span>
+                          </div>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="py-16 text-center space-y-3 font-mono">
+                  <AlertCircle className="h-10 w-10 text-neutral-300 dark:text-white/20 mx-auto" />
+                  <p className="text-sm text-neutral-500 dark:text-white/50">No products found matching &ldquo;{searchQuery}&rdquo;</p>
+                  <p className="text-xs text-neutral-400 dark:text-white/30">Double check spelling or try other keywords.</p>
+                </div>
+              )}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

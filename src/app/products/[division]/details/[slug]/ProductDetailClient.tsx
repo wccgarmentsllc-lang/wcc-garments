@@ -98,22 +98,62 @@ export default function ProductDetailClient({
               transition={{ duration: 0.55 }}
             >
               <div
-                className="relative mx-auto aspect-[1/1] w-full max-w-[640px] overflow-hidden border border-[var(--border)] bg-[var(--bg)]"
+                className="relative mx-auto aspect-[1/1] w-full max-w-[640px] overflow-hidden border border-[var(--border)] bg-[var(--bg)] touch-pan-y"
                 data-cursor="view"
               >
-                <Image
-                  src={images[activeImage] || images[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80'}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 58vw"
-                />
+                <motion.div
+                  key={activeImage}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(e, info) => {
+                    const swipeThreshold = 50
+                    if (info.offset.x < -swipeThreshold) {
+                      if (activeImage < images.length - 1) {
+                        setActiveImage(prev => prev + 1)
+                      }
+                    } else if (info.offset.x > swipeThreshold) {
+                      if (activeImage > 0) {
+                        setActiveImage(prev => prev - 1)
+                      }
+                    }
+                  }}
+                  className="relative w-full h-full cursor-grab active:cursor-grabbing"
+                >
+                  <Image
+                    src={images[activeImage] || images[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80'}
+                    alt={product.name}
+                    fill
+                    className="object-cover pointer-events-none"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                  />
+                </motion.div>
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/35 to-transparent" />
                 {product.is_new && (
                   <span className="absolute left-4 top-4 bg-gold px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black">
                     New Arrival
                   </span>
+                )}
+                
+                {/* Dots indicator for mobile swiping */}
+                {images.length > 1 && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 sm:hidden">
+                    {images.map((_: any, idx: number) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveImage(idx)}
+                        className={`h-1.5 w-1.5 rounded-full transition-all ${
+                          activeImage === idx ? 'bg-gold w-3' : 'bg-white/50'
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
 

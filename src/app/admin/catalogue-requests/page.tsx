@@ -198,120 +198,208 @@ CREATE TRIGGER update_catalogue_requests_modtime
 
           {/* Table Container */}
           <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-white/5 shadow-2xl font-mono">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left">
-                <thead className="border-b border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/40 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-white/40">
-                  <tr>
-                    <th className="px-6 py-4">Client Detail</th>
-                    <th className="px-6 py-4">Company Entity</th>
-                    <th className="px-6 py-4">Target Catalogue</th>
-                    <th className="px-6 py-4">Date Requested</th>
-                    <th className="px-6 py-4">Status</th>
-                    <th className="px-6 py-4 text-right">Approval Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-neutral-200 dark:divide-white/10 text-xs text-neutral-700 dark:text-white/80">
-                  {loading ? (
-                    <tr>
-                      <td colSpan={6} className="text-center py-12 font-sans text-neutral-500 dark:text-white/50">
-                        Loading request logs...
-                      </td>
-                    </tr>
-                  ) : filteredRequests.length === 0 ? (
-                    <tr>
-                      <td colSpan={6} className="text-center py-12 font-sans text-neutral-500 dark:text-white/50">
-                        No catalogue requests found matching filters.
-                      </td>
-                    </tr>
-                  ) : (
-                    <AnimatePresence>
-                      {filteredRequests.map((req) => {
-                        const isHoreca = req.brand_slug === 'horeca24h'
-                        return (
-                          <motion.tr
-                            key={req.id}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="group hover:bg-neutral-50/50 dark:hover:bg-white/5 transition-colors"
+        <div className="hidden md:block overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="border-b border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/40 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-white/40">
+              <tr>
+                <th className="px-6 py-4">Client Detail</th>
+                <th className="px-6 py-4">Company Entity</th>
+                <th className="px-6 py-4">Target Catalogue</th>
+                <th className="px-6 py-4">Date Requested</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Approval Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-neutral-200 dark:divide-white/10 text-xs text-neutral-700 dark:text-white/80">
+              {loading ? (
+                <tr>
+                  <td colSpan={6} className="text-center py-12 font-sans text-neutral-500 dark:text-white/50">
+                    Loading request logs...
+                  </td>
+                </tr>
+              ) : filteredRequests.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="text-center py-12 font-sans text-neutral-500 dark:text-white/50">
+                    No catalogue requests found matching filters.
+                  </td>
+                </tr>
+              ) : (
+                <AnimatePresence>
+                  {filteredRequests.map((req) => {
+                    const isHoreca = req.brand_slug === 'horeca24h'
+                    return (
+                      <motion.tr
+                        key={req.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="group hover:bg-neutral-50/50 dark:hover:bg-white/5 transition-colors"
+                      >
+                        <td className="px-6 py-5">
+                          <div className="space-y-0.5">
+                            <p className="font-display text-sm font-bold text-neutral-900 dark:text-white group-hover:text-gold transition-colors">{req.name}</p>
+                            <a href={`mailto:${req.email}`} className="text-neutral-500 dark:text-white/40 hover:underline flex items-center gap-1.5 text-[11px]">
+                              <Mail className="h-3 w-3" />
+                              <span>{req.email}</span>
+                            </a>
+                          </div>
+                        </td>
+                        <td className="px-6 py-5">
+                          {req.company ? (
+                            <div className="flex items-center gap-2 text-neutral-800 dark:text-white/90">
+                              <Building2 className="h-3.5 w-3.5 text-neutral-400" />
+                              <span>{req.company}</span>
+                            </div>
+                          ) : (
+                            <span className="text-neutral-400 dark:text-white/30 italic">Not Provided</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-5">
+                          <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded border ${
+                            isHoreca 
+                              ? 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' 
+                              : 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20 dark:text-indigo-400'
+                          }`}>
+                            <BookOpen className="h-3 w-3" />
+                            <span>{isHoreca ? 'Horeca (Hospitality)' : 'Aanya (Household)'}</span>
+                          </span>
+                        </td>
+                        <td className="px-6 py-5 text-neutral-500 dark:text-white/40">
+                          {new Date(req.created_at).toLocaleDateString()} at {new Date(req.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </td>
+                        <td className="px-6 py-5">
+                          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${
+                            req.status === 'pending' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20' :
+                            req.status === 'approved' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' :
+                            'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
+                          }`}>
+                            {req.status === 'pending' && <Clock className="h-3 w-3 animate-pulse" />}
+                            {req.status === 'approved' && <Check className="h-3 w-3" />}
+                            {req.status === 'rejected' && <XCircle className="h-3 w-3" />}
+                            <span>{req.status}</span>
+                          </span>
+                        </td>
+                        <td className="px-6 py-5 text-right">
+                          {req.status === 'pending' ? (
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => handleUpdateStatus(req.id, 'approved')}
+                                disabled={processingId !== null}
+                                className="inline-flex items-center gap-1.5 rounded bg-gold hover:bg-gold-light text-white px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer shadow-sm"
+                              >
+                                <Send className="h-3 w-3" />
+                                <span>Approve &amp; Send</span>
+                              </button>
+                              <button
+                                onClick={() => handleUpdateStatus(req.id, 'rejected')}
+                                disabled={processingId !== null}
+                                className="inline-flex items-center gap-1.5 rounded border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 text-neutral-600 dark:text-white/60 px-3 py-2 text-[10px] font-bold uppercase tracking-wider hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-all disabled:opacity-50 cursor-pointer"
+                              >
+                                <span>Reject</span>
+                              </button>
+                            </div>
+                          ) : (
+                            <span className="text-[10px] text-neutral-400 dark:text-white/30 uppercase font-bold tracking-widest">
+                              Processed
+                            </span>
+                          )}
+                        </td>
+                      </motion.tr>
+                    )
+                  })}
+                </AnimatePresence>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Stacked Card View */}
+        <div className="block md:hidden p-4 space-y-4">
+          {loading ? (
+            <div className="text-center py-10 font-sans text-neutral-500 dark:text-white/50">Loading request logs...</div>
+          ) : filteredRequests.length === 0 ? (
+            <div className="text-center py-10 font-sans text-neutral-500 dark:text-white/50">No catalogue requests found matching filters.</div>
+          ) : (
+            <AnimatePresence>
+              {filteredRequests.map((req) => {
+                const isHoreca = req.brand_slug === 'horeca24h'
+                return (
+                  <motion.div
+                    key={req.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="p-4 border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/5 space-y-3 font-mono shadow-sm"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-0.5">
+                        <h4 className="font-display text-sm font-bold text-neutral-900 dark:text-white">{req.name}</h4>
+                        <a href={`mailto:${req.email}`} className="text-neutral-500 dark:text-white/40 hover:underline flex items-center gap-1.5 text-[10px]">
+                          <Mail className="h-3 w-3 shrink-0" />
+                          <span className="truncate max-w-[180px]">{req.email}</span>
+                        </a>
+                      </div>
+                      <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${
+                        isHoreca 
+                          ? 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' 
+                          : 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20 dark:text-indigo-400'
+                      }`}>
+                        <span>{isHoreca ? 'Horeca' : 'Aanya'}</span>
+                      </span>
+                    </div>
+
+                    <div className="text-[11px] space-y-1">
+                      <div className="flex items-center gap-2 text-neutral-800 dark:text-white/80">
+                        <Building2 className="h-3.5 w-3.5 text-neutral-400 shrink-0" />
+                        <span>{req.company || <span className="italic text-neutral-400 dark:text-white/30">Not Provided</span>}</span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 dark:text-white/40 font-mono">
+                        Requested: {new Date(req.created_at).toLocaleDateString()} at {new Date(req.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between border-t border-neutral-100 dark:border-white/5 pt-3">
+                      <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                        req.status === 'pending' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20' :
+                        req.status === 'approved' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' :
+                        'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
+                      }`}>
+                        {req.status === 'pending' && <Clock className="h-3 w-3 animate-pulse" />}
+                        {req.status === 'approved' && <Check className="h-3 w-3" />}
+                        {req.status === 'rejected' && <XCircle className="h-3 w-3" />}
+                        <span>{req.status}</span>
+                      </span>
+
+                      {req.status === 'pending' ? (
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleUpdateStatus(req.id, 'approved')}
+                            disabled={processingId !== null}
+                            className="inline-flex items-center gap-1.5 rounded bg-gold hover:bg-gold-light text-white px-3.5 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer shadow-sm"
                           >
-                            <td className="px-6 py-5">
-                              <div className="space-y-0.5">
-                                <p className="font-display text-sm font-bold text-neutral-900 dark:text-white group-hover:text-gold transition-colors">{req.name}</p>
-                                <a href={`mailto:${req.email}`} className="text-neutral-500 dark:text-white/40 hover:underline flex items-center gap-1.5 text-[11px]">
-                                  <Mail className="h-3 w-3" />
-                                  <span>{req.email}</span>
-                                </a>
-                              </div>
-                            </td>
-                            <td className="px-6 py-5">
-                              {req.company ? (
-                                <div className="flex items-center gap-2 text-neutral-800 dark:text-white/90">
-                                  <Building2 className="h-3.5 w-3.5 text-neutral-400" />
-                                  <span>{req.company}</span>
-                                </div>
-                              ) : (
-                                <span className="text-neutral-400 dark:text-white/30 italic">Not Provided</span>
-                              )}
-                            </td>
-                            <td className="px-6 py-5">
-                              <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded border ${
-                                isHoreca 
-                                  ? 'bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400' 
-                                  : 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20 dark:text-indigo-400'
-                              }`}>
-                                <BookOpen className="h-3 w-3" />
-                                <span>{isHoreca ? 'Horeca (Hospitality)' : 'Aanya (Household)'}</span>
-                              </span>
-                            </td>
-                            <td className="px-6 py-5 text-neutral-500 dark:text-white/40">
-                              {new Date(req.created_at).toLocaleDateString()} at {new Date(req.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </td>
-                            <td className="px-6 py-5">
-                              <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${
-                                req.status === 'pending' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20' :
-                                req.status === 'approved' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' :
-                                'bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20'
-                              }`}>
-                                {req.status === 'pending' && <Clock className="h-3 w-3 animate-pulse" />}
-                                {req.status === 'approved' && <Check className="h-3 w-3" />}
-                                {req.status === 'rejected' && <XCircle className="h-3 w-3" />}
-                                <span>{req.status}</span>
-                              </span>
-                            </td>
-                            <td className="px-6 py-5 text-right">
-                              {req.status === 'pending' ? (
-                                <div className="flex items-center justify-end gap-2">
-                                  <button
-                                    onClick={() => handleUpdateStatus(req.id, 'approved')}
-                                    disabled={processingId !== null}
-                                    className="inline-flex items-center gap-1.5 rounded bg-gold hover:bg-gold-light text-white px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50 cursor-pointer shadow-sm"
-                                  >
-                                    <Send className="h-3 w-3" />
-                                    <span>Approve &amp; Send</span>
-                                  </button>
-                                  <button
-                                    onClick={() => handleUpdateStatus(req.id, 'rejected')}
-                                    disabled={processingId !== null}
-                                    className="inline-flex items-center gap-1.5 rounded border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 text-neutral-600 dark:text-white/60 px-3 py-2 text-[10px] font-bold uppercase tracking-wider hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-all disabled:opacity-50 cursor-pointer"
-                                  >
-                                    <span>Reject</span>
-                                  </button>
-                                </div>
-                              ) : (
-                                <span className="text-[10px] text-neutral-400 dark:text-white/30 uppercase font-bold tracking-widest">
-                                  Processed
-                                </span>
-                              )}
-                            </td>
-                          </motion.tr>
-                        )
-                      })}
-                    </AnimatePresence>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                            <Send className="h-3 w-3" />
+                            <span>Approve</span>
+                          </button>
+                          <button
+                            onClick={() => handleUpdateStatus(req.id, 'rejected')}
+                            disabled={processingId !== null}
+                            className="inline-flex items-center gap-1.5 rounded border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 text-neutral-600 dark:text-white/60 px-3.5 py-2.5 text-[10px] font-bold uppercase tracking-wider hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-all disabled:opacity-50 cursor-pointer"
+                          >
+                            <span>Reject</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <span className="text-[10px] text-neutral-400 dark:text-white/30 uppercase font-bold tracking-widest">
+                          Processed
+                        </span>
+                      )}
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
+          )}
+        </div>
           </div>
         </>
       )}
