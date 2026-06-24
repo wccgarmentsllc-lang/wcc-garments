@@ -125,7 +125,7 @@ export default function AdminEnquiriesPage() {
 
       {/* Enquiries CRM List Grid */}
       <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-white/10 dark:bg-white/5 shadow-2xl font-mono">
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left">
             <thead className="border-b border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/40 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-white/40">
               <tr>
@@ -222,6 +222,81 @@ export default function AdminEnquiriesPage() {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Stacked Card View */}
+        <div className="block md:hidden p-4 space-y-4">
+          {loading ? (
+            <div className="text-center py-10 font-sans text-neutral-500 dark:text-white/50">Loading records...</div>
+          ) : (
+            <AnimatePresence>
+              {filteredEnquiries.map((enq) => (
+                <motion.div
+                  key={enq.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  onClick={() => setActiveModal(enq)}
+                  className="p-4 border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/5 space-y-3 font-mono shadow-sm cursor-pointer hover:border-gold transition-colors"
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-0.5">
+                      <span className="font-mono text-[10px] font-bold text-gold">{enq.id}</span>
+                      <p className="text-[10px] text-neutral-400 dark:text-white/40">{enq.date}</p>
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5">
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
+                        enq.status === 'new' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30' :
+                        enq.status === 'quoted' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
+                        enq.status === 'converted' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
+                        'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30'
+                      }`}>
+                        <span>{enq.status}</span>
+                      </span>
+                      <span className={`rounded px-1.5 py-0.2 text-[8px] font-bold uppercase ${
+                        enq.priority === 'urgent' ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30' :
+                        enq.priority === 'high' ? 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border border-orange-500/30' :
+                        'bg-neutral-100 text-neutral-500 border border-neutral-200 dark:bg-white/5 dark:text-white/40 dark:border-white/10'
+                      }`}>
+                        {enq.priority}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <h4 className="font-display text-sm font-bold text-neutral-900 dark:text-white">{enq.company}</h4>
+                    <p className="text-[11px] text-neutral-500 dark:text-white/60 flex items-center gap-1.5">
+                      <Globe className="h-3.5 w-3.5 text-gold shrink-0" />
+                      <span>{enq.country}</span>
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[11px] border-t border-neutral-100 dark:border-white/5 pt-2">
+                    <div>
+                      <p className="text-neutral-400 dark:text-white/45 text-[9px] uppercase">Product Interest</p>
+                      <p className="font-semibold text-neutral-800 dark:text-white/80 truncate">{enq.products}</p>
+                    </div>
+                    <div>
+                      <p className="text-neutral-400 dark:text-white/45 text-[9px] uppercase">Est. Qty</p>
+                      <p className="font-bold text-neutral-800 dark:text-white/85">{enq.quantity}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between border-t border-neutral-100 dark:border-white/5 pt-3">
+                    <span className="text-[10px] text-neutral-400 dark:text-white/40">Rep: {enq.rep}</span>
+                    
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setActiveModal(enq) }}
+                      className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 px-3.5 py-2.5 text-xs text-neutral-600 dark:text-white/70 hover:bg-gold hover:text-white transition-all font-semibold"
+                    >
+                      <Eye className="h-3.5 w-3.5" />
+                      <span>Inspect</span>
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          )}
         </div>
 
         {filteredEnquiries.length === 0 && (

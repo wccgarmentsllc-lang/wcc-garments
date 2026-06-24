@@ -113,7 +113,7 @@ export default function AdminProductsPage() {
 
       {/* Products Table Bento Box */}
       <div className="overflow-hidden rounded-none border border-neutral-200 bg-white dark:border-white/10 dark:bg-white/5 shadow-2xl">
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left font-mono">
             <thead className="border-b border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-black/40 text-[11px] font-semibold uppercase tracking-wider text-neutral-500 dark:text-white/40">
               <tr>
@@ -214,6 +214,87 @@ export default function AdminProductsPage() {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Stacked Card View */}
+        <div className="block md:hidden p-4 space-y-4">
+          {loading ? (
+            <div className="text-center py-10"><Loader2 className="w-6 h-6 animate-spin text-gold mx-auto" /></div>
+          ) : (
+            <AnimatePresence>
+              {filteredProducts.map((product) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="p-4 border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/5 space-y-3 font-mono shadow-sm"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden border border-neutral-200 dark:border-white/10">
+                      <Image src={product.images[0]} alt={product.name} fill className="object-cover" sizes="48px" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-display text-sm font-bold text-neutral-900 dark:text-white truncate">{product.name}</h4>
+                      <p className="text-[10px] text-neutral-400 dark:text-white/40 mt-0.5">ID: {product.slug}</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[11px] pt-1">
+                    <div>
+                      <p className="text-neutral-400 dark:text-white/45">Division</p>
+                      <p className="font-bold text-neutral-800 dark:text-white/80">{product.division}</p>
+                    </div>
+                    <div>
+                      <p className="text-neutral-400 dark:text-white/45">MOQ</p>
+                      <p className="font-bold text-gold">{product.moq || '500 Units'}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {product.is_new && (
+                      <span className="bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 text-[9px] font-bold text-blue-600 dark:text-blue-400 uppercase">
+                        New
+                      </span>
+                    )}
+                    {product.is_offer && (
+                      <span className="bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 text-[9px] font-bold text-amber-600 dark:text-amber-400 uppercase">
+                        Offer
+                      </span>
+                    )}
+                    {product.featured && (
+                      <span className="bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 text-[9px] font-bold text-purple-600 dark:text-purple-400 uppercase">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between border-t border-neutral-100 dark:border-white/5 pt-3">
+                    <span className="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                      <CheckCircle2 className="h-3 w-3" />
+                      Live
+                    </span>
+                    
+                    <div className="flex items-center gap-2">
+                      <Link
+                        href={`/admin/products/${product.id}`}
+                        className="flex items-center gap-1.5 border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:border-white/10 dark:bg-white/5 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white text-xs font-semibold"
+                      >
+                        <Edit2 className="h-3.5 w-3.5" />
+                        <span>Edit</span>
+                      </Link>
+                      <button
+                        onClick={() => setDeleteModal(product.id)}
+                        className="flex h-10 w-10 items-center justify-center border border-red-500/20 bg-red-500/10 text-red-500 hover:bg-red-500/20"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          )}
         </div>
 
         {filteredProducts.length === 0 && (

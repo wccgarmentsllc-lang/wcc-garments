@@ -25,7 +25,9 @@ export async function GET(request: NextRequest) {
       if (featured === 'true') query = query.eq('featured', true)
       if (is_new === 'true') query = query.eq('is_new', true)
       if (is_offer === 'true') query = query.eq('is_offer', true)
-      if (search) query = query.ilike('name', `%${search}%`)
+      if (search) {
+        query = query.or(`name.ilike.%${search}%,category.ilike.%${search}%`)
+      }
 
       query = query.range(offset, offset + limit - 1)
       
