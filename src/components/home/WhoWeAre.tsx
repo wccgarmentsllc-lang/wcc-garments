@@ -14,7 +14,7 @@ const DEFAULT_WHO_WE_ARE = {
   heading: "WCC FASHIONS",
   subHeading: "Established 2001",
   paragraphs: [
-    "Western Clothing Company (WCC Fashions LLC) is a premier UAE-based industrial fashion manufacturing group.",
+    "Western Clothing Company (WCC Fashions LLC) is the best garments wholesale team and premier UAE-based B2B fashion manufacturing group.",
     "Operating out of our advanced Dubai manufacturing infrastructure, we deliver end-to-end commercial solutions—from precision pattern CAD and fabric sourcing to full-scale container export across 50+ nations worldwide.",
     "Our multi-division capabilities bridge high-end fashion garments, heavy-duty industrial workwear, luxury hotel linens, and authentic Arabian fragrances under strict ISO quality benchmarks.",
   ],

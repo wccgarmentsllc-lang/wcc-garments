@@ -4,13 +4,22 @@ import GarmentsHubClient from './GarmentsHubClient'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Wholesale Garments Manufacturer UAE | Bulk Shirts, Polos & Formal Wear — WCC Fashions',
-    description: 'B2B wholesale garment manufacturer in Dubai, UAE. Premium cotton shirts, polo shirts, formal wear & blazers. Export-grade QC. MOQ from 50 units. Get a bulk quote today.',
-    keywords: ['wholesale garments UAE', 'bulk garment manufacturer Dubai', 'corporate wear bulk', 'formal shirts wholesale', 'polo shirt bulk order UAE'],
+    title: 'Best Garments Wholesale Team & Bulk Manufacturer in Dubai, UAE | WCC Fashions',
+    description: 'Looking for the best garments wholesale team in Dubai? WCC Fashions is your premier B2B manufacturer for bulk shirts, polo shirts, formal wear, and custom apparel with export-grade QC.',
+    keywords: [
+      'best garments wholesale team',
+      'best garments wholesale team Dubai',
+      'best garments wholesale team UAE',
+      'wholesale garments UAE',
+      'bulk garment manufacturer Dubai',
+      'corporate wear bulk',
+      'formal shirts wholesale',
+      'polo shirt bulk order UAE'
+    ],
     alternates: { canonical: '/products/garments' },
     openGraph: {
-      title: 'WCC Fashions — Premium Garments Division',
-      description: 'B2B wholesale garment manufacturer in Dubai. Premium cotton shirts, polo shirts, formal wear & blazers.',
+      title: 'Best Garments Wholesale Team & Manufacturer | WCC Fashions',
+      description: 'Looking for the best garments wholesale team in Dubai? WCC Fashions is your premier B2B manufacturer for bulk shirts, polo shirts, and custom apparel.',
       url: '/products/garments',
       type: 'website',
     },
