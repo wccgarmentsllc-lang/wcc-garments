@@ -9,6 +9,7 @@ import { ManufacturingStory } from '@/components/home/ManufacturingStory'
 import { EnquiryConsole } from '@/components/home/EnquiryConsole'
 import { CoverDemo } from '@/components/ui/cover-demo'
 import BulkOfferBanner from '@/components/home/BulkOfferBanner'
+import { SEOFAQ } from '@/components/home/SEOFAQ'
 
 export default function HomePage() {
   return (
@@ -18,16 +19,17 @@ export default function HomePage() {
       </div>
 
       <main className="relative z-20 mx-auto max-w-[1440px] px-0 mt-[100vh]">       
-        <WhoWeAre />
-        <BulkOfferBanner />
-        <DivisionCutouts />
-        <GarmentsBrands />
-        <NewArrivals />
-        <KillingOffers />
-        <GlobalPresence />
-        <ManufacturingStory />
-        <CoverDemo />
-        <EnquiryConsole />
+          <WhoWeAre />
+          <BulkOfferBanner />
+          <DivisionCutouts />
+          <GarmentsBrands />
+          <NewArrivals />
+          <KillingOffers />
+          <GlobalPresence />
+          <ManufacturingStory />
+          <CoverDemo />
+          <SEOFAQ />
+          <EnquiryConsole />
       </main>
     </>
   )

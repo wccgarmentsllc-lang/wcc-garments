@@ -16,20 +16,23 @@ export const metadata: Metadata = {
     google: '1IcHEmg7YDLx4mWw-yXS6isIQcUqMJsmpxzM-JvSslo',
   },
   icons: {
-    icon: '/images/wcc-logo.png',
-    shortcut: '/images/wcc-logo.png',
-    apple: '/images/wcc-logo.png',
+    icon: '/images/wcc-logo-email.png',
+    shortcut: '/images/wcc-logo-email.png',
+    apple: '/images/wcc-logo-email.png',
   },
 
   title: {
-    default: 'WCC Fashions LLC — Leading B2B Textile & Garment Manufacturer in UAE | Wholesale Supplier',
+    default: 'WCC Fashions LLC — Best Garments Wholesale Team & B2B Textile Manufacturer in Dubai, UAE',
     template: `%s | WCC Fashions — UAE B2B Textile Manufacturing`,
   },
 
   description:
-    'WCC Fashions LLC: Premier B2B textile manufacturer in Dubai, UAE. Wholesale garments, uniforms, hotel linen, home furnishings & household products. MOQ from 50 units. Export to 50+ countries. Established 2001.',
+    'WCC Fashions LLC (formerly WCC Garments) is the best garments wholesale team and premier B2B textile manufacturer in Dubai, UAE. Wholesale clothing, uniforms, hospitality linen, and home furnishings. MOQ from 50 units. Exporting to 50+ countries.',
 
   keywords: [
+    // Brand & Target Target Keywords
+    'best garments wholesale team', 'best garments wholesale team Dubai', 'best garments wholesale team UAE',
+    'best B2B garment supplier UAE', 'WCC Garments', 'WCC Fashions LLC',
     // UAE / Local
     'wholesale garments UAE', 'textile manufacturer Dubai', 'B2B garment supplier Dubai',
     'bulk clothing manufacturer UAE', 'garment factory Dubai', 'wholesale clothing supplier UAE',
