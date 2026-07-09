@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      const adminEmail = process.env.RESEND_TO_EMAIL || process.env.EMAIL_USER || 'wccgarmentsllc@gmail.com'
+      const adminEmail = process.env.RESEND_TO_EMAIL || process.env.EMAIL_USER || 'wccfashions.info@gmail.com'
       const emailHtml = `
         <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #eee;">
           <div style="text-align: center; border-bottom: 2px solid #c5a880; padding-bottom: 15px;">

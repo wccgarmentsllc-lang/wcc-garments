@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
 
     // Default fallback if no subscribers in DB yet
     if (targetEmails.length === 0) {
-      targetEmails = [process.env.EMAIL_USER || 'wccgarmentsllc@gmail.com']
+      targetEmails = [process.env.EMAIL_USER || 'wccfashions.info@gmail.com']
     }
 
     // Trigger Nodemailer

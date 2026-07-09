@@ -27,7 +27,7 @@ const TEMPLATES = [
   {
     name: 'Welcome Email',
     subject: 'Welcome to the WCC Fashions Elite B2B Network',
-    body: `Hello,\n\nThank you for subscribing to the WCC Fashions B2B update feed. You are now officially connected to the UAE's premier manufacturing center.\n\nYou will be the first to receive:\n- Advanced private-label catalog releases\n- VIP priority wholesale discount announcements\n- Open production slot alerts to speed up your lead times\n\nIf you have an active sourcing project or require an immediate commercial quote, please reach out to us at: wccgarmentsllc@gmail.com or tap the WhatsApp Executive Line on our website.\n\nWarm regards,\nFounder & Executive Board\nWCC Fashions LLC`
+    body: `Hello,\n\nThank you for subscribing to the WCC Fashions B2B update feed. You are now officially connected to the UAE's premier manufacturing center.\n\nYou will be the first to receive:\n- Advanced private-label catalog releases\n- VIP priority wholesale discount announcements\n- Open production slot alerts to speed up your lead times\n\nIf you have an active sourcing project or require an immediate commercial quote, please reach out to us at: wccfashions.info@gmail.com or tap the WhatsApp Executive Line on our website.\n\nWarm regards,\nFounder & Executive Board\nWCC Fashions LLC`
   }
 ]
 
