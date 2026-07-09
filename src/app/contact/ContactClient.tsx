@@ -78,7 +78,7 @@ export default function ContactClient() {
               <p className="mt-0.5 text-[11px] text-[var(--text-muted)]">UAE Direct Line</p>
             </motion.a>
             <motion.a
-              href={`mailto:wccgarmentsllc@gmail.com`}
+              href={`mailto:${SITE_CONFIG.email}`}
               className="group border border-[var(--border)] p-6 transition-all hover:border-gold/30"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export default function ContactClient() {
             >
               <Mail className="h-5 w-5 text-gold" />
               <h3 className="mt-4 text-sm font-semibold text-[var(--text)]">Sales Email</h3>
-              <p className="mt-1 text-sm text-gold">wccgarmentsllc@gmail.com</p>
+              <p className="mt-1 text-sm text-gold">{SITE_CONFIG.email}</p>
               <p className="mt-0.5 text-[11px] text-[var(--text-muted)]">Wholesale Enquiries</p>
             </motion.a>
             <motion.a

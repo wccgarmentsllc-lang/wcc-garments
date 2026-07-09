@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
     'UAE-based B2B manufacturing group for garments, uniforms, hospitality textiles, home furnishings, and fragrance. Bulk supply with quote-based pricing only.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://wccfashions.com',
   phone: process.env.NEXT_PUBLIC_COMPANY_PHONE || '+971565440678',
-  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'wccgarmentsllc@gmail.com',
+  email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'wccfashions.info@gmail.com',
   whatsapp: process.env.NEXT_PUBLIC_COMPANY_WHATSAPP || '+971565440678',
   address: 'Dubai, United Arab Emirates',
   founded: '2001',
