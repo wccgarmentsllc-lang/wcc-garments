@@ -33,8 +33,19 @@ export async function POST(request: NextRequest) {
 
     // Fallback if Supabase is not configured or Supabase auth fails (allow mock admin login as a safety net)
     if (!isAuthenticated && (!isSupabaseConfigured() || supabaseAuthFailed)) {
-      if ((email === 'admin@wccfashions.com' || email === 'admin@wccgarments.com') && password === 'wcc2026admin') {
-        isAuthenticated = true
+      const fallbackEmail = process.env.ADMIN_FALLBACK_EMAIL
+      const fallbackPassword = process.env.ADMIN_FALLBACK_PASSWORD
+
+      if (fallbackEmail && fallbackPassword) {
+        // If custom credentials are set in the environment, only accept those
+        if (email === fallbackEmail && password === fallbackPassword) {
+          isAuthenticated = true
+        }
+      } else {
+        // Local development safety net fallback
+        if (email === 'admin@wccfashions.com' && password === 'wcc2026admin') {
+          isAuthenticated = true
+        }
       }
     }
 

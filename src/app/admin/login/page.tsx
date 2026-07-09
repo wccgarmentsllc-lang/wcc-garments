@@ -88,7 +88,7 @@ export default function AdminLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full border border-white/10 bg-white/5 pl-11 pr-4 py-3.5 text-sm text-white placeholder-neutral-600 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/20 transition-all font-mono rounded-lg"
-                  placeholder="admin@wccfashions.com"
+                  placeholder="Enter corporate email"
                   required
                 />
               </div>
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full border border-white/10 bg-white/5 pl-11 pr-12 py-3.5 text-sm text-white placeholder-neutral-600 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/20 transition-all font-mono rounded-lg"
-                  placeholder="••••••••"
+                  placeholder=""
                   required
                 />
                 <button
@@ -154,9 +154,6 @@ export default function AdminLoginPage() {
           <div className="mt-8 pt-6 border-t border-white/5 text-center">
             <span className="font-mono text-[9px] text-neutral-600 block">
               AUTHORIZED ACCESS ONLY • WCC FASHIONS SYSTEM
-            </span>
-            <span className="font-mono text-[9px] text-gold/60 mt-1 block">
-              Default Node: admin@wccfashions.com / wcc2026admin
             </span>
           </div>
         </div>
