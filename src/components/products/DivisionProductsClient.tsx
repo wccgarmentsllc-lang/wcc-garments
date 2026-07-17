@@ -200,6 +200,7 @@ export function DivisionProductsClient({
   const [catalogueCompany, setCatalogueCompany] = useState('')
   const [catalogueState, setCatalogueState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [catalogueError, setCatalogueError] = useState('')
+  const [isDescExpanded, setIsDescExpanded] = useState(false)
 
   const handleCatalogueSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -484,36 +485,55 @@ export function DivisionProductsClient({
           >
             {/* Spotlight Brand Profile */}
             {activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 pt-12">
-                <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-6 sm:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 pt-8 sm:pt-12">
+                <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-4 sm:p-10 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(218,165,32,0.06),transparent_50%)]" />
 
-                  <div className="relative z-10 max-w-3xl space-y-4">
+                  <div className="relative z-10 max-w-3xl space-y-3 sm:space-y-4">
                     <span className="font-mono text-[9px] font-bold tracking-widest text-gold border border-gold/30 bg-gold/10 px-2 py-0.5 uppercase">
                       Active Spotlight · {activeBrand.badge}
                     </span>
                     <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase text-[var(--text)]">
                       {activeBrand.name} Profile
                     </h3>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed font-light">
+                    <p className={`text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed font-light ${!isDescExpanded ? 'line-clamp-2 md:line-clamp-none' : ''}`}>
                       {activeBrand.desc} Customization services include private labelling, custom packaging, and door-to-door B2B logistics.
                     </p>
+                    {!isDescExpanded && (
+                      <button
+                        onClick={() => setIsDescExpanded(true)}
+                        className="block md:hidden text-[9px] font-bold text-gold uppercase mt-1 cursor-pointer"
+                      >
+                        + Read More
+                      </button>
+                    )}
+                    {isDescExpanded && (
+                      <button
+                        onClick={() => setIsDescExpanded(false)}
+                        className="block md:hidden text-[9px] font-bold text-gold uppercase mt-1 cursor-pointer"
+                      >
+                        - Show Less
+                      </button>
+                    )}
 
-                    <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="grid grid-cols-3 gap-3 md:flex md:flex-wrap md:gap-6 pt-2">
                       {[
                         { label: 'Minimum Order', value: activeBrand.moq, gold: false },
-                        { label: 'Lead Time', value: '12-18 Working Days', gold: false },
-                        { label: 'Perfect For', value: activeBrand.perfectFor.slice(0, 3).join(', '), gold: true },
+                        { label: 'Lead Time', value: '12-18 Days', mobileValue: '12-18 Days', gold: false },
+                        { label: 'Perfect For', value: activeBrand.perfectFor.slice(0, 3).join(', '), mobileValue: activeBrand.perfectFor[0], gold: true },
                       ].map((item) => (
-                        <div key={item.label} className="border-l-2 border-gold/50 pl-3">
-                          <span className="block text-[8px] font-mono uppercase text-[var(--text-muted)] tracking-wider">{item.label}</span>
-                          <span className={`text-xs font-mono font-bold ${item.gold ? 'text-gold' : 'text-[var(--text)]'}`}>{item.value}</span>
+                        <div key={item.label} className="border-l-2 border-gold/50 pl-2 sm:pl-3">
+                          <span className="block text-[7px] sm:text-[8px] font-mono uppercase text-[var(--text-muted)] tracking-wider">{item.label}</span>
+                          <span className={`text-[10px] sm:text-xs font-mono font-bold block ${item.gold ? 'text-gold' : 'text-[var(--text)]'}`}>
+                            <span className="hidden md:inline">{item.value}</span>
+                            <span className="md:hidden">{item.mobileValue || item.value}</span>
+                          </span>
                         </div>
                       ))}
                     </div>
 
                     {/* Category Filter Pills within this Brand */}
-                    <div className="border-t border-[var(--border)] pt-5 mt-4">
+                    <div className="hidden md:block border-t border-[var(--border)] pt-5 mt-4">
                       <span className="block text-[9px] font-mono uppercase text-[var(--text-muted)] tracking-widest mb-3">
                         Filter Category within {activeBrand.name}
                       </span>
@@ -553,7 +573,7 @@ export function DivisionProductsClient({
                   <div className="relative z-10 shrink-0 flex flex-col gap-3 w-full md:w-auto">
                     <button
                       onClick={() => updateFilters(null, 'all')}
-                      className="bg-gold hover:bg-gold/90 text-white py-3 px-6 font-mono text-[10px] font-bold uppercase tracking-widest text-center transition-all flex items-center justify-center gap-2 shadow-2xl cursor-pointer"
+                      className="bg-gold hover:bg-gold/90 text-white py-2.5 sm:py-3 px-5 sm:px-6 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center transition-all flex items-center justify-center gap-2 shadow-2xl cursor-pointer"
                     >
                       <span>Show All Brands</span>
                       <X className="h-4 w-4" />
@@ -563,19 +583,19 @@ export function DivisionProductsClient({
 
                 {/* Catalogue Request CTA Bar */}
                 {(activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft') && (
-                  <div className="mt-6 border border-dashed border-gold/30 bg-gold/5 p-6 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono">
-                    <div className="flex items-center gap-3.5">
-                      <div className="h-10 w-10 shrink-0 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
+                  <div className="mt-4 sm:mt-6 border border-dashed border-gold/30 bg-gold/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
+                    <div className="flex items-center gap-3.5 w-full sm:w-auto">
+                      <div className="hidden sm:flex h-10 w-10 shrink-0 rounded-full bg-gold/10 items-center justify-center border border-gold/20">
                         <BookOpen className="h-5 w-5 text-gold" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Request WCC {activeBrand.name} Catalogue</h4>
-                        <p className="text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                        <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
                       </div>
                     </div>
                     <button
                       onClick={() => setIsCatalogueOpen(true)}
-                      className="relative shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-6 py-3.5 shadow-xl transition-all cursor-pointer group"
+                      className="relative w-full sm:w-auto shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
                     >
                       <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
                         <div className="w-8 bg-white/20" />

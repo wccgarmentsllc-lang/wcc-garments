@@ -225,7 +225,7 @@ export function HeroSection(): JSX.Element {
             <div className="relative flex items-center justify-center md:col-start-8 md:col-span-5 md:row-start-1 md:row-span-2 w-full h-[320px] sm:h-[400px] md:h-[540px] select-none z-[40] order-2 md:order-none">
               {/* Hidden preload */}
               <div
-                className="absolute w-0 h-0 overflow-hidden pointer-events-none opacity-0"
+                className="absolute w-1 h-1 overflow-hidden pointer-events-none opacity-0"
                 aria-hidden="true"
               >
                 {ALL_IMAGE_PATHS.map((src) => (
@@ -233,9 +233,9 @@ export function HeroSection(): JSX.Element {
                     key={src}
                     src={src}
                     alt=""
-                    fill
+                    width={10}
+                    height={10}
                     priority
-                    sizes="1px"
                     className="object-cover"
                   />
                 ))}
