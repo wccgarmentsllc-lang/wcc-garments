@@ -31,12 +31,12 @@ export const DIVISIONS = [
     stat2Label: 'Lead Time', stat2Value: '12–25 Days',
     stat3Label: 'Export QC', stat3Value: 'Grade A',
     categories: [
-      { id: 'GAR-CAT-01', name: 'Formal Shirts', slug: 'formal-shirts', status: 'active' as const, displayOrder: 1, subCategories: [] },
-      { id: 'GAR-CAT-02', name: 'Blazers & Suits', slug: 'blazers-suits', status: 'active' as const, displayOrder: 2, subCategories: [] },
-      { id: 'GAR-CAT-03', name: 'Jeans & Denims', slug: 'jeans-denims', status: 'active' as const, displayOrder: 3, subCategories: [] },
-      { id: 'GAR-CAT-04', name: 'Polo & T-Shirts', slug: 'polo-tshirts', status: 'active' as const, displayOrder: 4, subCategories: [] },
-      { id: 'GAR-CAT-05', name: 'Trousers & Chinos', slug: 'trousers', status: 'active' as const, displayOrder: 5, subCategories: [] },
-      { id: 'GAR-CAT-06', name: 'Outerwear & Jackets', slug: 'jackets', status: 'active' as const, displayOrder: 6, subCategories: [] },
+      { id: 'GAR-CAT-01', name: 'Shirts', slug: 'shirts', status: 'active' as const, displayOrder: 1, subCategories: [] },
+      { id: 'GAR-CAT-02', name: 'T-Shirts', slug: 't-shirts', status: 'active' as const, displayOrder: 2, subCategories: [] },
+      { id: 'GAR-CAT-03', name: 'Jeans', slug: 'jeans', status: 'active' as const, displayOrder: 3, subCategories: [] },
+      { id: 'GAR-CAT-04', name: 'Trousers', slug: 'trousers', status: 'active' as const, displayOrder: 4, subCategories: [] },
+      { id: 'GAR-CAT-05', name: 'Cargos', slug: 'cargos', status: 'active' as const, displayOrder: 5, subCategories: [] },
+      { id: 'GAR-CAT-06', name: 'Track Pants', slug: 'track-pants', status: 'active' as const, displayOrder: 6, subCategories: [] },
     ],
   },
 

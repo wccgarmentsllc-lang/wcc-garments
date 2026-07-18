@@ -70,12 +70,12 @@ export const DEFAULT_GARMENTS = {
   headingHighlight: "manufacture",
   description: "High-quality garments, linens, and B2B supplies crafted with precision. While garments remain our absolute core business, we have successfully expanded our industrial capacities to serve major developments in hospitality, home decor, fragrance, and household supply.",
   categories: [
-    { name: 'Formal Shirts', slug: 'formal-shirts', tagline: 'Crisp, premium tailored fits', count: '140+ Styles', image: '/images/formal-shirts.png' },
-    { name: 'Blazers & Suits', slug: 'blazers-suits', tagline: 'Executive bespoke tailoring', count: '80+ Styles', image: '/images/Blazers and suits.png' },
-    { name: 'Jeans & Denims', slug: 'jeans-denims', tagline: 'Durable premium industrial denim', count: '210+ Styles', image: '/images/jeans-denims.png' },
-    { name: 'Polo & T-Shirts', slug: 'polo-tshirts', tagline: 'High-comfort mercerized cotton', count: '320+ Styles', image: '/images/polo tshirts.png' },
-    { name: 'Trousers & Chinos', slug: 'trousers', tagline: 'Perfect fit corporate trousers', count: '110+ Styles', image: '/images/trousers.png' },
-    { name: 'Outerwear & Jackets', slug: 'jackets', tagline: 'All-weather luxury protective outerwear', count: '95+ Styles', image: '/images/jackets.png' },
+    { name: 'Shirts', slug: 'shirts', tagline: 'Crisp, premium tailored fits', count: '140+ Styles', image: '/images/formal-shirts.png' },
+    { name: 'T-Shirts', slug: 't-shirts', tagline: 'High-comfort mercerized cotton', count: '320+ Styles', image: '/images/polo tshirts.png' },
+    { name: 'Jeans', slug: 'jeans', tagline: 'Durable premium industrial denim', count: '210+ Styles', image: '/images/jeans-denims.png' },
+    { name: 'Trousers', slug: 'trousers', tagline: 'Perfect fit corporate trousers', count: '110+ Styles', image: '/images/trousers.png' },
+    { name: 'Cargos', slug: 'cargos', tagline: 'Heavy-duty utility cargo workwear', count: '95+ Styles', image: '/images/products/cargo_work_pants.png' },
+    { name: 'Track Pants', slug: 'track-pants', tagline: 'Active performance leisure wear', count: '85+ Styles', image: '/images/Blazers and suits.png' },
   ]
 }
 
