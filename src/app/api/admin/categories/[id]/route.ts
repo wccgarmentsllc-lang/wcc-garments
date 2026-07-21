@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
 import { fetchWithFallback } from '@/lib/db-service'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
 
 export async function PUT(
   request: NextRequest,
@@ -25,6 +26,10 @@ export async function PUT(
       { ...body, id },
       'Update Category'
     )
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
+
     return NextResponse.json({ success: true, data, message: 'Category updated successfully' })
   } catch (error) {
     console.error('Error updating category:', error)
@@ -52,6 +57,10 @@ export async function DELETE(
       true,
       'Delete Category'
     )
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
+
     return NextResponse.json({ success: true, message: 'Category deleted successfully' })
   } catch (error) {
     console.error('Error deleting category:', error)

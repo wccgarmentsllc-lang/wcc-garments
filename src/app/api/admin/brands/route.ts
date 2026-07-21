@@ -1,9 +1,10 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
-
-export const dynamic = 'force-dynamic'
 import { fetchWithFallback } from '@/lib/db-service'
 import { MOCK_BRANDS } from '@/lib/constants'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
@@ -45,6 +46,10 @@ export async function POST(request: NextRequest) {
       { ...body, id: `mock-${Date.now()}` },
       'Create Brand'
     )
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
+
     return NextResponse.json({ success: true, data, message: 'Brand created successfully' })
   } catch (error) {
     console.error('Error creating brand:', error)
