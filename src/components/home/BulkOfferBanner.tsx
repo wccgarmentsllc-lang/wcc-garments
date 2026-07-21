@@ -27,7 +27,7 @@ const DEFAULT_BULK_OFFER = {
 
 export default function BulkOfferBanner() {
   const [current, setCurrent] = useState(0);
-  const { data } = useWebsiteContent("bulk-offer", DEFAULT_BULK_OFFER);
+  const { data, loading } = useWebsiteContent("bulk-offer", DEFAULT_BULK_OFFER);
 
   useEffect(() => {
     const images = data?.slideImages ?? [];
@@ -38,6 +38,8 @@ export default function BulkOfferBanner() {
     return () => clearInterval(interval);
   }, [data?.slideImages?.length]);
 
+  // Don't render until we know the DB value — prevents stale default flash
+  if (loading) return null;
   if (!data?.enabled) return null;
 
   const slideImages: any[] = data.slideImages ?? [];

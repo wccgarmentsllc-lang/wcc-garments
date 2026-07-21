@@ -23,7 +23,9 @@ export async function GET(request: Request) {
         throw error
       }
 
-      return NextResponse.json({ success: true, data: data?.content || null })
+      return NextResponse.json({ success: true, data: data?.content || null }, {
+        headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' }
+      })
     } else {
       // Get all sections
       const { data, error } = await supabase
@@ -32,7 +34,9 @@ export async function GET(request: Request) {
 
       if (error) throw error
 
-      return NextResponse.json({ success: true, data })
+      return NextResponse.json({ success: true, data }, {
+        headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' }
+      })
     }
   } catch (error: any) {
     console.error('Failed to fetch website content:', error)
