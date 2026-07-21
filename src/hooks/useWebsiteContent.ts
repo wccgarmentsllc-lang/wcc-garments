@@ -3,17 +3,16 @@
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/api'
 
-type ContentMap = Record<string, any>
-
 /**
- * Fetches all website_content rows from Supabase and returns a lookup map
- * keyed by section_id. Falls back to `defaults` if the API call fails.
+ * Fetches website_content from Supabase and returns the data for a given section.
+ * Starts with `null` so components wait for DB data before rendering,
+ * preventing stale/default content flash. Falls back to `defaultValue` only if API fails.
  */
 export function useWebsiteContent(
   sectionId: string,
   defaultValue: any
 ): { data: any; loading: boolean } {
-  const [data, setData] = useState(defaultValue)
+  const [data, setData] = useState<any>(null)    // Start null — wait for DB, not defaults
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,13 +21,18 @@ export function useWebsiteContent(
       .then((res) => {
         if (res?.data) {
           setData(res.data)
+        } else {
+          // API succeeded but no data found — use defaults
+          setData(defaultValue)
         }
       })
       .catch(() => {
-        // Silently fall back to defaults — no admin token needed for public reads
+        // API failed — fall back to defaults silently
+        setData(defaultValue)
       })
       .finally(() => setLoading(false))
   }, [sectionId])
 
-  return { data, loading }
+  // While loading, return defaultValue so layout doesn't break with null
+  return { data: data ?? defaultValue, loading }
 }

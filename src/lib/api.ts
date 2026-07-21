@@ -16,6 +16,7 @@ async function fetcher<T = any>(url: string, options?: RequestInit): Promise<T> 
 
   const response = await fetch(`${BASE}${url}`, {
     ...options,
+    cache: 'no-store',       // Never cache API responses — always get fresh data
     credentials: 'same-origin',
     headers,
   })
