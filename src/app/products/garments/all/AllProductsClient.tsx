@@ -53,7 +53,7 @@ export default function AllProductsClient() {
     )
     setProducts(garments)
 
-    fetch('/api/categories?division=garments')
+    fetch('/api/categories?division=garments', { cache: 'no-store' })
       .then((res) => res.json())
       .then((json) => {
         if (json.success && Array.isArray(json.data)) {

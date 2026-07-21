@@ -15,7 +15,7 @@ export async function GET() {
       { success: true, data: MOCK_DIVISIONS },
       {
         headers: {
-          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
         },
       }
     )

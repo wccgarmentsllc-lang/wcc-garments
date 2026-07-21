@@ -147,7 +147,7 @@ export default function GarmentsHubClient() {
     setProducts(garments)
 
     // 2. Fetch live data from database
-    fetch('/api/products?division=garments&limit=100')
+    fetch('/api/products?division=garments&limit=100', { cache: 'no-store' })
       .then((res) => res.json())
       .then((json) => {
         if (json.success && Array.isArray(json.data)) {
@@ -157,7 +157,7 @@ export default function GarmentsHubClient() {
       .catch((err) => console.error('Failed to sync live garments products:', err))
 
     // 3. Fetch live categories from database
-    fetch('/api/categories?division=garments')
+    fetch('/api/categories?division=garments', { cache: 'no-store' })
       .then((res) => res.json())
       .then((json) => {
         if (json.success && Array.isArray(json.data)) {

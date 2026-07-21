@@ -23,6 +23,11 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith('/api/admin') && !pathname.startsWith('/api/admin/auth')) {
+    // Allow public GET requests to retrieve website content configurations
+    if (request.method === 'GET' && pathname === '/api/admin/content') {
+      return NextResponse.next()
+    }
+
     const token = request.cookies.get('wcc-admin-token')?.value
 
     if (!token) {
