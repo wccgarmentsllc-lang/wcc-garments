@@ -48,7 +48,7 @@ export function KillingOffers() {
   const [liveDivisions, setLiveDivisions] = useState<any[]>([])
 
   useEffect(() => {
-    fetch('/api/categories?divisions=true')
+    fetch('/api/categories?divisions=true', { cache: 'no-store' })
       .then(res => res.json())
       .then(res => {
         if (res.success && Array.isArray(res.data)) {

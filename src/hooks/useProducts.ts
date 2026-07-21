@@ -35,7 +35,7 @@ export function useProducts(options: UseProductsOptions = {}) {
       if (options.search) params.set('search', options.search)
 
       const qs = params.toString()
-      const res = await fetch(`/api/products${qs ? `?${qs}` : ''}`)
+      const res = await fetch(`/api/products${qs ? `?${qs}` : ''}`, { cache: 'no-store' })
       const json = await res.json()
 
       if (json.success) {

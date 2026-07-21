@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
       }
       return NextResponse.json(
         { success: true, data: parent.subCategories, parent: { id: parent.id, name: parent.name, slug: parent.slug } },
-        { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' } }
+        { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
       )
     }
 
@@ -129,13 +129,13 @@ export async function GET(request: NextRequest) {
       }
       return NextResponse.json(
         { success: true, data: flat, total: flat.length },
-        { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' } }
+        { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
       )
     }
 
     return NextResponse.json(
       { success: true, data: categories, total: categories.length },
-      { headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200' } }
+      { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
     )
   } catch (error) {
     console.error('[/api/categories] Error:', error)

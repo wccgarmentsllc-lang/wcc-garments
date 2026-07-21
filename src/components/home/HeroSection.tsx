@@ -51,7 +51,7 @@ export function HeroSection(): JSX.Element {
   const { data: heroData } = useWebsiteContent("hero", { campaigns: CAMPAIGN_SETS });
 
   useEffect(() => {
-    fetch('/api/products?division=garments&limit=100')
+    fetch('/api/products?division=garments&limit=100', { cache: 'no-store' })
       .then(res => res.json())
       .then(json => {
         if (json.success && Array.isArray(json.data) && json.data.length >= 3) {
