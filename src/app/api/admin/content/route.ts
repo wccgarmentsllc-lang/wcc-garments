@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
 
 export const dynamic = 'force-dynamic'
 
@@ -44,9 +45,6 @@ export async function GET(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    // In a real app, verify admin token here
-    // const authHeader = request.headers.get('Authorization')
-
     const { searchParams } = new URL(request.url)
     const sectionId = searchParams.get('id')
     const body = await request.json()
@@ -68,6 +66,9 @@ export async function PUT(request: Request) {
       .single()
 
     if (error) throw error
+
+    // Flush Vercel edge cache for all public pages immediately — no redeploy needed
+    revalidateAllPublicPages()
 
     return NextResponse.json({ success: true, data })
   } catch (error: any) {

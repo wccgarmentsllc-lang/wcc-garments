@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
 
 export async function PUT(
   request: NextRequest,
@@ -66,6 +67,9 @@ export async function PUT(
     
     if (error) throw error
 
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
+
     return NextResponse.json({ success: true, message: 'Product updated', data })
   } catch (error: any) {
     console.error('Admin Update Product error:', error)
@@ -87,6 +91,9 @@ export async function DELETE(
       .eq('id', id)
     
     if (error) throw error
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
 
     return NextResponse.json({ success: true, message: 'Product deleted' })
   } catch (error: any) {

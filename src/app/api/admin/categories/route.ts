@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
 import { fetchWithFallback } from '@/lib/db-service'
 import { DIVISIONS } from '@/lib/constants'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,8 +33,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const supabase = getSupabaseServerClient()
     
-    // We assume fetchWithFallback is mostly for GETs, but we can do direct Supabase calls for mutations
-    // and fallback to success response if not configured.
     const data = await fetchWithFallback(
       async () => {
         const { data: newCategory, error } = await supabase
@@ -47,6 +46,10 @@ export async function POST(request: NextRequest) {
       { ...body, id: `mock-${Date.now()}` },
       'Create Category'
     )
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
+
     return NextResponse.json({ success: true, data, message: 'Category created successfully' })
   } catch (error) {
     console.error('Error creating category:', error)

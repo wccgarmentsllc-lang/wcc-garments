@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { getSupabaseServerClient } from '@/lib/supabase'
+import { revalidateAllPublicPages } from '@/lib/revalidate'
 
 export const dynamic = 'force-dynamic'
 
@@ -86,6 +87,9 @@ export async function POST(request: NextRequest) {
       .single()
     
     if (error) throw error
+
+    // Flush Vercel edge cache for all public pages immediately
+    revalidateAllPublicPages()
 
     return NextResponse.json({
       success: true,
