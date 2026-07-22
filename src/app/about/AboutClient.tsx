@@ -36,7 +36,10 @@ const DEFAULT_ABOUT = {
   heroSince: "Since 2001",
   heroHeadingStart: "25+ Years of",
   heroHeadingHighlight: "Manufacturing Excellence",
-  heroDescription: "Founded in Bangalore in 2001, WCC Fashions has grown into a global textile manufacturing partner with headquarters in Dubai. We operate 7 production facilities across 3 countries, delivering export-quality garments, uniforms, hospitality linens, home furnishings, and fragrances for B2B clients worldwide.",
+  heroDescriptions: [
+    "Established over **30 years ago** as **WCC Garments Trading LLC**, and now known as **WCC Fashions**, the company has earned the trust of leading retailers across the GCC and Middle East through its commitment to quality, reliability, and long-standing industry partnerships. Building on this strong foundation, WCC Fashions has expanded beyond apparel into **home furnishings, household products, and premium home & car fragrances**, delivering comprehensive lifestyle solutions for the retail and hospitality sectors.",
+
+  ],
   stats: [
     { value: "50+", label: "Countries" },
     { value: "7", label: "Production Facilities" },
@@ -72,13 +75,13 @@ export default function AboutClient() {
     <div className="min-h-screen bg-[var(--bg)] mt-16 font-sans">
       {/* Hero */}
       <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[70vh] w-full flex items-center overflow-hidden pt-10">
-        <Image 
-          src={data.heroImage || DEFAULT_ABOUT.heroImage} 
-          alt="WCC Fashions Manufacturing Facility" 
-          fill 
-          className="object-cover object-center" 
-          priority 
-          sizes="100vw" 
+        <Image
+          src={data.heroImage || DEFAULT_ABOUT.heroImage}
+          alt="WCC Fashions Manufacturing Facility"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
         />
 
         {/* Subtle Dark Gradient Overlay behind text only */}
@@ -98,9 +101,17 @@ export default function AboutClient() {
               {data.heroHeadingStart} <br />
               <span className="font-bold text-gold">{data.heroHeadingHighlight}</span>
             </h1>
-            <p className="text-sm leading-relaxed text-neutral-300 mb-10">
-              {data.heroDescription}
-            </p>
+            <div className="space-y-4 mb-10">
+              {(data.heroDescriptions ?? [data.heroDescription]).map((para: string, i: number) => (
+                <p key={i} className="text-sm leading-relaxed text-neutral-300">
+                  {para.split(/\*\*(.+?)\*\*/).map((chunk: string, j: number) =>
+                    j % 2 === 1
+                      ? <strong key={j} className="font-semibold text-white">{chunk}</strong>
+                      : chunk
+                  )}
+                </p>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -354,11 +365,11 @@ export default function AboutClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Image 
-                src={data.gallery?.[0]?.image || DEFAULT_ABOUT.gallery[0].image} 
-                alt={data.gallery?.[0]?.title || "Premium Materials"} 
-                fill 
-                className="object-cover" 
+              <Image
+                src={data.gallery?.[0]?.image || DEFAULT_ABOUT.gallery[0].image}
+                alt={data.gallery?.[0]?.title || "Premium Materials"}
+                fill
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 p-8 w-full z-10">
@@ -374,11 +385,11 @@ export default function AboutClient() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Image 
-                src={data.gallery?.[1]?.image || DEFAULT_ABOUT.gallery[1].image} 
-                alt={data.gallery?.[1]?.title || "Precise Production"} 
-                fill 
-                className="object-cover" 
+              <Image
+                src={data.gallery?.[1]?.image || DEFAULT_ABOUT.gallery[1].image}
+                alt={data.gallery?.[1]?.title || "Precise Production"}
+                fill
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 p-8 w-full z-10">
@@ -394,11 +405,11 @@ export default function AboutClient() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Image 
-                src={data.gallery?.[2]?.image || DEFAULT_ABOUT.gallery[2].image} 
-                alt={data.gallery?.[2]?.title || "Quality Assured"} 
-                fill 
-                className="object-cover" 
+              <Image
+                src={data.gallery?.[2]?.image || DEFAULT_ABOUT.gallery[2].image}
+                alt={data.gallery?.[2]?.title || "Quality Assured"}
+                fill
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 p-8 w-full z-10">
