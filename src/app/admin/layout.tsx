@@ -23,7 +23,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <AdminProvider>
-      <div className="flex min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
+      <div className="flex h-screen overflow-hidden bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
         <AdminSidebar />
         <main className="flex-1 overflow-y-auto pt-24 lg:pt-8 px-6 pb-12 lg:px-12">{children}</main>
       </div>
