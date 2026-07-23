@@ -33,7 +33,7 @@ export default function AdminEnquiriesPage() {
   useEffect(() => {
     fetchEnquiries()
   }, [])
-  
+
   const fetchEnquiries = async () => {
     setLoading(true)
     try {
@@ -70,10 +70,10 @@ export default function AdminEnquiriesPage() {
   }
 
   const filteredEnquiries = enquiries.filter(enq => {
-    const matchSearch = enq.company.toLowerCase().includes(search.toLowerCase()) || 
-                        enq.email.toLowerCase().includes(search.toLowerCase()) || 
-                        enq.id.toLowerCase().includes(search.toLowerCase()) ||
-                        enq.country.toLowerCase().includes(search.toLowerCase())
+    const matchSearch = enq.company.toLowerCase().includes(search.toLowerCase()) ||
+      enq.email.toLowerCase().includes(search.toLowerCase()) ||
+      enq.id.toLowerCase().includes(search.toLowerCase()) ||
+      enq.country.toLowerCase().includes(search.toLowerCase())
     const matchStatus = statusFilter === 'all' || enq.status === statusFilter
     return matchSearch && matchStatus
   })
@@ -99,11 +99,10 @@ export default function AdminEnquiriesPage() {
             <button
               key={tab}
               onClick={() => setStatusFilter(tab)}
-              className={`rounded-lg px-4 py-2.5 font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
-                statusFilter === tab
+              className={`rounded-lg px-4 py-2.5 font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${statusFilter === tab
                   ? 'bg-gold text-white shadow-lg font-bold'
                   : 'bg-neutral-50 text-neutral-600 border border-neutral-200 hover:bg-neutral-100 hover:text-neutral-900 dark:bg-white/5 dark:text-white/60 dark:border-white/10 dark:hover:bg-white/10 dark:hover:text-white'
-              }`}
+                }`}
             >
               {tab === 'all' ? 'All Records' : tab} ({enquiries.filter(e => tab === 'all' || e.status === tab).length})
             </button>
@@ -141,84 +140,82 @@ export default function AdminEnquiriesPage() {
               {loading ? (
                 <tr><td colSpan={6} className="text-center py-10 font-sans text-neutral-500 dark:text-white/50">Loading records...</td></tr>
               ) : (
-              <AnimatePresence>
-                {filteredEnquiries.map((enq) => (
-                  <motion.tr
-                    key={enq.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="group hover:bg-neutral-50/50 dark:hover:bg-white/5 transition-colors cursor-pointer"
-                    onClick={() => setActiveModal(enq)}
-                  >
-                    <td className="px-6 py-5">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2.5">
-                          <span className="font-mono text-xs font-bold text-gold">{enq.id}</span>
-                          <span className="h-1 w-1 rounded-full bg-neutral-300 dark:bg-white/30" />
-                          <span className="text-[11px] text-neutral-400 dark:text-white/40">{enq.date}</span>
+                <AnimatePresence>
+                  {filteredEnquiries.map((enq) => (
+                    <motion.tr
+                      key={enq.id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="group hover:bg-neutral-50/50 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                      onClick={() => setActiveModal(enq)}
+                    >
+                      <td className="px-6 py-5">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2.5">
+                            <span className="font-mono text-xs font-bold text-gold">{enq.id}</span>
+                            <span className="h-1 w-1 rounded-full bg-neutral-300 dark:bg-white/30" />
+                            <span className="text-[11px] text-neutral-400 dark:text-white/40">{enq.date}</span>
+                          </div>
+                          <p className="font-display text-base font-bold text-neutral-900 dark:text-white group-hover:text-gold transition-colors">{enq.company}</p>
+                          <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 dark:text-white/50 pt-0.5 font-mono">
+                            <Globe className="h-3 w-3 text-gold" />
+                            <span>{enq.country}</span>
+                          </div>
                         </div>
-                        <p className="font-display text-base font-bold text-neutral-900 dark:text-white group-hover:text-gold transition-colors">{enq.company}</p>
-                        <div className="flex items-center gap-1.5 text-[11px] text-neutral-500 dark:text-white/50 pt-0.5 font-mono">
-                          <Globe className="h-3 w-3 text-gold" />
-                          <span>{enq.country}</span>
+                      </td>
+                      <td className="px-6 py-5 space-y-1">
+                        <p className="font-medium text-neutral-900 dark:text-white flex items-center gap-2">
+                          <Mail className="h-3.5 w-3.5 text-neutral-400 dark:text-white/40" />
+                          <span>{enq.email}</span>
+                        </p>
+                        <p className="text-[11px] text-neutral-500 dark:text-white/50 flex items-center gap-2">
+                          <Phone className="h-3.5 w-3.5 text-neutral-400 dark:text-white/40" />
+                          <span>{enq.phone}</span>
+                        </p>
+                      </td>
+                      <td className="px-6 py-5 font-semibold text-neutral-800 dark:text-white/90">
+                        {enq.products}
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className="rounded bg-neutral-50 border border-neutral-200 dark:bg-white/5 dark:border-white/10 px-2.5 py-1 text-[11px] font-bold text-gold">
+                          {enq.quantity}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${enq.status === 'new' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30' :
+                              enq.status === 'quoted' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
+                                enq.status === 'converted' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
+                                  'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30'
+                            }`}>
+                            {enq.status === 'new' && <AlertCircle className="h-3 w-3 animate-bounce" />}
+                            {enq.status === 'quoted' && <CheckCircle2 className="h-3 w-3" />}
+                            {enq.status === 'contacted' && <Clock className="h-3 w-3" />}
+                            {enq.status === 'converted' && <Check className="h-3 w-3" />}
+                            <span>{enq.status}</span>
+                          </span>
+
+                          <span className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase ${enq.priority === 'urgent' ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30' :
+                              enq.priority === 'high' ? 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border border-orange-500/30' :
+                                'bg-neutral-100 text-neutral-500 border border-neutral-200 dark:bg-white/5 dark:text-white/40 dark:border-white/10'
+                            }`}>
+                            {enq.priority}
+                          </span>
                         </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-5 space-y-1">
-                      <p className="font-medium text-neutral-900 dark:text-white flex items-center gap-2">
-                        <Mail className="h-3.5 w-3.5 text-neutral-400 dark:text-white/40" />
-                        <span>{enq.email}</span>
-                      </p>
-                      <p className="text-[11px] text-neutral-500 dark:text-white/50 flex items-center gap-2">
-                        <Phone className="h-3.5 w-3.5 text-neutral-400 dark:text-white/40" />
-                        <span>{enq.phone}</span>
-                      </p>
-                    </td>
-                    <td className="px-6 py-5 font-semibold text-neutral-800 dark:text-white/90">
-                      {enq.products}
-                    </td>
-                    <td className="px-6 py-5">
-                      <span className="rounded bg-neutral-50 border border-neutral-200 dark:bg-white/5 dark:border-white/10 px-2.5 py-1 text-[11px] font-bold text-gold">
-                        {enq.quantity}
-                      </span>
-                    </td>
-                    <td className="px-6 py-5 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${
-                          enq.status === 'new' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30' :
-                          enq.status === 'quoted' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
-                          enq.status === 'converted' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
-                          'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30'
-                        }`}>
-                          {enq.status === 'new' && <AlertCircle className="h-3 w-3 animate-bounce" />}
-                          {enq.status === 'quoted' && <CheckCircle2 className="h-3 w-3" />}
-                          {enq.status === 'contacted' && <Clock className="h-3 w-3" />}
-                          {enq.status === 'converted' && <Check className="h-3 w-3" />}
-                          <span>{enq.status}</span>
-                        </span>
-                        
-                        <span className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase ${
-                          enq.priority === 'urgent' ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30' :
-                          enq.priority === 'high' ? 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border border-orange-500/30' :
-                          'bg-neutral-100 text-neutral-500 border border-neutral-200 dark:bg-white/5 dark:text-white/40 dark:border-white/10'
-                        }`}>
-                          {enq.priority}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-5 text-right">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setActiveModal(enq) }}
-                        className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 px-3 py-2 text-neutral-600 dark:text-white/70 transition-all hover:bg-gold hover:text-white hover:border-gold dark:hover:bg-gold dark:hover:text-white dark:hover:border-gold font-semibold"
-                      >
-                        <Eye className="h-3.5 w-3.5" />
-                        <span>Inspect</span>
-                      </button>
-                    </td>
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
+                      </td>
+                      <td className="px-6 py-5 text-right">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setActiveModal(enq) }}
+                          className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 px-3 py-2 text-neutral-600 dark:text-white/70 transition-all hover:bg-gold hover:text-white hover:border-gold dark:hover:bg-gold dark:hover:text-white dark:hover:border-gold font-semibold"
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                          <span>Inspect</span>
+                        </button>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </AnimatePresence>
               )}
             </tbody>
           </table>
@@ -245,19 +242,17 @@ export default function AdminEnquiriesPage() {
                       <p className="text-[10px] text-neutral-400 dark:text-white/40">{enq.date}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
-                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${
-                        enq.status === 'new' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30' :
-                        enq.status === 'quoted' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
-                        enq.status === 'converted' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
-                        'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30'
-                      }`}>
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider ${enq.status === 'new' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30' :
+                          enq.status === 'quoted' ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30' :
+                            enq.status === 'converted' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30' :
+                              'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/30'
+                        }`}>
                         <span>{enq.status}</span>
                       </span>
-                      <span className={`rounded px-1.5 py-0.2 text-[8px] font-bold uppercase ${
-                        enq.priority === 'urgent' ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30' :
-                        enq.priority === 'high' ? 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border border-orange-500/30' :
-                        'bg-neutral-100 text-neutral-500 border border-neutral-200 dark:bg-white/5 dark:text-white/40 dark:border-white/10'
-                      }`}>
+                      <span className={`rounded px-1.5 py-0.2 text-[8px] font-bold uppercase ${enq.priority === 'urgent' ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30' :
+                          enq.priority === 'high' ? 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border border-orange-500/30' :
+                            'bg-neutral-100 text-neutral-500 border border-neutral-200 dark:bg-white/5 dark:text-white/40 dark:border-white/10'
+                        }`}>
                         {enq.priority}
                       </span>
                     </div>
@@ -284,7 +279,7 @@ export default function AdminEnquiriesPage() {
 
                   <div className="flex items-center justify-between border-t border-neutral-100 dark:border-white/5 pt-3">
                     <span className="text-[10px] text-neutral-400 dark:text-white/40">Rep: {enq.rep}</span>
-                    
+
                     <button
                       onClick={(e) => { e.stopPropagation(); setActiveModal(enq) }}
                       className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 px-3.5 py-2.5 text-xs text-neutral-600 dark:text-white/70 hover:bg-gold hover:text-white transition-all font-semibold"
@@ -380,11 +375,10 @@ export default function AdminEnquiriesPage() {
                     <button
                       key={st}
                       onClick={() => handleUpdateStatus(activeModal.id, st)}
-                      className={`rounded-lg border p-3 text-center text-xs font-semibold uppercase tracking-wider transition-all ${
-                        activeModal.status === st
+                      className={`rounded-lg border p-3 text-center text-xs font-semibold uppercase tracking-wider transition-all ${activeModal.status === st
                           ? 'bg-gold text-white border-gold font-bold shadow-lg shadow-gold/20'
                           : 'border-neutral-200 bg-neutral-50 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 hover:border-neutral-300 dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10 dark:hover:text-white dark:hover:border-white/30'
-                      }`}
+                        }`}
                     >
                       {st}
                     </button>

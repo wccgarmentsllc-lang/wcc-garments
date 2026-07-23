@@ -98,7 +98,8 @@ export default function EditProductPage() {
 
       // 2. Fetch live database data
       try {
-        const res = await api.getProducts({ limit: 100 })
+        const token = localStorage.getItem('wcc-admin-token') || ''
+        const res = await api.admin.getProducts(token)
         if (res.success && Array.isArray(res.data)) {
           const liveMatch = res.data.find((p: any) => p.id === params.id || p.slug === params.id)
           if (liveMatch) {
@@ -166,19 +167,21 @@ export default function EditProductPage() {
   const [specKey, setSpecKey] = useState('')
   const [specVal, setSpecVal] = useState('')
 
-  // Preload initial mock state based on ID
-  const [formData, setFormData] = useState({
-    name: 'Executive Bespoke Oxford Cotton Shirt', slug: 'executive-bespoke-oxford-shirt', division_id: 'Garments', category_id: 'Formal Shirts', category_ids: ['Formal Shirts'], brand_slug: 'treasure',
-    short_description: 'Engineered for premium executive comfort with wrinkle-resistant double-ply oxford weave.', description: 'Complete industrial specifications include reinforced double-needle stitching, Mother of Pearl buttons, and custom collar stays designed for rigorous corporate laundering protocols.', moq: '500 Units', lead_time: '15-20 Working Days',
-    featured: true, is_new: false, is_offer: true, offer_label: '10% Tier Rebate on 2,500+ Units',
-    published: true, tags: ['Oxford Cotton', 'Wrinkle-Resistant', 'Executive Tier'],
-    specs: [
-      { key: 'Fabric Density', value: '180 GSM Double-Ply Oxford' },
-      { key: 'Yarn Count', value: '80s/2 x 80s/2 High Tensile' },
-      { key: 'Color Fastness', value: 'Grade 4-5 (Commercial Laundering)' },
-      { key: 'Shrinkage Tolerance', value: 'Under 1.5% (Pre-Shrunk Finish)' }
-    ],
-    images: ['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80']
+  // Initialize empty state; populated via DB fetch
+  const [formData, setFormData] = useState<{
+    name: string; slug: string; division_id: string; category_id: string; category_ids: string[]; brand_slug: string;
+    short_description: string; description: string; moq: string; lead_time: string;
+    featured: boolean; is_new: boolean; is_offer: boolean; offer_label: string;
+    published: boolean; tags: string[];
+    specs: { key: string; value: string }[];
+    images: string[];
+  }>({
+    name: '', slug: '', division_id: 'Garments', category_id: '', category_ids: [], brand_slug: '',
+    short_description: '', description: '', moq: '', lead_time: '',
+    featured: false, is_new: false, is_offer: false, offer_label: '',
+    published: true, tags: [],
+    specs: [],
+    images: []
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

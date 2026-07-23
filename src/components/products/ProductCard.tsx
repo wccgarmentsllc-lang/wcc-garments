@@ -22,6 +22,8 @@ interface ProductCardProps {
     offer_label: string | null
     short_description?: string | null
     brand_slug?: string | null
+    /** Actual brand display name resolved from DB brands list */
+    brand_name?: string | null
   }
   index?: number
   coverColor?: string
@@ -58,13 +60,14 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex w-full flex-col"
+      className="group flex w-full flex-col border border-[var(--border)] h-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Image Area */}
       <Link
         href={getProductHref(effectiveDivision, product.slug)}
-        className="relative mx-auto block w-full max-w-[420px] overflow-hidden border border-[var(--border)] bg-white"
+        className="relative block w-full overflow-hidden bg-white"
         style={{ aspectRatio: '1/1', background: coverColor }}
         ref={containerRef}
       >
@@ -120,7 +123,7 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
           )}
         </div>
 
-        {/* Slide-up "ENQUIRE NOW" Shutter Overlay on Hover */}
+        {/* Slide-up "REQUEST DETAILS" overlay on Hover */}
         <AnimatePresence>
           {hovered && (
             <motion.div
@@ -140,43 +143,40 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
         </AnimatePresence>
       </Link>
 
-      {/* Editorial Typographic Info */}
-      <div className="mt-4 px-1">
-        <div className="flex items-center justify-between gap-2">
-          <span className="block text-[9px] font-medium uppercase tracking-[0.18em] text-gold/90">
-            {product.division?.name || 'WCC DIVISION'}
-          </span>
-          {product.brand_slug && (
-            <span className={`px-2 py-0.5 text-[8px] font-mono font-bold tracking-[0.15em] uppercase border ${
-              product.brand_slug === 'treasure'
-                ? 'border-gold text-gold bg-gold/5'
-                : product.brand_slug === 'vandegraff'
-                ? 'border-[#8B1A1A] text-[#8B1A1A] dark:text-red-400 bg-[#8B1A1A]/5'
-                : product.brand_slug === 'tom-jack'
-                ? 'border-amber-500/30 text-amber-500 bg-amber-500/5'
-                : 'border-[var(--border)] text-[var(--text-muted)] bg-[var(--bg)]'
-            }`}>
-              {product.brand_slug === 'tom-jack' ? 'TOM & JACK' : product.brand_slug.toUpperCase()}
+      {/* Text Info — flex-1 + justify-between pins footer to bottom */}
+      <div className="flex flex-1 flex-col justify-between p-4">
+        <div>
+          <div className="flex items-center justify-between gap-2">
+            <span className="block text-[9px] font-medium uppercase tracking-[0.18em] text-gold/90">
+              {product.division?.name || 'WCC DIVISION'}
             </span>
+            {product.brand_slug && (
+              <span className="px-2 py-0.5 text-[8px] font-mono font-bold tracking-[0.15em] uppercase border border-[var(--border)] text-[var(--text-muted)] bg-[var(--bg)]">
+                {product.brand_name || product.brand_slug.replace(/-/g, ' ')}
+              </span>
+            )}
+          </div>
+
+          <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text)] transition-colors duration-300 md:text-lg">
+            {product.name}
+          </h3>
+
+          {product.short_description && (
+            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--text-muted)]">
+              {product.short_description}
+            </p>
           )}
         </div>
 
-        <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text)] transition-colors duration-300 md:text-lg">
-          {product.name}
-        </h3>
-
-        {product.short_description && (
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            {product.short_description}
-          </p>
-        )}
-
+        {/* Footer: always pinned at bottom */}
         <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3">
           <span className="text-sm text-[var(--text-muted)] line-clamp-1 pr-2">
-            {product.categories && product.categories.length > 0 ? product.categories.map((c: any) => c.name).join(', ') : (product.category?.name || 'Textile')}
+            {product.categories && product.categories.length > 0
+              ? product.categories.map((c: any) => c.name).join(', ')
+              : product.category?.name || 'Textile'}
           </span>
           {product.moq && (
-            <span className="border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)]">
+            <span className="border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] whitespace-nowrap">
               MOQ {product.moq}
             </span>
           )}

@@ -173,7 +173,7 @@ export default function AdminMediaPage() {
       </div>
 
       {/* Category Navigation Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto bg-neutral-50 dark:bg-white/5 p-3 rounded-xl border border-neutral-200 dark:border-white/10 scrollbar-none font-mono">
+      <div className="flex items-center gap-2 overflow-x-auto bg-neutral-50 dark:bg-white/5 p-3 rounded-xl border border-neutral-200 dark:border-white/10 scrollbar-hide font-mono">
         {(['all', 'new_arrival', 'offer', 'banner'] as const).map(tab => (
           <button
             key={tab}
