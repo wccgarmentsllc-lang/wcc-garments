@@ -29,7 +29,7 @@ export function AdminSidebar() {
   const { isDark, toggleTheme } = useThemeContext()
 
   const SidebarContent = () => (
-    <div className={`flex h-full flex-col justify-between transition-colors duration-300 ${isDark ? 'bg-[#0D0D0D] text-white' : 'bg-white text-gray-900'}`}>
+    <div className={`flex min-h-full flex-col justify-between transition-colors duration-300 ${isDark ? 'bg-[#0D0D0D] text-white' : 'bg-white text-gray-900'}`}>
       <div>
         {/* Brand Header */}
         <div className={`flex items-center justify-between border-b p-6 ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
@@ -171,7 +171,7 @@ export function AdminSidebar() {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className={`hidden w-72 flex-shrink-0 border-r lg:block min-h-screen transition-colors duration-300 ${isDark ? 'border-r-white/5 bg-[#0D0D0D]' : 'border-r-gray-200 bg-white'
+      <aside className={`hidden w-72 flex-shrink-0 border-r lg:block h-screen overflow-y-auto transition-colors duration-300 scrollbar-hide ${isDark ? 'border-r-white/5 bg-[#0D0D0D]' : 'border-r-gray-200 bg-white'
         }`}>
         <SidebarContent />
       </aside>

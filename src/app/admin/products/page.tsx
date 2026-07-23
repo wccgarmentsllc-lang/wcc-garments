@@ -77,7 +77,7 @@ export default function AdminProductsPage() {
 
       {/* Filter Tabs & Search Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-neutral-50 dark:bg-white/5 p-4 rounded-none border border-neutral-200 dark:border-white/10">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
           <button
             onClick={() => setSelectedDivision('all')}
             className={`px-4 py-2 font-mono text-xs font-semibold tracking-wider uppercase whitespace-nowrap transition-all rounded-none ${

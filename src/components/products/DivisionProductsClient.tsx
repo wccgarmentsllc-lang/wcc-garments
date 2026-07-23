@@ -294,6 +294,15 @@ export function DivisionProductsClient({
     return categoryMatch && brandMatch
   })
 
+  // Build a slug -> name lookup from DB brands so product cards show real brand names
+  const brandNameMap: Record<string, string> = {}
+  divisionBrands.forEach((b) => { if (b.slug) brandNameMap[b.slug] = b.name })
+
+  const enrichedProducts = filteredProducts.map((p) => ({
+    ...p,
+    brand_name: p.brand_slug ? (brandNameMap[p.brand_slug] ?? null) : null,
+  }))
+
   const updateFilters = (catSlug: string | null, brandSlug: string | null) => {
     const params = new URLSearchParams(searchParams.toString())
     if (catSlug === 'all') {
@@ -307,11 +316,9 @@ export function DivisionProductsClient({
       params.set('brand', brandSlug)
     }
     router.push(`/products/${divisionSlug}${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
-    if (catSlug !== null) {
-      setTimeout(() => {
-        filterBarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 100)
-    }
+    setTimeout(() => {
+      document.getElementById('products-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
   }
 
   const clearAllFilters = () => {
@@ -443,53 +450,6 @@ export function DivisionProductsClient({
         </section>
       )}
 
-      {/* ── ACTIVE FILTERS BAR ── */}
-      <AnimatePresence>
-        {(urlCategory !== 'all' || urlBrand !== 'all') && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="bg-[var(--surface)] border-b border-[var(--border)] py-3"
-          >
-            <div className="mx-auto max-w-[1560px] px-6 lg:px-12 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-[var(--text-muted)] flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
-                  <SlidersHorizontal className="h-3 w-3" />
-                  Active Filters:
-                </span>
-
-                {urlCategory !== 'all' && activeCategory && (
-                  <button
-                    onClick={() => updateFilters('all', null)}
-                    className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/30 hover:border-gold/60 text-gold px-2.5 py-1 text-[10px] font-bold uppercase transition-colors cursor-pointer"
-                  >
-                    Category: {activeCategory.name}
-                    <X className="h-3 w-3" />
-                  </button>
-                )}
-
-                {urlBrand !== 'all' && activeBrand && (
-                  <button
-                    onClick={() => updateFilters(null, 'all')}
-                    className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/30 hover:border-gold/60 text-gold px-2.5 py-1 text-[10px] font-bold uppercase transition-colors cursor-pointer"
-                  >
-                    Brand: {activeBrand.name}
-                    <X className="h-3 w-3" />
-                  </button>
-                )}
-              </div>
-
-              <button
-                onClick={clearAllFilters}
-                className="text-[var(--text-muted)] hover:text-[var(--text)] underline underline-offset-4 text-[10px] uppercase font-bold tracking-wider transition-colors cursor-pointer"
-              >
-                Clear All Filters
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── STICKY CATEGORY FILTER BAR ── */}
       {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar()}
@@ -506,7 +466,7 @@ export function DivisionProductsClient({
           >
             {/* Spotlight Brand Profile */}
             {activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 pt-8 sm:pt-12">
+              <section className="mx-auto max-w-[1560px] px-6 sm:px-0">
                 <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-4 sm:p-10 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(218,165,32,0.06),transparent_50%)]" />
 
@@ -755,7 +715,7 @@ export function DivisionProductsClient({
 
             {/* Products Grid */}
             <ProductsGrid
-              products={filteredProducts}
+              products={enrichedProducts}
               divisionSlug={divisionSlug}
               heading={activeBrand
                 ? (urlCategory !== 'all' && activeCategory
@@ -845,7 +805,7 @@ export function DivisionProductsClient({
 
             {/* Products grid */}
             <ProductsGrid
-              products={filteredProducts}
+              products={enrichedProducts}
               divisionSlug={divisionSlug}
               heading={activeBrand ? `${activeBrand.name} - ${activeCategory.name}` : `${activeCategory.name} Products`}
               subheading={activeBrand
@@ -1057,7 +1017,7 @@ function ProductsGrid({
   const urlBrand = searchParams.get('brand') || 'all'
 
   return (
-    <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 border-t border-[var(--border)]">
+    <section id="products-grid" className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 border-t border-[var(--border)] scroll-mt-[40px]">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{subheading}</span>
@@ -1081,7 +1041,7 @@ function ProductsGrid({
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 items-stretch">
           {products.map((p, i) => (
             <ProductCard
               key={p.id}

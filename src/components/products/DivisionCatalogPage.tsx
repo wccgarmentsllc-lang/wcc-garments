@@ -126,6 +126,12 @@ export async function DivisionCatalogPage({
 
   const isFiltered = !!initialCategorySlug || !!initialBrandSlug
 
+  // Resolve brand display name from DB brands for breadcrumb
+  const activeBrandName = initialBrandSlug
+    ? (dbBrands as any[]).find((b) => b.slug === initialBrandSlug)?.name ||
+      initialBrandSlug.replace(/-/g, ' ')
+    : null
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -196,7 +202,7 @@ export async function DivisionCatalogPage({
       />
 
       <div className="min-h-screen bg-[var(--bg)]">
-        <header className={`border-b border-[var(--border)] bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.09),transparent_40%),var(--bg-surface)] transition-all duration-300 ${
+        <header className={` bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.09),transparent_40%),var(--bg-surface)] transition-all duration-300 ${
           isFiltered ? 'pt-28 pb-6 md:pt-32 md:pb-8' : 'pt-28 pb-12 md:pt-36 md:pb-16'
         }`}>
           <div className="mx-auto max-w-[1560px] px-6 lg:px-12">
@@ -218,13 +224,13 @@ export async function DivisionCatalogPage({
               {initialCategorySlug && (
                 <>
                   <ChevronRight className="h-3 w-3" />
-                  <span className="text-gold capitalize">{initialCategorySlug.replace(/-/g, ' ')}</span>
+                  <span className="text-gold">{initialCategorySlug.replace(/-/g, ' ')}</span>
                 </>
               )}
               {initialBrandSlug && (
                 <>
                   <ChevronRight className="h-3 w-3" />
-                  <span className="text-gold capitalize">{initialBrandSlug.replace(/-/g, ' ')}</span>
+                  <span className="text-gold">{activeBrandName}</span>
                 </>
               )}
             </nav>
@@ -283,7 +289,7 @@ export async function DivisionCatalogPage({
           </div>
         </header>
 
-        <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 lg:py-16">
+        <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 lg:py-0">
           <DivisionProductsClient
             products={mappedProducts}
             categories={divisionCategories}
