@@ -30,7 +30,10 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const rawBody = await request.json()
+    // Strip id and created_at — DB will auto-generate these
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id: _id, created_at: _ca, ...body } = rawBody
     const supabase = getSupabaseServerClient()
     
     const data = await fetchWithFallback(

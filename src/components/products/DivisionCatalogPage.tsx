@@ -86,6 +86,23 @@ export async function DivisionCatalogPage({
     products = []
   }
 
+  let dbBrands = []
+  try {
+    const supabase = getSupabaseServerClient()
+    const { data, error } = await supabase
+      .from('brands')
+      .select('*')
+      .eq('division_slug', divisionSlug)
+      .order('display_order', { ascending: true })
+      
+    if (error) throw error
+    if (data) {
+      dbBrands = data
+    }
+  } catch (err) {
+    console.error("Failed to query DB brands for division catalog page:", err)
+  }
+
   const otherDivisions = DIVISIONS.filter((item) => item.slug !== divisionSlug)
 
   const mappedProducts = products.map((product) => ({
@@ -274,6 +291,7 @@ export async function DivisionCatalogPage({
             divisionName={division.name}
             initialCategorySlug={resolvedInitialCategorySlug ?? undefined}
             initialBrandSlug={initialBrandSlug ?? undefined}
+            dbBrands={dbBrands}
           />
         </section>
 

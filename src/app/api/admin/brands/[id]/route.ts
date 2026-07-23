@@ -9,7 +9,10 @@ export async function PUT(
 ) {
   try {
     const { id } = await params
-    const body = await request.json()
+    const rawBody = await request.json()
+    // Strip primary key and auto-managed fields — Supabase rejects attempts to update them
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id: _id, created_at: _ca, ...body } = rawBody
     const supabase = getSupabaseServerClient()
 
     const data = await fetchWithFallback(
