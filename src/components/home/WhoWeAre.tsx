@@ -14,9 +14,9 @@ const DEFAULT_WHO_WE_ARE = {
   heading: "WCC FASHIONS",
   subHeading: "Established 2001",
   paragraphs: [
-    "Western Clothing Company (WCC Fashions LLC) is the best garments wholesale team and premier UAE-based B2B fashion manufacturing group.",
-    "Operating out of our advanced Dubai manufacturing infrastructure, we deliver end-to-end commercial solutions—from precision pattern CAD and fabric sourcing to full-scale container export across 50+ nations worldwide.",
-    "Our multi-division capabilities bridge high-end fashion garments, heavy-duty industrial workwear, luxury hotel linens, and authentic Arabian fragrances under strict ISO quality benchmarks.",
+    "Formerly known as **WCC Garments Trading LLC**, and now operating under the brand name **WCC Fashions**, the company is a leading UAE-based sourcing and distribution business with over **30 years of trusted experience** serving major retailers across the GCC and Middle East.",
+    "Expanding beyond apparel, **WCC Fashions** now delivers comprehensive lifestyle solutions across home furnishings, premium fragrances, and household products, supported by a robust sourcing network and strategic manufacturing partnerships.",
+    "With deep regional expertise, efficient supply chain capabilities, and a commitment to quality, **WCC Fashions** continues to grow as a trusted multi-category partner for retail, hospitality, and international markets.",
   ],
   mainImage: "/images/about wcc.png",
   floatingBadgeTitle: "Certified Standards",
@@ -152,12 +152,19 @@ export function WhoWeAre() {
                 {data.subHeading}
               </span>
 
-              <div className="mt-8 space-y-6 text-[15px] font-light leading-relaxed text-neutral-600 dark:text-neutral-300 font-sans tracking-wide">
-                <p className="text-lg font-medium text-[var(--text)] leading-snug">
-                  {data.paragraphs[0]}
-                </p>
-                <p className="text-sm sm:text-base">{data.paragraphs[1]}</p>
-                <p className="text-sm sm:text-base">{data.paragraphs[2]}</p>
+              <div className="mt-8 space-y-5 font-sans">
+                {data.paragraphs.map((para: string, i: number) => (
+                  <p
+                    key={i}
+                    className="text-sm sm:text-base font-light leading-relaxed tracking-wide text-neutral-600 dark:text-neutral-300"
+                  >
+                    {para.split(/\*\*(.+?)\*\*/).map((chunk: string, j: number) =>
+                      j % 2 === 1
+                        ? <strong key={j} className="font-semibold text-[var(--text)]">{chunk}</strong>
+                        : chunk
+                    )}
+                  </p>
+                ))}
               </div>
 
               <div className="mt-10 flex items-center gap-6">

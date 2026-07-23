@@ -628,14 +628,17 @@ export default function AdminCategoriesPage() {
         {catModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 dark:bg-black/80 backdrop-blur-md">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-md border border-neutral-200 bg-white dark:border-white/10 dark:bg-[#0D0D0D] p-7 shadow-2xl space-y-5 text-neutral-900 dark:text-white">
-              <div className="flex items-center justify-between border-b border-neutral-200 dark:border-white/10 pb-4">
+              className="w-full max-w-md flex flex-col border border-neutral-200 bg-white dark:border-white/10 dark:bg-[#0D0D0D] shadow-2xl text-neutral-900 dark:text-white"
+              style={{ maxHeight: 'calc(100vh - 2rem)' }}>
+              {/* Sticky Header */}
+              <div className="flex-shrink-0 flex items-center justify-between border-b border-neutral-200 dark:border-white/10 px-7 py-5">
                 <h3 className="font-display text-lg font-bold uppercase text-neutral-900 dark:text-white">
                   {catModal === 'add' ? 'Add Category' : 'Edit Category'}
                 </h3>
                 <button onClick={() => setCatModal(null)} className="text-neutral-400 hover:text-neutral-600 dark:text-white/40 dark:hover:text-white"><X className="h-5 w-5" /></button>
               </div>
-              <div className="space-y-4">
+              {/* Scrollable Body */}
+              <div className="flex-1 overflow-y-auto px-7 py-5 space-y-4">
                 <div>
                   <label className={labelCls}>Division</label>
                   <select value={catForm.divisionSlug} onChange={(e) => setCatForm({ ...catForm, divisionSlug: e.target.value })} className={selectCls}>
@@ -729,7 +732,8 @@ export default function AdminCategoriesPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-3 pt-2">
+              {/* Sticky Footer */}
+              <div className="flex-shrink-0 flex gap-3 border-t border-neutral-200 dark:border-white/10 px-7 py-5">
                 <button onClick={() => setCatModal(null)} className="flex-1 border border-neutral-200 text-neutral-500 hover:bg-neutral-50 dark:border-white/10 dark:text-white/60 dark:hover:bg-white/5 transition-all py-2.5 font-mono text-xs">Cancel</button>
                 <button disabled={saving} onClick={saveCat} className="flex-1 flex justify-center items-center gap-2 bg-gold py-2.5 font-mono text-xs font-bold text-white hover:bg-gold/90 transition-all">
                   {saving && <Loader2 className="w-3 h-3 animate-spin" />}
@@ -746,14 +750,17 @@ export default function AdminCategoriesPage() {
         {subModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 dark:bg-black/80 backdrop-blur-md">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-md border border-neutral-200 bg-white dark:border-white/10 dark:bg-[#0D0D0D] p-7 shadow-2xl space-y-5 text-neutral-900 dark:text-white">
-              <div className="flex items-center justify-between border-b border-neutral-200 dark:border-white/10 pb-4">
+              className="w-full max-w-md flex flex-col border border-neutral-200 bg-white dark:border-white/10 dark:bg-[#0D0D0D] shadow-2xl text-neutral-900 dark:text-white"
+              style={{ maxHeight: 'calc(100vh - 2rem)' }}>
+              {/* Sticky Header */}
+              <div className="flex-shrink-0 flex items-center justify-between border-b border-neutral-200 dark:border-white/10 px-7 py-5">
                 <h3 className="font-display text-lg font-bold uppercase text-neutral-900 dark:text-white">
                   {subModal === 'add' ? 'Add Sub-Category' : 'Edit Sub-Category'}
                 </h3>
                 <button onClick={() => setSubModal(null)} className="text-neutral-400 hover:text-neutral-600 dark:text-white/40 dark:hover:text-white"><X className="h-5 w-5" /></button>
               </div>
-              <div className="space-y-4">
+              {/* Scrollable Body */}
+              <div className="flex-1 overflow-y-auto px-7 py-5 space-y-4">
                 <div>
                   <label className={labelCls}>Sub-Category Name *</label>
                   <input value={subForm.name} onChange={(e) => setSubForm({ ...subForm, name: e.target.value, slug: toSlug(e.target.value) })} placeholder="e.g. Cutlery" className={inputCls} />
@@ -841,7 +848,8 @@ export default function AdminCategoriesPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-3 pt-2">
+              {/* Sticky Footer */}
+              <div className="flex-shrink-0 flex gap-3 border-t border-neutral-200 dark:border-white/10 px-7 py-5">
                 <button onClick={() => setSubModal(null)} className="flex-1 border border-neutral-200 text-neutral-500 hover:bg-neutral-50 dark:border-white/10 dark:text-white/60 dark:hover:bg-white/5 transition-all py-2.5 font-mono text-xs">Cancel</button>
                 <button disabled={saving} onClick={saveSub} className="flex-1 flex justify-center items-center gap-2 bg-gold py-2.5 font-mono text-xs font-bold text-white hover:bg-gold/90 transition-all">
                   {saving && <Loader2 className="w-3 h-3 animate-spin" />}
