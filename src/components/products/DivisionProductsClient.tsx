@@ -40,6 +40,7 @@ interface DivisionProductsClientProps {
   divisionName: string
   initialCategorySlug?: string
   initialBrandSlug?: string
+  dbBrands?: any[]
 }
 
 interface BrandConfig {
@@ -189,6 +190,7 @@ export function DivisionProductsClient({
   divisionName,
   initialCategorySlug,
   initialBrandSlug,
+  dbBrands = [],
 }: DivisionProductsClientProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -238,7 +240,26 @@ export function DivisionProductsClient({
   const urlBrand = searchParams.get('brand') || initialBrandSlug || 'all'
 
   const activeCategory = categories.find((c) => c.slug === urlCategory) || null
-  const divisionBrands = BRANDS_CONFIG_BY_DIVISION[divisionSlug] || []
+  
+  // Use DB brands if provided, otherwise fallback to hardcoded config
+  const divisionBrands = dbBrands.length > 0 
+    ? dbBrands.map((b) => ({
+        slug: b.slug,
+        name: b.name,
+        tagline: b.tagline || 'Verified Brand',
+        desc: b.description || 'Premium products from this manufacturer.',
+        moq: 'Contact for MOQ',
+        styles: 'Various Styles',
+        segment: 'core',
+        badge: 'VERIFIED BRAND',
+        style: 'border-gold text-gold bg-gold/5',
+        perfectFor: ['Wholesale Buyers', 'B2B Partners', 'Retailers'],
+        bgImage: b.logo_desktop || '/images/hos-2.png',
+        logo: b.logo_mobile || b.logo_desktop || '',
+        brandImage: b.logo_desktop || b.logo_mobile || '',
+      }))
+    : (BRANDS_CONFIG_BY_DIVISION[divisionSlug] || [])
+
   const activeBrand = divisionBrands.find((b) => b.slug === urlBrand) || null
 
   // Normalize a string for comparison (lowercase, alphanumeric only)
