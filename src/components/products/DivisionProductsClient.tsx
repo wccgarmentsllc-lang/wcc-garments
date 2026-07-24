@@ -336,7 +336,17 @@ export function DivisionProductsClient({
     }
     router.push(`/products/${divisionSlug}${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const isSelectingFilter = (catSlug && catSlug !== 'all') || (brandSlug && brandSlug !== 'all')
+      if (isSelectingFilter) {
+        const el = document.getElementById('products-grid')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 400, behavior: 'smooth' })
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }, 100)
   }
 
@@ -1019,7 +1029,7 @@ function ProductsGrid({
   const urlBrand = searchParams.get('brand') || 'all'
 
   return (
-    <section id="products-grid" className="mx-auto max-w-[1560px]  py-12 lg:px-12 border-t border-[var(--border)] scroll-mt-[40px]">
+    <section id="products-grid" className="mx-auto max-w-[1560px]  py-8 lg:px-12 border-t border-[var(--border)] scroll-mt-[70px]">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{subheading}</span>
