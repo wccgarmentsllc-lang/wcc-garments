@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, ArrowRight, ArrowUpRight, Tag, Clock, SlidersHorizontal, X, Layers, BookOpen, Building2, Mail, CheckCircle2, Loader2 } from 'lucide-react'
 import { ProductCard } from './ProductCard'
+import { CategoryBannerCarousel } from './CategoryBannerCarousel'
 import { api } from '@/lib/api'
 
 interface Category {
@@ -17,6 +18,7 @@ interface Category {
   displayOrder: number
   subCategories?: any[]
   image?: string
+  images?: string[]
 }
 
 interface DivisionProductsClientProps {
@@ -334,12 +336,25 @@ export function DivisionProductsClient({
     }
     router.push(`/products/${divisionSlug}${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
     setTimeout(() => {
-      document.getElementById('products-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const isSelectingFilter = (catSlug && catSlug !== 'all') || (brandSlug && brandSlug !== 'all')
+      if (isSelectingFilter) {
+        const el = document.getElementById('products-grid')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 400, behavior: 'smooth' })
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }, 100)
   }
 
   const clearAllFilters = () => {
     router.push(`/products/${divisionSlug}`, { scroll: false })
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
   }
 
   const renderAllProductsButton = (className = '') => (
@@ -360,15 +375,15 @@ export function DivisionProductsClient({
       ref={filterBarRef}
       className={`sticky top-[84px] z-40 overflow-hidden border border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.08)] ${className}`}
     >
-      <div className="flex items-center gap-4 px-2 py-1">
+      <div className="flex items-center gap-4 pe-1 py-1">
         <div className="min-w-0 flex-1 overflow-x-auto scrollbar-hide">
           <div className="flex w-max min-w-full items-center gap-0">
             <button
               onClick={() => updateFilters('all', null)}
-              className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-b-2 cursor-pointer ${
+              className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 urlCategory === 'all'
-                  ? 'border-gold text-gold font-extrabold'
-                  : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
+                  ? 'text-gold font-extrabold'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text)]'
               }`}
             >
               All Categories
@@ -384,12 +399,12 @@ export function DivisionProductsClient({
                     key={category.slug}
                     onClick={() => !isDisabled && updateFilters(category.slug, null)}
                     disabled={isDisabled}
-                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-b-2 ${
+                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${
                       isActive
-                        ? 'border-gold text-gold font-extrabold cursor-pointer'
+                        ? 'text-gold font-extrabold cursor-pointer'
                         : isDisabled
-                        ? 'border-transparent text-[var(--text-muted)]/30 cursor-not-allowed'
-                        : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text)] cursor-pointer'
+                        ? 'text-[var(--text-muted)]/30 cursor-not-allowed'
+                        : 'text-[var(--text-muted)] hover:text-[var(--text)] cursor-pointer'
                     }`}
                   >
                     {category.name}
@@ -442,13 +457,13 @@ export function DivisionProductsClient({
                   onClick={() => updateFilters(null, b.slug)}
                   className="group relative flex flex-col overflow-hidden w-full text-left transition-all duration-500 cursor-pointer"
                 >
-                  <div className="w-full border-2 border-transparent group-hover:border-[var(--border)] flex items-center justify-center p-6 bg-[var(--bg-surface)]">
-                    <div className="relative w-48 h-48 flex items-center justify-center">
+                  <div className="w-full border-2 border-transparent group-hover:border-[var(--border)] flex flex-col bg-[var(--bg-surface)] overflow-hidden">
+                    <div className="relative w-full aspect-[4/3] flex items-center justify-center">
                       <Image
                         src={b.brandImage}
                         fill
                         alt={`${b.name} logo`}
-                        className="object-contain transition-transform duration-500 group-hover:scale-105"
+                        className="object-fill transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                   </div>
@@ -483,7 +498,7 @@ export function DivisionProductsClient({
           >
             {/* Spotlight Brand Profile */}
             {activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 sm:px-0">
+              <section className="mx-auto max-w-[1560px]  sm:px-0">
                 <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-4 sm:p-10 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-between">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(218,165,32,0.06),transparent_50%)]" />
 
@@ -752,50 +767,30 @@ export function DivisionProductsClient({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Category Banner */}
-            <div className="relative h-[280px] md:h-[360px] overflow-hidden border-b border-[var(--border)]">
-              {(() => {
-                const imageMap = CATEGORY_IMAGES[divisionSlug] || {}
-                const image = activeCategory.image || imageMap[activeCategory.slug] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80'
-                const styleMap = STYLE_COUNT[divisionSlug] || {}
-                const styleCount = styleMap[activeCategory.slug] || '60+ Styles'
-                return (
-                  <>
-                    <Image
-                      src={image}
-                      alt={activeCategory.name}
-                      fill
-                      className="object-cover object-center opacity-40"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+            {/* Category Banner Carousel */}
+            {(() => {
+              const imageMap = CATEGORY_IMAGES[divisionSlug] || {}
+              const fallbackImage = activeCategory.image || imageMap[activeCategory.slug] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80'
+              const fallbackImages = Array.isArray(fallbackImage) ? fallbackImage : [fallbackImage]
+              
+              const categoryImages = (activeCategory.images && activeCategory.images.length > 0)
+                ? activeCategory.images
+                : fallbackImages
 
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-14 max-w-2xl">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Tag className="h-3.5 w-3.5 text-gold" />
-                        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-gold">{divisionName} · {activeCategory.name}</span>
-                      </div>
-                      <h2 className="font-display text-3xl font-bold uppercase text-white md:text-5xl">
-                        {activeCategory.name}
-                      </h2>
-                      <p className="mt-3 text-sm text-white/50 max-w-lg font-light">
-                        Premium {activeCategory.name.toLowerCase()} crafted for global B2B wholesale. All styles available in custom colors, finishes, and branding.
-                      </p>
-                      <div className="mt-6 flex items-center gap-4">
-                        <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">
-                          {styleCount}
-                        </span>
-                        <span className="text-white/20">·</span>
-                        <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">MOQ {activeBrand ? activeBrand.moq : 'Varies'}</span>
-                        <span className="text-white/20">·</span>
-                        <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">Lead Time 12-18 Days</span>
-                      </div>
-                    </div>
-                  </>
-                )
-              })()}
-            </div>
+              const styleMap = STYLE_COUNT[divisionSlug] || {}
+              const styleCount = styleMap[activeCategory.slug] || '60+ Styles'
+
+              return (
+                <CategoryBannerCarousel
+                  divisionName={divisionName}
+                  categoryName={activeCategory.name}
+                  images={categoryImages}
+                  styleCount={styleCount}
+                  moq={activeBrand ? activeBrand.moq : 'Varies'}
+                  leadTime="12-18 Days"
+                />
+              )
+            })()}
 
             {/* Sub-categories */}
             {activeCategory.subCategories && activeCategory.subCategories.length > 0 && (
@@ -1034,7 +1029,7 @@ function ProductsGrid({
   const urlBrand = searchParams.get('brand') || 'all'
 
   return (
-    <section id="products-grid" className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 border-t border-[var(--border)] scroll-mt-[40px]">
+    <section id="products-grid" className="mx-auto max-w-[1560px]  py-8 lg:px-12 border-t border-[var(--border)] scroll-mt-[70px]">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{subheading}</span>
@@ -1052,7 +1047,7 @@ function ProductsGrid({
           <p className="font-display text-xl text-[var(--text-muted)]">{emptyMsg}</p>
           <Link
             href={`/contact?division=${divisionSlug}&category=${urlCategory !== 'all' ? urlCategory : ''}&brand=${urlBrand !== 'all' ? urlBrand : ''}&source=division_catalog_empty_grid&intent=bulk_quotation`}
-            className="mt-6 inline-flex items-center gap-2 border border-gold/30 bg-gold/10 px-6 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest text-gold hover:bg-gold hover:text-white transition-all"
+            className="mt-6 inline-flex items-center gap-2 bg-gold text-white px-6 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-gold/90 transition-all"
           >
             Contact for Enquiry <ArrowRight className="h-3.5 w-3.5" />
           </Link>

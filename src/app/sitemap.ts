@@ -61,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select('slug, division_slug, updated_at')
 
     if (products && products.length > 0) {
-      products.forEach((p) => {
+      products.forEach((p: any) => {
         routes.push({
           url: `${BASE_URL}/products/${p.division_slug}/details/${p.slug}`,
           lastModified: p.updated_at ? new Date(p.updated_at) : now,

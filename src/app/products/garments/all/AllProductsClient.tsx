@@ -299,8 +299,8 @@ export default function AllProductsClient() {
             ← Back to Garments Hub
           </Link>
           <Link
-            href="/contact"
-            className="flex items-center gap-2 border border-gold/30 bg-gold/10 px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-gold hover:bg-gold hover:text-black transition-all duration-300"
+            href="/contact?division=garments&source=all_products_empty_grid&intent=bulk_quotation"
+            className="flex items-center gap-2 bg-gold px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-white hover:bg-gold/90 transition-all duration-300"
           >
             Contact for Enquiry <ArrowRight className="h-3.5 w-3.5" />
           </Link>
