@@ -174,10 +174,10 @@ export default function GarmentsHubClient() {
   const filteredProducts = products.filter((p) => {
     let categoryMatch = true
     if (activeCategory) {
-      const categories = p.categories && p.categories.length > 0 
+      const categories = p.categories && p.categories.length > 0
         ? p.categories.map((c: any) => typeof c === 'string' ? { name: c, slug: c.toLowerCase().replace(/[^a-z0-9]+/g, '-') } : c)
         : (p.category ? [p.category] : []);
-        
+
       const activeName = normCat(activeCategory.name)
       const activeSlug = normCat(activeCategory.slug)
 
@@ -212,22 +212,23 @@ export default function GarmentsHubClient() {
     } else {
       params.set('brand', brandSlug)
     }
-    router.push(`/products/garments${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
-    if (catSlug !== null) {
-      setTimeout(() => {
-        filterBarRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 100)
-    }
+    router.replace(`/products/garments${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
   }
 
   const clearAllFilters = () => {
-    router.push('/products/garments', { scroll: false })
+    router.replace('/products/garments', { scroll: false })
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
   }
 
   const renderAllProductsButton = (className = '') => (
     <Link
       href="/products/garments/all"
-      className={`group relative inline-flex items-center gap-2 overflow-hidden bg-[var(--text)] px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--bg)] transition-all hover:bg-gold hover:text-black shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${className}`}
+      className={`group relative inline-flex items-center gap-2 overflow-hidden bg-[var(--text)] px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--bg)] transition-all hover:bg-gold hover:text-white shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)] ${className}`}
     >
       <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
         <div className="w-8 bg-white/20" />
@@ -240,19 +241,18 @@ export default function GarmentsHubClient() {
   const renderCategoryFilterBar = (className = '') => (
     <div
       ref={filterBarRef}
-      className={`sticky top-[72px] z-40 border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.5)] ${className}`}
+      className={`sticky top-[72px] z-40 bg-[var(--bg)] backdrop-blur-xl `}
     >
-      <div className="mx-auto max-w-[1560px] px-4 lg:px-12">
-        <div className="flex items-center gap-4 py-1">
+      <div className="mx-auto max-w-[1560px] lg:mx-12 mx-6 bg-[var(--bg)] border border-[var(--border)] px-1">
+        <div className="flex items-center justify-between gap-4 py-1 bg-[var(--bg)]">
           <div className="min-w-0 flex-1 overflow-x-auto scrollbar-hide">
-            <div className="flex w-max items-center gap-0">
+            <div className="flex w-max items-center gap-0"> 
               <button
                 onClick={() => updateFilters('all', null)}
-                className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-b-2 ${
-                  urlCategory === 'all'
-                    ? 'border-gold text-gold'
-                    : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
-                }`}
+                className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${urlCategory === 'all'
+                    ? 'text-gold'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+                  }`}
               >
                 All Categories
               </button>
@@ -265,13 +265,12 @@ export default function GarmentsHubClient() {
                     key={cat.slug}
                     onClick={() => !isDisabled && updateFilters(cat.slug, null)}
                     disabled={isDisabled}
-                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border-b-2 ${
-                      isActive
-                        ? 'border-gold text-gold'
+                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${isActive
+                        ? 'text-gold'
                         : isDisabled
-                        ? 'border-transparent text-[var(--text-muted)] opacity-40 cursor-not-allowed'
-                        : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
-                    }`}
+                          ? 'text-[var(--text-muted)] opacity-40 cursor-not-allowed'
+                          : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+                      }`}
                   >
                     {cat.name}
                     {isDisabled && (
@@ -298,11 +297,10 @@ export default function GarmentsHubClient() {
 
       {/* ── HERO ────────────────────────────────────────────────────── */}
       {/* ── HEADER ─────────────────────────────────────────────────── */}
-      <header className={`relative overflow-hidden border-b border-[var(--border)] transition-all duration-300 ${
-        (!!activeCategory || !!activeBrand)
+      <header className={`relative overflow-hidden transition-all duration-300 ${(!!activeCategory || !!activeBrand)
           ? 'pt-12 pb-6 md:pt-16 md:pb-8'
           : 'pt-12 pb-16 md:pt-20 md:pb-20'
-      }`}>
+        }`}>
         {/* Subtle gold radial */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(218,165,32,0.07),transparent_60%)]" />
 
@@ -411,53 +409,7 @@ export default function GarmentsHubClient() {
         </section>
       )}
 
-      {/* ── ACTIVE FILTERS BAR ── */}
-      <AnimatePresence>
-        {(urlCategory !== 'all' || urlBrand !== 'all') && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="bg-[var(--surface)] border-b border-[var(--border)] py-3"
-          >
-            <div className="mx-auto max-w-[1560px] px-6 lg:px-12 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-              <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-[var(--text-muted)] flex items-center gap-1.5 uppercase text-[10px] tracking-wider">
-                  <SlidersHorizontal className="h-3 w-3" />
-                  Active Filters:
-                </span>
 
-                {urlCategory !== 'all' && activeCategory && (
-                  <button
-                    onClick={() => updateFilters('all', null)}
-                    className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/30 hover:border-gold/60 text-gold px-2.5 py-1 text-[10px] font-bold uppercase transition-colors"
-                  >
-                    Category: {activeCategory.name}
-                    <X className="h-3 w-3" />
-                  </button>
-                )}
-
-                {urlBrand !== 'all' && activeBrand && (
-                  <button
-                    onClick={() => updateFilters(null, 'all')}
-                    className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/30 hover:border-gold/60 text-gold px-2.5 py-1 text-[10px] font-bold uppercase transition-colors"
-                  >
-                    Brand: {activeBrand.name}
-                    <X className="h-3 w-3" />
-                  </button>
-                )}
-              </div>
-
-              <button
-                onClick={clearAllFilters}
-                className="text-[var(--text-muted)] hover:text-[var(--text)] underline underline-offset-4 text-[10px] uppercase font-bold tracking-wider transition-colors"
-              >
-                Clear All Filters
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── STICKY CATEGORY FILTER BAR ─────────────────────────────── */}
       {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar()}
@@ -474,8 +426,8 @@ export default function GarmentsHubClient() {
           >
             {/* Spotlight Brand Profile */}
             {activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 pt-12">
-                <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-6 sm:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
+              <section className="mx-auto max-w-[1560px] px-6 lg:px-12">
+                <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-2 sm:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(218,165,32,0.06),transparent_50%)]" />
 
                   <div className="relative z-10 max-w-3xl space-y-4">
@@ -511,8 +463,8 @@ export default function GarmentsHubClient() {
                         <button
                           onClick={() => updateFilters('all', null)}
                           className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${urlCategory === 'all'
-                              ? 'border-gold bg-gold/15 text-gold'
-                              : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
+                            ? 'border-gold bg-gold/15 text-gold'
+                            : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
                             }`}
                         >
                           All Collections
@@ -526,10 +478,10 @@ export default function GarmentsHubClient() {
                               onClick={() => !isDisabled && updateFilters(cat.slug, null)}
                               disabled={isDisabled}
                               className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${isActive
-                                  ? 'border-gold bg-gold/15 text-gold'
-                                  : isDisabled
-                                    ? 'border-[var(--border)] bg-transparent text-[var(--text-muted)] opacity-30 cursor-not-allowed'
-                                    : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
+                                ? 'border-gold bg-gold/15 text-gold'
+                                : isDisabled
+                                  ? 'border-[var(--border)] bg-transparent text-[var(--text-muted)] opacity-30 cursor-not-allowed'
+                                  : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
                                 }`}
                             >
                               {cat.name}
@@ -543,7 +495,7 @@ export default function GarmentsHubClient() {
                   <div className="relative z-10 shrink-0 flex flex-col gap-3 w-full md:w-auto">
                     <button
                       onClick={() => updateFilters(null, 'all')}
-                      className="bg-gold hover:bg-gold/90 text-black py-3 px-6 font-mono text-[10px] font-bold uppercase tracking-widest text-center transition-all flex items-center justify-center gap-2 shadow-2xl"
+                      className="bg-gold hover:bg-gold/90 text-white py-3 px-6 font-mono text-[10px] font-bold uppercase tracking-widest text-center transition-all flex items-center justify-center gap-2 shadow-2xl"
                     >
                       <span>Show All Brands</span>
                       <X className="h-4 w-4" />
@@ -590,8 +542,8 @@ export default function GarmentsHubClient() {
                           onClick={() => !isDisabled && updateFilters(cat.slug, null)}
                           disabled={isDisabled}
                           className={`group relative block w-full text-left overflow-hidden border transition-all duration-500 ${isDisabled
-                              ? 'border-[var(--border)] cursor-not-allowed'
-                              : 'border-[var(--border)] hover:border-gold/40 hover:shadow-[0_20px_60px_rgba(218,165,32,0.08)]'
+                            ? 'border-[var(--border)] cursor-not-allowed'
+                            : 'border-[var(--border)] hover:border-gold/40 hover:shadow-[0_20px_60px_rgba(218,165,32,0.08)]'
                             }`}
                         >
                           {/* Image */}
@@ -601,9 +553,9 @@ export default function GarmentsHubClient() {
                               alt={cat.name}
                               fill
                               className={`object-cover transition-transform duration-700 ease-out ${isDisabled
-                                  ? 'grayscale opacity-30'
-                                  : 'group-hover:scale-[1.04]'
-                              }`}
+                                ? 'grayscale opacity-30'
+                                : 'group-hover:scale-[1.04]'
+                                }`}
                               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
                             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -639,8 +591,8 @@ export default function GarmentsHubClient() {
                           <div className="bg-[var(--surface-card)] border-t border-[var(--border)] p-5">
                             <div className="flex items-center justify-between gap-2">
                               <h3 className={`font-display text-lg font-bold uppercase transition-colors duration-300 ${isDisabled
-                                  ? 'text-[var(--text-muted)] opacity-30'
-                                  : 'text-[var(--text)] group-hover:text-gold'
+                                ? 'text-[var(--text-muted)] opacity-30'
+                                : 'text-[var(--text)] group-hover:text-gold'
                                 }`}>
                                 {cat.name}
                               </h3>
@@ -699,7 +651,7 @@ export default function GarmentsHubClient() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Category cinematic banner */}
-            <div className="relative h-[280px] md:h-[360px] overflow-hidden border-b border-[var(--border)]">
+            <div className="relative h-[280px] md:h-[360px] overflow-hidden border-b border-[var(--border)] pt-5">
               <Image
                 src={activeCategory.image || CATEGORY_IMAGES[activeCategory.slug] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80'}
                 alt={activeCategory.name}
@@ -743,8 +695,8 @@ export default function GarmentsHubClient() {
                       <span
                         key={sub.id}
                         className={`px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider border transition-colors ${sub.status === 'active'
-                            ? 'border-gold/30 bg-gold/10 text-gold cursor-default'
-                            : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] opacity-50'
+                          ? 'border-gold/30 bg-gold/10 text-gold cursor-default'
+                          : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] opacity-50'
                           }`}
                       >
                         {sub.name}
@@ -817,7 +769,7 @@ function ProductsGrid({
   const urlBrand = searchParams.get('brand') || 'all'
 
   return (
-    <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 border-t border-[var(--border)]">
+    <section id="products-grid" className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 scroll-mt-[40px]">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{subheading}</span>
@@ -835,7 +787,7 @@ function ProductsGrid({
           <p className="font-display text-xl text-[var(--text-muted)]">{emptyMsg}</p>
           <Link
             href={`/contact?division=garments&category=${urlCategory !== 'all' ? urlCategory : ''}&brand=${urlBrand !== 'all' ? urlBrand : ''}&source=garments_hub_empty_grid&intent=bulk_quotation`}
-            className="mt-6 inline-flex items-center gap-2 border border-gold/30 bg-gold/10 px-6 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest text-gold hover:bg-gold hover:text-black transition-all"
+            className="mt-6 inline-flex items-center gap-2 bg-gold text-white px-6 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-gold/90 transition-all"
           >
             Contact for Enquiry <ArrowRight className="h-3.5 w-3.5" />
           </Link>

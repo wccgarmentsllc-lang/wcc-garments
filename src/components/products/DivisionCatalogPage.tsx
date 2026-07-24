@@ -58,6 +58,7 @@ export async function DivisionCatalogPage({
     status: cat.status || 'active',
     displayOrder: cat.displayOrder || cat.display_order || 1,
     image: cat.image,
+    images: Array.isArray(cat.images) && cat.images.length > 0 ? cat.images : (cat.image ? [cat.image] : []),
     subCategories: (cat.subCategories || cat.sub_categories || []).map((sub: any) => ({
       id: sub.id,
       name: sub.name,
@@ -68,7 +69,7 @@ export async function DivisionCatalogPage({
     }))
   }))
 
-  let products = []
+  let products: any[] = []
   try {
     const supabase = getSupabaseServerClient()
     const { data, error } = await supabase
@@ -86,7 +87,7 @@ export async function DivisionCatalogPage({
     products = []
   }
 
-  let dbBrands = []
+  let dbBrands: any[] = []
   try {
     const supabase = getSupabaseServerClient()
     const { data, error } = await supabase
@@ -105,7 +106,7 @@ export async function DivisionCatalogPage({
 
   const otherDivisions = DIVISIONS.filter((item) => item.slug !== divisionSlug)
 
-  const mappedProducts = products.map((product) => ({
+  const mappedProducts = products.map((product: any) => ({
     id: product.id,
     name: product.name,
     slug: product.slug,
@@ -164,7 +165,7 @@ export async function DivisionCatalogPage({
     description: division.metaDescription,
     url: `${SITE_CONFIG.url || 'https://wccfashions.com'}/products/${division.slug}`,
     numberOfItems: products.length,
-    itemListElement: products.map((product, index) => ({
+    itemListElement: products.map((product: any, index: number) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: product.name,
@@ -289,7 +290,7 @@ export async function DivisionCatalogPage({
           </div>
         </header>
 
-        <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 lg:py-0">
+        <section className="mx-auto max-w-[1560px] px-6 lg:px-12 lg:py-0">
           <DivisionProductsClient
             products={mappedProducts}
             categories={divisionCategories}
