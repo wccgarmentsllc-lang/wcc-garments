@@ -31,8 +31,8 @@ export default function HomePage() {
           <GlobalPresence />
           <ManufacturingStory />
           <CoverDemo />
-          <SEOFAQ />
           <EnquiryConsole />
+          <SEOFAQ />
       </main>
     </>
   )

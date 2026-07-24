@@ -152,7 +152,7 @@ export default function AdminSectionsPage() {
           </button>
           <button onClick={() => setActiveTab('garment')} className={tabClass('garment')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>3. Garments Categories</span>
+            <span>3. Division Cutouts (Garments)</span>
           </button>
           <button onClick={() => setActiveTab('uniforms')} className={tabClass('uniforms')}>
             <Layers className="h-4 w-4 shrink-0" />
@@ -217,9 +217,9 @@ export default function AdminSectionsPage() {
                 <ShowcaseEditor 
                   initialData={garments} 
                   sectionId="garments-showcase"
-                  title="5. Garment Manufacturing Showcase"
-                  subtitle="Configure active garment categories, descriptions, styles, and card cover images"
-                  matrixTitle="Garment Categories Matrix (6 Symmetrical Cards)"
+                  title="3. Division Cutouts Showcase"
+                  subtitle="Configure active division cutout categories, descriptions, styles, link slugs, and card cover images"
+                  matrixTitle="Division Cutouts Matrix (Dynamic Category Cards)"
                 />
               )}
               {activeTab === 'uniforms' && uniforms && (

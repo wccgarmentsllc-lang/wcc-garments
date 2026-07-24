@@ -10,7 +10,7 @@ import { api } from '@/lib/api'
  */
 export function useWebsiteContent(
   sectionId: string,
-  defaultValue: any
+  defaultValue?: any
 ): { data: any; loading: boolean } {
   const [data, setData] = useState<any>(null)    // Start null — wait for DB, not defaults
   const [loading, setLoading] = useState(true)

@@ -31,7 +31,7 @@ export function ManufacturingStory() {
   }
 
   return (
-    <section className="bg-[#0A0A0A] text-white py-16 md:py-24 px-6 lg:px-12 relative overflow-hidden">
+    <section className="bg-[#0A0A0A] text-white py-16 md:py-24 px-2 lg:px-12 relative overflow-hidden">
       {/* Subtle ambient lighting */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(218,165,32,0.03)_0%,transparent_70%)] pointer-events-none" />
 

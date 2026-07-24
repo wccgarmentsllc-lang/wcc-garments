@@ -71,11 +71,11 @@ export function GarmentsBrands() {
 
   return (
     <section
-      className="bg-[var(--bg)] px-5 md:px-0"
+      className="bg-[var(--bg)] md:px-0"
       ref={containerRef}
     >
       {/* ── TOP HERO SECTION ── */}
-      <div className="relative overflow-hidden bg-[#f5f4f2] dark:bg-[var(--bg-subtle)] py-10 md:py-15">
+      <div className="relative overflow-hidden  py-10 md:py-15">
         <div className="relative mx-auto max-w-[1440px] px-2 md:px-6 lg:px-12">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
@@ -91,7 +91,7 @@ export function GarmentsBrands() {
               </motion.div>
 
               <motion.h2
-                className="mt-4 font-display text-4xl sm:text-5xl font-semibold text-[#1a1a1a] dark:text-white leading-tight"
+                className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a1a1a] dark:text-white"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isContainerInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -104,7 +104,7 @@ export function GarmentsBrands() {
               </motion.h2>
 
               <motion.p
-                className="mt-6 max-w-md text-sm leading-relaxed text-[#5a5a5a] dark:text-[var(--text-muted)]"
+                className="mt-6 text-sm leading-relaxed text-[#5a5a5a] dark:text-[var(--text-muted)]"
                 initial={{ opacity: 0 }}
                 animate={isContainerInView ? { opacity: 1 } : {}}
                 transition={{ duration: 1, delay: 0.25 }}
@@ -141,8 +141,8 @@ export function GarmentsBrands() {
       </div>
 
       {/* ── THREE BRAND PANELS ── */}
-      {/* CHANGED: added gap-y-3 for mobile spacing between stacked panels */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-3 sm:gap-y-0">
+      <div className="relative mx-auto max-w-[1440px] px-2 md:px-6 lg:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         {BRAND_PANELS.map((brand, index) => {
           return (
             <motion.div
@@ -158,7 +158,7 @@ export function GarmentsBrands() {
             >
               <Link
                 href={brand.href}
-                className={`group relative flex flex-col overflow-hidden ${brand.bg} transition-all duration-500`}
+                className={`group relative flex flex-col overflow-hidden ${brand.bg} border border-[var(--border)] transition-all duration-500 hover:border-gold/30`}
                 data-cursor="view"
               >
                 {/* Background photo with overlay */}
@@ -172,8 +172,7 @@ export function GarmentsBrands() {
 
                 {/* Image overlay content */}
                 <div
-                  className="relative z-10 flex flex-col p-2 md:p-6"
-                  style={{ minHeight: "380px" }}
+                  className="relative z-10 flex flex-1 flex-col p-5 md:p-6 min-h-[320px] sm:min-h-[360px]"
                 >
                   {/* Logo area — top */}
                   <div className="mb-auto flex ">
@@ -196,8 +195,7 @@ export function GarmentsBrands() {
                 </div>
 
                 {/* White bottom strip: specializing + discover */}
-                {/* CHANGED: make the mobile footer more compact and let the text use the available width */}
-                <div className="relative z-10 h-auto min-h-[104px] bg-white px-4 py-4 border dark:bg-[var(--bg-surface)] dark:border-[var(--border)] sm:min-h-[120px] sm:px-5 sm:py-5 sm:rounded-none">
+                <div className="relative z-10 bg-white px-5 py-4 border-t border-[var(--border)] dark:bg-[var(--bg-surface)]">
                   <div className="grid h-full grid-cols-[auto,minmax(0,1fr),auto] items-center gap-3 sm:gap-4">
                     <div
                       className={`${brand.iconBg} flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black`}
@@ -224,17 +222,16 @@ export function GarmentsBrands() {
                     </div>
                   </div>
                   {/* Gold accent line */}
-                  <div className="mt-4 h-[2px] w-0 bg-gold transition-all duration-500 group-hover:w-full" />
                 </div>
               </Link>
             </motion.div>
           );
         })}
+        </div>
       </div>
 
-      {/* View All CTA — mobile only, full width */}
-      {/* CHANGED: added w-full and justify-center to make button full width on mobile */}
-      <div className="flex sm:hidden mt-10 border-t border-[var(--border)] bg-[var(--bg)]">
+      {/* View All CTA — mobile only, full width with side padding */}
+      <div className="flex sm:hidden mt-10 px-4 py-4 bg-[var(--bg)]">
         <Link
           href="/products/garments"
           className="group btn-gold font-mono text-xs font-bold tracking-[0.2em] rounded-none flex w-full items-center justify-center gap-2"
