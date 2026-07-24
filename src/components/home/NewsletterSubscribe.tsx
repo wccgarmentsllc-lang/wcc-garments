@@ -48,7 +48,7 @@ export default function NewsletterSubscribe() {
   return (
     <div className="mx-auto max-w-[1440px] w-full">
       <section
-        className="relative w-full bg-[var(--bg-surface)] text-[var(--text)] py-12 md:py-16 lg:py-20 px-6 flex items-center justify-center overflow-hidden transition-colors duration-500 min-h-0"
+        className="relative w-full bg-[var(--bg-surface)] text-[var(--text)] py-12 md:py-16 lg:py-20 px-2  flex items-center justify-center overflow-hidden transition-colors duration-500 min-h-0"
         style={{ contain: 'paint' }}
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ width: '100%', height: '100%' }}>

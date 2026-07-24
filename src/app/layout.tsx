@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { ThemeProvider } from '@/context/ThemeContext'
+import { CategoriesProvider } from '@/context/CategoriesContext'
 import { SmoothScroll } from '@/components/ui/SmoothScroll'
 import { GrainOverlay } from '@/components/ui/GrainOverlay'
 import { PreLoader } from '@/components/ui/PreLoader'
@@ -327,14 +328,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
         <PreLoader />
         <ThemeProvider>
-          <SmoothScroll>
-            <div id="root-content">
-              <GrainOverlay />
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
-            </div>
-          </SmoothScroll>
+          <CategoriesProvider>
+            <SmoothScroll>
+              <div id="root-content">
+                <GrainOverlay />
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
+              </div>
+            </SmoothScroll>
+          </CategoriesProvider>
         </ThemeProvider>
       </body>
     </html>

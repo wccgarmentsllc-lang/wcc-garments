@@ -29,7 +29,7 @@ export function WhyWCC() {
 
   return (
     <section className="bg-[var(--bg)] py-20" ref={ref} data-cursor="view">
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
         {/* Margined Section Number */}
         <div className=" flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-gold">
           <span>Sovereign Infrastructure</span>
@@ -64,7 +64,7 @@ export function WhyWCC() {
           transition={{ duration: 1, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-            
+
             {/* Card 1: Real-Time Telemetry */}
             <motion.div
               className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-[#121212] border border-white/5 p-8 lg:p-10 transition-all duration-500 hover:border-gold/40 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)]"

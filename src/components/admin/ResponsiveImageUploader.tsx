@@ -58,14 +58,14 @@ export function ResponsiveImageUploader({ label, value, onChange, aspectRatioHin
         )}
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2 items-start">
         {/* Desktop View */}
-        <div className="space-y-3">
+        <div className="space-y-3 flex flex-col">
           <span className={`text-[10px] font-bold uppercase ${themeTextSub}`}>Desktop Layout Image</span>
-          <div className={`relative aspect-video w-full bg-black overflow-hidden border ${themeBorder}`}>
-            {img.desktop && <Image src={img.desktop} alt="Desktop" fill className="object-cover" />}
+          <div className={`relative h-48 w-full bg-black/90 overflow-hidden border ${themeBorder}`}>
+            {img.desktop && <Image src={img.desktop} alt="Desktop" fill className="object-contain" />}
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 mt-auto">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -91,12 +91,12 @@ export function ResponsiveImageUploader({ label, value, onChange, aspectRatioHin
         </div>
 
         {/* Mobile View */}
-        <div className="space-y-3">
+        <div className="space-y-3 flex flex-col">
           <span className={`text-[10px] font-bold uppercase ${themeTextSub}`}>Mobile Layout Image</span>
-          <div className={`relative aspect-[3/4] w-2/3 mx-auto bg-black overflow-hidden border ${themeBorder}`}>
-            {img.mobile && <Image src={img.mobile} alt="Mobile" fill className="object-cover" />}
+          <div className={`relative h-48 w-full bg-black/90 overflow-hidden border ${themeBorder}`}>
+            {img.mobile && <Image src={img.mobile} alt="Mobile" fill className="object-contain" />}
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 mt-auto">
             <div className="flex gap-2">
               <input
                 type="text"

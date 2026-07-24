@@ -87,7 +87,7 @@ export default function AboutClient() {
         {/* Subtle Dark Gradient Overlay behind text only */}
         <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-black/95 via-black/80 to-transparent w-full md:w-[60%] lg:w-[45%] z-10" />
 
-        <div className="relative z-20 w-full mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="relative z-20 w-full mx-auto max-w-[1440px] px-3 lg:px-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -118,7 +118,7 @@ export default function AboutClient() {
 
       {/* Hero Stats Bar */}
       <div className="bg-black py-10 border-b border-[var(--border)]">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex items-center gap-4 text-left lg:justify-center">
               <Globe2 className="w-10 h-10 text-gold stroke-[1.5] shrink-0" />
@@ -155,7 +155,7 @@ export default function AboutClient() {
       {/* Mission & Vision */}
       <div className="py-section border-b border-[var(--border)] relative overflow-hidden">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[1px] bg-[var(--border)] hidden lg:block" />
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 grid lg:grid-cols-2 gap-16 relative z-10">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10 grid lg:grid-cols-2 gap-16 relative z-10">
           <motion.div className="bg-[var(--bg)] p-8 border border-[var(--border)]" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center gap-4 mb-6">
               <Target className="w-8 h-8 text-gold" />
@@ -179,7 +179,7 @@ export default function AboutClient() {
 
       {/* Global Manufacturing Footprint */}
       <div className="bg-[var(--bg-surface)] py-section border-b border-[var(--border)]">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <RevealText>
               <h2 className="font-display text-display-sm font-semibold text-[var(--text)]">
@@ -209,7 +209,7 @@ export default function AboutClient() {
 
       {/* Timeline */}
       <div className="py-section bg-[var(--bg)] border-t border-[var(--border)] overflow-hidden">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <RevealText>
               <h2 className="font-display text-display-sm font-semibold text-[var(--text)]">
@@ -294,7 +294,7 @@ export default function AboutClient() {
 
       {/* Values */}
       <div className="bg-[var(--bg-surface)] pt-16 lg:pt-20 pb-16 lg:pb-24 border-t border-[var(--border)]">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12 text-center">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10 text-center">
           <RevealText><h2 className="font-display text-display-sm font-semibold text-[var(--text)]">{data.valuesTitle}</h2></RevealText>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.values?.map((val: any, i: number) => {
@@ -327,7 +327,7 @@ export default function AboutClient() {
 
       {/* Our Process Gallery Section */}
       <div className="pt-16 lg:pt-24 pb-16 lg:pb-20 overflow-hidden">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 auto-rows-[300px] md:auto-rows-[350px]">
             <div className="col-span-1 md:col-span-2 lg:col-span-1 relative rounded-xl overflow-hidden">
               <Image
