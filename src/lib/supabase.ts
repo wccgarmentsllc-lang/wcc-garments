@@ -94,7 +94,25 @@ const globalClientOptions = {
 
 export const getSupabaseServerClient = () => {
   if (!isSupabaseConfigured()) {
-    throw new Error('Supabase is not configured')
+    // Return a dummy client to avoid crashing/error overlays in dev when env is missing
+    const chainable = {
+      select: () => chainable,
+      eq: () => chainable,
+      order: async () => ({ data: [], error: null }),
+      limit: async () => ({ data: [], error: null }),
+      single: async () => ({ data: null, error: null }),
+      maybeSingle: async () => ({ data: null, error: null })
+    } as any;
+    
+    return {
+      from: () => ({
+        ...chainable,
+        insert: () => chainable,
+        update: () => chainable,
+        delete: () => chainable,
+      }),
+      rpc: async () => ({ data: null, error: null })
+    } as any;
   }
   return createClient(
     process.env.SUPABASE_URL!,

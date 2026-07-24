@@ -4,6 +4,7 @@ import { DivisionCutouts } from '@/components/home/DivisionCutouts'
 import { GarmentsBrands } from '@/components/home/GarmentsBrands'
 import { NewArrivals } from '@/components/home/NewArrivals'
 import { KillingOffers } from '@/components/home/KillingOffers'
+import { DivisionsCarousel } from '@/components/home/DivisionsCarousel'
 import { GlobalPresence } from '@/components/home/GlobalPresence'
 import { ManufacturingStory } from '@/components/home/ManufacturingStory'
 import { EnquiryConsole } from '@/components/home/EnquiryConsole'
@@ -26,6 +27,7 @@ export default function HomePage() {
           <GarmentsBrands />
           <NewArrivals />
           <KillingOffers />
+          <DivisionsCarousel />
           <GlobalPresence />
           <ManufacturingStory />
           <CoverDemo />
