@@ -92,6 +92,23 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
       logo: '/images/logo/aanyahomecraft.png',
       brandImage: '/images/logo/aanyahomecraft.png',
     }
+  ],
+  home: [
+    {
+      slug: 'vandegraff',
+      name: 'Vandegraff',
+      tagline: 'Premium Towels & Bath Textiles',
+      desc: 'Exclusive collection of luxury bath towels, recycled towels, and home textiles designed for comfort, luxury, and durability.',
+      moq: '100 units',
+      styles: '120+ STYLES',
+      segment: 'core',
+      badge: 'LUXURY TEXTILES',
+      style: 'border-gold text-gold bg-gold/5',
+      perfectFor: ['Premium Retailers', 'Luxury Hotels', 'Home Decor Stores', 'Spas'],
+      bgImage: '/images/home furnishing.png',
+      logo: '/images/logo/vandegrafflogo.png',
+      brandImage: '/images/logo/vandegrafflogo.png',
+    }
   ]
 }
 
@@ -582,7 +599,7 @@ export function DivisionProductsClient({
                 </div>
 
                 {/* Catalogue Request CTA Bar */}
-                {(activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft') && (
+                {(activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft' || activeBrand.slug === 'vandegraff') && (
                   <div className="mt-4 sm:mt-6 border border-dashed border-gold/30 bg-gold/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
                     <div className="flex items-center gap-3.5 w-full sm:w-auto">
                       <div className="hidden sm:flex h-10 w-10 shrink-0 rounded-full bg-gold/10 items-center justify-center border border-gold/20">
