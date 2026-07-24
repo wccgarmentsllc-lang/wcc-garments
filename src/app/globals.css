@@ -92,6 +92,16 @@ body {
     text-wrap: balance;
   }
 
+  /* Hide scrollbar but keep scroll functionality */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE / Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;             /* Chrome / Safari / Opera */
+  }
+
+
   .text-gradient-gold {
     background: linear-gradient(135deg, #2563EB, #3B82F6, #60A5FA);
     -webkit-background-clip: text;

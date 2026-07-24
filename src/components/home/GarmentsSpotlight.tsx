@@ -24,7 +24,7 @@ export function GarmentsSpotlight() {
       {/* Background visual accent */}
       <div className="absolute top-0 right-0 -z-10 h-[500px] w-[500px] rounded-full bg-gold/5 blur-[120px]" />
 
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-2">
           {/* Left — Content */}
           <div className="flex flex-col justify-center order-2 lg:order-1">

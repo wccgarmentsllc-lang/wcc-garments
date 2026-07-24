@@ -40,7 +40,6 @@ export const DEFAULT_HERO = {
       left: "/images/products/cargo_work_pants.png",
       right: "/images/products/hotel_bed_linen.png",
       title: "Professional Workwear",
-      tag: "Corporate Uniforms"
     }
   ]
 }
@@ -50,18 +49,33 @@ export const DEFAULT_WHO_WE_ARE = {
   heading: "WCC FASHIONS",
   subHeading: "Established 2001",
   paragraphs: [
-    "Western Clothing Company (WCC Fashions LLC) is a premier UAE-based industrial fashion manufacturing group.",
-    "Operating out of our advanced Dubai manufacturing infrastructure, we deliver end-to-end commercial solutions—from precision pattern CAD and fabric sourcing to full-scale container export across 50+ nations worldwide.",
-    "Our multi-division capabilities bridge high-end fashion garments, heavy-duty industrial workwear, luxury hotel linens, and authentic Arabian fragrances under strict ISO quality benchmarks."
+    "Formerly known as **WCC Garments Trading LLC**, and now operating under the brand name **WCC Fashions**, the company is a leading UAE-based sourcing and distribution business with over **30 years of trusted experience** serving major retailers across the GCC and Middle East.",
+    "Expanding beyond apparel, **WCC Fashions** now delivers comprehensive lifestyle solutions across home furnishings, premium fragrances, and household products, supported by a robust sourcing network and strategic manufacturing partnerships.",
+    "With deep regional expertise, efficient supply chain capabilities, and a commitment to quality, **WCC Fashions** continues to grow as a trusted multi-category partner for retail, hospitality, and international markets.",
   ],
   mainImage: "/images/about wcc.png",
   floatingBadgeTitle: "Certified Standards",
   floatingBadgeDesc: "ISO 9001:2015 / OEM Export Grade",
   stats: [
-    { value: 25, suffix: "+", label: "Years Expertise", desc: "Unrivaled manufacturing history and procurement experience since our Dubai inception." },
-    { value: 50, suffix: "+", label: "Export Nations", desc: "Active global distribution networks spanning GCC, Africa, Europe, and the Americas." },
-    { value: 10, suffix: "K+", label: "Monthly Capacity", desc: "Industrial-scale output supporting massive tenders and commercial supply chains." }
-  ]
+    {
+      value: 25,
+      suffix: "+",
+      label: "Years Expertise",
+      desc: "Unrivaled manufacturing history and procurement experience since our Dubai inception.",
+    },
+    {
+      value: 50,
+      suffix: "+",
+      label: "Export Nations",
+      desc: "Active global distribution networks spanning GCC, Africa, Europe, and the Americas.",
+    },
+    {
+      value: 10,
+      suffix: "K+",
+      label: "Monthly Capacity",
+      desc: "Industrial-scale output supporting massive tenders and commercial supply chains.",
+    },
+  ],
 }
 
 export const DEFAULT_GARMENTS = {

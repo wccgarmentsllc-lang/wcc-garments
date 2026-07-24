@@ -64,7 +64,7 @@ export function SEOFAQ() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-12 relative z-10">
+      <div className="mx-auto max-w-[1200px] px-2 lg:px-12 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-gold/20 bg-gold/5 mb-4 rounded-none">
             <HelpCircle className="h-3.5 w-3.5 text-gold" />

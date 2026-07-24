@@ -115,7 +115,7 @@ export function EnquiryConsole({
         <div className="h-full w-full bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-3 lg:px-10">
         <div className=" flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-gold">
           <span> Wholesale &amp; Enterprise Portal</span>
         </div>
@@ -195,19 +195,17 @@ export function EnquiryConsole({
                         setStep(s)
                       }
                     }}
-                    className={`flex h-8 w-8 items-center justify-center text-xs font-medium transition-all cursor-pointer relative z-30 ${
-                      step >= s
-                        ? 'bg-gold text-white font-bold'
-                        : 'border border-[var(--border)] text-[var(--text-muted)] hover:border-gold'
-                    }`}
+                    className={`flex h-8 w-8 items-center justify-center text-xs font-medium transition-all cursor-pointer relative z-30 ${step >= s
+                      ? 'bg-gold text-white font-bold'
+                      : 'border border-[var(--border)] text-[var(--text-muted)] hover:border-gold'
+                      }`}
                   >
                     {step > s ? <Check className="h-3.5 w-3.5 text-white font-bold" /> : s}
                   </button>
                   {s < 3 && (
                     <div
-                      className={`h-[1px] w-8 transition-colors ${
-                        step > s ? 'bg-gold' : 'bg-[var(--border)]'
-                      }`}
+                      className={`h-[1px] w-8 transition-colors ${step > s ? 'bg-gold' : 'bg-[var(--border)]'
+                        }`}
                     />
                   )}
                 </div>
@@ -256,11 +254,10 @@ export function EnquiryConsole({
                             setSelectedBusinessType(type)
                             setStep(2)
                           }}
-                          className={`relative z-30 cursor-pointer border p-4 text-left font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:border-gold ${
-                            selectedBusinessType === type
-                              ? 'border-gold bg-gold/5 text-gold'
-                              : 'border-[var(--border)] text-[var(--text)]'
-                          }`}
+                          className={`relative z-30 cursor-pointer border p-4 text-left font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:border-gold ${selectedBusinessType === type
+                            ? 'border-gold bg-gold/5 text-gold'
+                            : 'border-[var(--border)] text-[var(--text)]'
+                            }`}
                         >
                           {type}
                         </button>
@@ -288,11 +285,10 @@ export function EnquiryConsole({
                           type="button"
                           key={interest}
                           onClick={() => toggleInterest(interest)}
-                          className={`relative z-30 cursor-pointer border p-4 text-left font-mono text-xs uppercase tracking-wider transition-all duration-300 hover:border-gold ${
-                            selectedInterests.includes(interest)
-                              ? 'border-gold bg-gold/5 text-gold font-bold'
-                              : 'border-[var(--border)] text-[var(--text)]'
-                          }`}
+                          className={`relative z-30 cursor-pointer border p-4 text-left font-mono text-xs uppercase tracking-wider transition-all duration-300 hover:border-gold ${selectedInterests.includes(interest)
+                            ? 'border-gold bg-gold/5 text-gold font-bold'
+                            : 'border-[var(--border)] text-[var(--text)]'
+                            }`}
                         >
                           <span className="mr-2">
                             {selectedInterests.includes(interest) ? '✓' : '○'}
@@ -334,9 +330,8 @@ export function EnquiryConsole({
                           <input
                             {...register('name')}
                             placeholder="Full Name *"
-                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${
-                              errors.name ? 'border-red-500' : 'border-[var(--border)]'
-                            }`}
+                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${errors.name ? 'border-red-500' : 'border-[var(--border)]'
+                              }`}
                           />
                           {errors.name && <p className="mt-1 text-[10px] text-red-500">{errors.name.message}</p>}
                         </div>
@@ -344,9 +339,8 @@ export function EnquiryConsole({
                           <input
                             {...register('company')}
                             placeholder="Company Name *"
-                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${
-                              errors.company ? 'border-red-500' : 'border-[var(--border)]'
-                            }`}
+                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${errors.company ? 'border-red-500' : 'border-[var(--border)]'
+                              }`}
                           />
                           {errors.company && <p className="mt-1 text-[10px] text-red-500">{errors.company.message}</p>}
                         </div>
@@ -355,9 +349,8 @@ export function EnquiryConsole({
                         <div>
                           <select
                             {...register('country')}
-                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] transition-colors focus:border-gold ${
-                              errors.country ? 'border-red-500' : 'border-[var(--border)]'
-                            }`}
+                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] transition-colors focus:border-gold ${errors.country ? 'border-red-500' : 'border-[var(--border)]'
+                              }`}
                           >
                             <option value="">Select Country *</option>
                             {COUNTRIES.map((c) => (
@@ -370,9 +363,8 @@ export function EnquiryConsole({
                           <input
                             {...register('phone')}
                             placeholder="Phone Number *"
-                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${
-                              errors.phone ? 'border-red-500' : 'border-[var(--border)]'
-                            }`}
+                            className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${errors.phone ? 'border-red-500' : 'border-[var(--border)]'
+                              }`}
                           />
                           {errors.phone && <p className="mt-1 text-[10px] text-red-500">{errors.phone.message}</p>}
                         </div>
@@ -382,9 +374,8 @@ export function EnquiryConsole({
                           {...register('email')}
                           type="email"
                           placeholder="Email Address *"
-                          className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${
-                            errors.email ? 'border-red-500' : 'border-[var(--border)]'
-                          }`}
+                          className={`w-full relative z-30 border bg-transparent px-4 py-3 text-sm text-[var(--text)] placeholder-[var(--text-muted)] transition-colors focus:border-gold ${errors.email ? 'border-red-500' : 'border-[var(--border)]'
+                            }`}
                         />
                         {errors.email && <p className="mt-1 text-[10px] text-red-500">{errors.email.message}</p>}
                       </div>

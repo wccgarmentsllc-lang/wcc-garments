@@ -5,43 +5,9 @@ import { motion, useInView } from "framer-motion";
 import { CounterStat } from "@/components/ui/CounterStat";
 import { ShieldCheck, ArrowUpRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { useWebsiteContent } from "@/hooks/useWebsiteContent";
 import { ResponsivePicture } from "@/components/ui/ResponsivePicture";
-
-const DEFAULT_WHO_WE_ARE = {
-  heritageLabel: "Corporate Heritage",
-  heading: "WCC FASHIONS",
-  subHeading: "Established 2001",
-  paragraphs: [
-    "Formerly known as **WCC Garments Trading LLC**, and now operating under the brand name **WCC Fashions**, the company is a leading UAE-based sourcing and distribution business with over **30 years of trusted experience** serving major retailers across the GCC and Middle East.",
-    "Expanding beyond apparel, **WCC Fashions** now delivers comprehensive lifestyle solutions across home furnishings, premium fragrances, and household products, supported by a robust sourcing network and strategic manufacturing partnerships.",
-    "With deep regional expertise, efficient supply chain capabilities, and a commitment to quality, **WCC Fashions** continues to grow as a trusted multi-category partner for retail, hospitality, and international markets.",
-  ],
-  mainImage: "/images/about wcc.png",
-  floatingBadgeTitle: "Certified Standards",
-  floatingBadgeDesc: "ISO 9001:2015 / OEM Export Grade",
-  stats: [
-    {
-      value: 25,
-      suffix: "+",
-      label: "Years Expertise",
-      desc: "Unrivaled manufacturing history and procurement experience since our Dubai inception.",
-    },
-    {
-      value: 50,
-      suffix: "+",
-      label: "Export Nations",
-      desc: "Active global distribution networks spanning GCC, Africa, Europe, and the Americas.",
-    },
-    {
-      value: 10,
-      suffix: "K+",
-      label: "Monthly Capacity",
-      desc: "Industrial-scale output supporting massive tenders and commercial supply chains.",
-    },
-  ],
-};
+import { DEFAULT_WHO_WE_ARE } from "@/app/admin/sections/defaults";
 
 export function WhoWeAre() {
   const ref = useRef<HTMLDivElement>(null);
@@ -54,35 +20,41 @@ export function WhoWeAre() {
       ref={ref}
       data-cursor="view"
     >
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
         {/* Section Header Indicator */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-[0.45em] text-gold">
-            {data.heritageLabel}
-          </span>
-        </div>
-
-        <div className="grid gap-12 lg:gap-20 lg:grid-cols-12 lg:items-start">
-          {/* Mobile heading */}
-          <div className="lg:hidden">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
-            >
-              <h2 className="font-display text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-[var(--text)] uppercase">
-                {data.heading.split(" ").map((word: string, i: number, arr: string[]) => (
-                  <span key={i} className={i === arr.length - 1 ? "text-gold font-light" : ""}>
-                    {word}
-                    {i < arr.length - 1 ? " " : ""}
-                  </span>
-                ))}
-              </h2>
-              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--text-muted)] block mt-2">
-                {data.subHeading}
-              </span>
-            </motion.div>
+        {data.heritageLabel && (
+          <div className="flex items-center gap-3 md:mb-6 mb-2">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.45em] text-gold">
+              {data.heritageLabel}
+            </span>
           </div>
+        )}
+
+        <div className="grid lg:gap-20 lg:grid-cols-12 lg:items-start">
+          {/* Mobile heading */}
+          {data.heading && (
+            <div className="lg:hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+              >
+                <h2 className="font-display text-3xl md:text-4xl font-bold leading-tight tracking-tight text-[var(--text)] uppercase lg:text-5xl">
+                  {data.heading.split(" ").map((word: string, i: number, arr: string[]) => (
+                    <span key={i} className={i === arr.length - 1 ? "text-gold font-light" : ""}>
+                      {word}
+                      {i < arr.length - 1 ? " " : ""}
+                    </span>
+                  ))}
+                </h2>
+                {data.subHeading && (
+                  <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--text-muted)] block mt-2">
+                    {data.subHeading}
+                  </span>
+                )}
+              </motion.div>
+            </div>
+          )}
 
           {/* Left Side — Editorial Image */}
           <motion.div
@@ -92,13 +64,15 @@ export function WhoWeAre() {
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           >
             <div className="relative aspect-[4/3] sm:aspect-[3/4] w-full overflow-hidden rounded-none border border-[var(--border)] shadow-2xl">
-              <ResponsivePicture
-                src={data.mainImage}
-                alt="WCC Industrial Garment Floor"
-                fill
-                className="object-cover contrast-110 filter rounded-none"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+              {data.mainImage && (
+                <ResponsivePicture
+                  src={data.mainImage}
+                  alt="WCC Industrial Garment Floor"
+                  fill
+                  className="object-cover contrast-110 filter rounded-none"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-none" />
 
               {/* Overlay Copy */}
@@ -113,24 +87,30 @@ export function WhoWeAre() {
             </div>
 
             {/* Floating Glass Badge */}
-            <motion.div
-              className="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-4 rounded-none border border-white/10 bg-[#0A0A0A]/95 p-6 shadow-2xl backdrop-blur-xl lg:-right-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-none border border-gold/40 bg-gold/10">
-                <ShieldCheck className="h-6 w-6 text-gold" />
-              </div>
-              <div>
-                <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-gold block font-bold">
-                  {data.floatingBadgeTitle}
-                </span>
-                <p className="font-sans text-xs font-semibold text-white tracking-wide mt-1 animate-pulse">
-                  {data.floatingBadgeDesc}
-                </p>
-              </div>
-            </motion.div>
+            {(data.floatingBadgeTitle || data.floatingBadgeDesc) && (
+              <motion.div
+                className="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-4 rounded-none border border-white/10 bg-[#0A0A0A]/95 p-6 shadow-2xl backdrop-blur-xl lg:-right-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-none border border-gold/40 bg-gold/10">
+                  <ShieldCheck className="h-6 w-6 text-gold" />
+                </div>
+                <div>
+                  {data.floatingBadgeTitle && (
+                    <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-gold block font-bold">
+                      {data.floatingBadgeTitle}
+                    </span>
+                  )}
+                  {data.floatingBadgeDesc && (
+                    <p className="font-sans text-xs font-semibold text-white tracking-wide mt-1 animate-pulse">
+                      {data.floatingBadgeDesc}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Right Side — Editorial Copy & Stats */}
@@ -140,32 +120,38 @@ export function WhoWeAre() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
             >
-              <h2 className="hidden lg:block font-display text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-[var(--text)] uppercase">
-                {data.heading.split(" ").map((word: string, i: number, arr: string[]) => (
-                  <span key={i} className={i === arr.length - 1 ? "text-gold font-light" : ""}>
-                    {word}
-                    {i < arr.length - 1 ? " " : ""}
-                  </span>
-                ))}
-              </h2>
-              <span className="hidden lg:block font-mono text-[9px] uppercase tracking-[0.35em] text-[var(--text-muted)] mt-2">
-                {data.subHeading}
-              </span>
+              {data.heading && (
+                <h2 className="hidden lg:block font-display text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-[var(--text)] uppercase">
+                  {data.heading.split(" ").map((word: string, i: number, arr: string[]) => (
+                    <span key={i} className={i === arr.length - 1 ? "text-gold font-light" : ""}>
+                      {word}
+                      {i < arr.length - 1 ? " " : ""}
+                    </span>
+                  ))}
+                </h2>
+              )}
+              {data.subHeading && (
+                <span className="hidden lg:block font-mono text-[9px] uppercase tracking-[0.35em] text-[var(--text-muted)] mt-2">
+                  {data.subHeading}
+                </span>
+              )}
 
-              <div className="mt-8 space-y-5 font-sans">
-                {data.paragraphs.map((para: string, i: number) => (
-                  <p
-                    key={i}
-                    className="text-sm sm:text-base font-light leading-relaxed tracking-wide text-neutral-600 dark:text-neutral-300"
-                  >
-                    {para.split(/\*\*(.+?)\*\*/).map((chunk: string, j: number) =>
-                      j % 2 === 1
-                        ? <strong key={j} className="font-semibold text-[var(--text)]">{chunk}</strong>
-                        : chunk
-                    )}
-                  </p>
-                ))}
-              </div>
+              {Array.isArray(data.paragraphs) && data.paragraphs.length > 0 && (
+                <div className="mt-8 space-y-5 font-sans">
+                  {data.paragraphs.map((para: string, i: number) => (
+                    <p
+                      key={i}
+                      className="text-sm sm:text-base font-light leading-relaxed tracking-wide text-neutral-600 dark:text-neutral-300"
+                    >
+                      {para.split(/\*\*(.+?)\*\*/).map((chunk: string, j: number) =>
+                        j % 2 === 1
+                          ? <strong key={j} className="font-semibold text-[var(--text)]">{chunk}</strong>
+                          : chunk
+                      )}
+                    </p>
+                  ))}
+                </div>
+              )}
 
               <div className="mt-10 flex items-center gap-6">
                 <Link
@@ -182,24 +168,26 @@ export function WhoWeAre() {
             </motion.div>
 
             {/* 3 Authority Stats Grid */}
-            <motion.div
-              className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--border)] pt-12 sm:grid-cols-3"
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              {data.stats.map((s: any, idx: number) => (
-                <div
-                  key={idx}
-                  className="border-l-2 border-gold pl-6 transition-colors hover:border-[var(--text)]"
-                >
-                  <CounterStat end={s.value} suffix={s.suffix} label={s.label} />
-                  <p className="mt-2.5 font-sans text-xs font-light text-[var(--text-muted)] leading-relaxed tracking-wide">
-                    {s.desc}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
+            {Array.isArray(data.stats) && data.stats.length > 0 && (
+              <motion.div
+                className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--border)] pt-12 sm:grid-cols-3"
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                {data.stats.map((s: any, idx: number) => (
+                  <div
+                    key={idx}
+                    className="border-l-2 border-gold pl-6 transition-colors hover:border-[var(--text)]"
+                  >
+                    <CounterStat end={s.value} suffix={s.suffix} label={s.label} />
+                    <p className="mt-2.5 font-sans text-xs font-light text-[var(--text-muted)] leading-relaxed tracking-wide">
+                      {s.desc}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

@@ -78,6 +78,7 @@ export interface Expansion {
   headingStart: string;
   headingHighlight: string;
   description: string;
+  selectedDivisions?: string[];
 }
 
 export interface PipelineScene {

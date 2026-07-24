@@ -28,7 +28,7 @@ export function HouseholdShowcase() {
 
   return (
     <section className="bg-[var(--bg)] py-16 md:py-24 border-t border-[var(--border)]" ref={ref}>
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
 
         {/* Section Header */}
         <div className="mb-16 max-w-4xl">

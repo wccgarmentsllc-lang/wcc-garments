@@ -9,23 +9,23 @@ const HQ = { x: 640, y: 310 }
 /* Label offsets (lx, ly) position text away from node to avoid overlap.
    anchor: 'start' | 'middle' | 'end' controls SVG text-anchor. */
 const HUBS = [
-  { id: 'ahm', city: 'Ahmedabad', country: 'India', role: 'Textile Weaving',           x: 680, y: 312, lx: -45, ly: 6,   anchor: 'end' as const },
-  { id: 'lud', city: 'Ludhiana',  country: 'India', role: 'Knitwear & Hosiery',        x: 692, y: 285, lx: -40, ly: -8,  anchor: 'end' as const },
-  { id: 'del', city: 'New Delhi', country: 'India', role: 'Fashion & Uniforms',        x: 698, y: 297, lx: 20,  ly: -18, anchor: 'start' as const },
-  { id: 'ban', city: 'Bangalore', country: 'India', role: 'Origin R&D Centre',         x: 699, y: 335, lx: -45, ly: 10,  anchor: 'end' as const },
-  { id: 'tir', city: 'Tirupur',   country: 'India', role: 'Bulk Garment Export',       x: 700, y: 349, lx: 20,  ly: 18,  anchor: 'start' as const },
-  { id: 'dha', city: 'Dhaka',     country: 'Bangladesh', role: 'Volume Production',    x: 723, y: 318, lx: 18,  ly: -14, anchor: 'start' as const },
-  { id: 'gua', city: 'Guangzhou', country: 'China', role: 'Specialised Manufacturing', x: 792, y: 308, lx: 18,  ly: -12, anchor: 'start' as const },
+  { id: 'ahm', city: 'Ahmedabad', country: 'India', role: 'Textile Weaving', x: 680, y: 312, lx: -45, ly: 6, anchor: 'end' as const },
+  { id: 'lud', city: 'Ludhiana', country: 'India', role: 'Knitwear & Hosiery', x: 692, y: 285, lx: -40, ly: -8, anchor: 'end' as const },
+  { id: 'del', city: 'New Delhi', country: 'India', role: 'Fashion & Uniforms', x: 698, y: 297, lx: 20, ly: -18, anchor: 'start' as const },
+  { id: 'ban', city: 'Bangalore', country: 'India', role: 'Origin R&D Centre', x: 699, y: 335, lx: -45, ly: 10, anchor: 'end' as const },
+  { id: 'tir', city: 'Tirupur', country: 'India', role: 'Bulk Garment Export', x: 700, y: 349, lx: 20, ly: 18, anchor: 'start' as const },
+  { id: 'dha', city: 'Dhaka', country: 'Bangladesh', role: 'Volume Production', x: 723, y: 318, lx: 18, ly: -14, anchor: 'start' as const },
+  { id: 'gua', city: 'Guangzhou', country: 'China', role: 'Specialised Manufacturing', x: 792, y: 308, lx: 18, ly: -12, anchor: 'start' as const },
 ]
 
 const EXPORTS = [
-  { id: 'lon', label: 'London',    x: 475, y: 180, lx: 14,  ly: -10, anchor: 'start' as const },
-  { id: 'cai', label: 'Cairo',     x: 565, y: 285, lx: 14,  ly: -10, anchor: 'start' as const },
-  { id: 'nai', label: 'Nairobi',   x: 595, y: 414, lx: 14,  ly: 6,   anchor: 'start' as const },
-  { id: 'lag', label: 'Lagos',     x: 500, y: 389, lx: -12, ly: 10,  anchor: 'end' as const },
-  { id: 'nya', label: 'New York',  x: 280, y: 230, lx: -14, ly: -10, anchor: 'end' as const },
-  { id: 'riy', label: 'Riyadh',    x: 615, y: 320, lx: -14, ly: 12,  anchor: 'end' as const },
-  { id: 'sin', label: 'Singapore', x: 763, y: 421, lx: 14,  ly: 12,  anchor: 'start' as const },
+  { id: 'lon', label: 'London', x: 475, y: 180, lx: 14, ly: -10, anchor: 'start' as const },
+  { id: 'cai', label: 'Cairo', x: 565, y: 285, lx: 14, ly: -10, anchor: 'start' as const },
+  { id: 'nai', label: 'Nairobi', x: 595, y: 414, lx: 14, ly: 6, anchor: 'start' as const },
+  { id: 'lag', label: 'Lagos', x: 500, y: 389, lx: -12, ly: 10, anchor: 'end' as const },
+  { id: 'nya', label: 'New York', x: 280, y: 230, lx: -14, ly: -10, anchor: 'end' as const },
+  { id: 'riy', label: 'Riyadh', x: 615, y: 320, lx: -14, ly: 12, anchor: 'end' as const },
+  { id: 'sin', label: 'Singapore', x: 763, y: 421, lx: 14, ly: 12, anchor: 'start' as const },
 ]
 
 function arc(x1: number, y1: number, x2: number, y2: number, lift = 0.38) {
@@ -54,7 +54,7 @@ function Counter({ value, inView }: { value: string; inView: boolean }) {
     if (target > 1000) {
       start = target - 50
     }
-    
+
     const duration = 1200
     const startTime = performance.now()
 
@@ -98,7 +98,7 @@ export function GlobalPresence() {
       className="relative overflow-hidden bg-[var(--bg)] py-16 sm:py-20 lg:py-28"
       data-cursor="view"
     >
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
 
         {/* ── Section label ── */}
         <motion.div
@@ -113,15 +113,15 @@ export function GlobalPresence() {
         {/* ── Section header ── */}
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <motion.h2
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text)] leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)] leading-tight"
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           >
-            Seven hubs, three nations infinite{' '}
-            <span className="font-bold text-shine-blue">reach</span>
+            Seven hubs,{' '}
+            <span className="font-bold text-shine-blue">three nations infinite reach</span>
           </motion.h2>
-        
+
         </div>
 
         {/* ══════════════════════════════════════════════════
@@ -131,14 +131,14 @@ export function GlobalPresence() {
 
           {/* ── LEFT: World Map ── */}
           <motion.div
-            className="relative lg:col-span-7 overflow-hidden rounded-none border-x-0 border-y border-[var(--border)] -mx-6 w-[calc(100%+3rem)] max-w-none lg:mx-0 lg:w-auto lg:rounded-2xl lg:border"
+            className="relative lg:col-span-7 overflow-hidden rounded-none border-x-0 border-y border-[var(--border)] -mx-6 w-[calc(100%+3rem)] max-w-none lg:mx-0 lg:w-auto lg:rounded-2xl lg:border flex flex-col"
             style={{ background: 'var(--bg-subtle)' }}
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
             {/* Map image */}
-            <div className="relative w-full" style={{ paddingBottom: '56%' }}>
+            <div className="relative w-full flex-1 aspect-[1.8] lg:aspect-auto min-h-[300px]">
               <Image
                 src="/world-map-bg.png"
                 alt="WCC Garments global operations map"
@@ -332,9 +332,9 @@ export function GlobalPresence() {
             {/* Map bottom stat strip */}
             <div className="hidden lg:grid grid-cols-4 border-t border-[var(--border)] bg-[var(--bg-surface)]/75 backdrop-blur-md">
               {[
-                { 
-                  v: '7', 
-                  l: 'Hubs', 
+                {
+                  v: '7',
+                  l: 'Hubs',
                   desc: 'Regional manufacturing centres',
                   icon: (
                     <svg className="w-5 h-5 text-[var(--gold)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -347,9 +347,9 @@ export function GlobalPresence() {
                     </svg>
                   )
                 },
-                { 
-                  v: '3', 
-                  l: 'Countries', 
+                {
+                  v: '3',
+                  l: 'Countries',
                   desc: 'Sourcing & production bases',
                   icon: (
                     <svg className="w-5 h-5 text-[var(--gold)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -359,9 +359,9 @@ export function GlobalPresence() {
                     </svg>
                   )
                 },
-                { 
-                  v: '50+', 
-                  l: 'Nations', 
+                {
+                  v: '50+',
+                  l: 'Nations',
                   desc: 'Global B2B cargo distribution',
                   icon: (
                     <svg className="w-5 h-5 text-[var(--gold)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -369,9 +369,9 @@ export function GlobalPresence() {
                     </svg>
                   )
                 },
-                { 
-                  v: '2001', 
-                  l: 'Founded', 
+                {
+                  v: '2001',
+                  l: 'Founded',
                   desc: 'Over two decades of heritage',
                   icon: (
                     <svg className="w-5 h-5 text-[var(--gold)] group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -380,36 +380,31 @@ export function GlobalPresence() {
                   )
                 },
               ].map(({ v, l, desc, icon }, idx) => (
-                <div 
-                  key={l} 
-                  className={`group relative flex flex-col items-center justify-center py-4 lg:py-5 px-6 text-center transition-all duration-500 overflow-hidden hover:bg-[var(--gold-muted)]/15 ${
+                <div
+                  key={l}
+                  className={`group relative flex flex-col items-start py-6 lg:py-8 px-6 lg:px-8 transition-colors duration-300 hover:bg-[var(--bg-surface)]/50 ${
                     idx % 2 === 0 ? 'border-r border-[var(--border)]' : ''
-                  } ${
-                    idx >= 2 ? 'border-t border-[var(--border)] lg:border-t-0' : ''
-                  } lg:border-r lg:last:border-r-0`}
+                  } ${idx >= 2 ? 'border-t border-[var(--border)] lg:border-t-0' : ''} lg:border-r lg:last:border-r-0`}
                 >
-                  {/* Subtle hover background radial gradient glow */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--gold-muted)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Icon wrapper with a subtle glowing circle on hover */}
-                  <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg-subtle)] border border-[var(--border)] group-hover:border-[var(--gold)]/30 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all duration-300 mb-3">
+                  {/* Icon */}
+                  <div className="mb-4 flex items-center justify-center text-[var(--gold)]/80 transition-colors duration-300 group-hover:text-[var(--gold)]">
                     {icon}
                   </div>
 
-                  {/* Stat Number with elegant font and color-gradient */}
-                  <h3 className="relative z-10 font-bebas text-5xl lg:text-6xl font-bold tracking-wider leading-none text-gradient-gold select-none group-hover:scale-105 transition-transform duration-300">
+                  {/* Stat Number */}
+                  <h3 className="font-display text-4xl lg:text-5xl font-bold tracking-tight text-[var(--text)]">
                     <Counter value={v} inView={inView} />
                   </h3>
 
-                  {/* Label */}
-                  <p className="relative z-10 mt-1 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[var(--text)] group-hover:text-[var(--gold)] transition-colors duration-300">
-                    {l}
-                  </p>
-
-                  {/* Very short descriptive subtitle */}
-                  <p className="relative z-10 mt-1 font-body text-[10px] text-[var(--text-muted)] max-w-[140px] opacity-80 leading-tight">
-                    {desc}
-                  </p>
+                  {/* Label & Description */}
+                  <div className="mt-3">
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--gold)] mb-1.5">
+                      {l}
+                    </p>
+                    <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed max-w-[160px]">
+                      {desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -439,19 +434,18 @@ export function GlobalPresence() {
             </div>
 
             {/* Hub list */}
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 flex-1">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--text-muted)] mb-1">
                 Production Centres
               </p>
-              <div className="grid grid-cols-2 gap-2.5 lg:flex lg:flex-col lg:gap-1.5">
+              <div className="grid grid-cols-2 gap-2.5 lg:flex lg:flex-col lg:gap-1.5 flex-1 lg:justify-between">
                 {HUBS.map((hub, i) => (
                   <motion.div
                     key={hub.id}
-                    className={`group relative flex flex-col justify-between items-start gap-2 rounded-xl border p-3.5 cursor-default transition-all duration-500 overflow-hidden lg:flex-row lg:items-center lg:gap-3 lg:px-4 lg:py-3 ${
-                      active === hub.id
-                        ? 'border-[var(--gold)]/40 bg-[var(--gold-muted)] shadow-[0_4px_20px_rgba(212,175,55,0.08)]'
-                        : 'border-[var(--border)] bg-[var(--bg-surface)]/60 hover:border-[var(--gold)]/20 hover:bg-[var(--bg-surface)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.03)]'
-                    }`}
+                    className={`group relative flex flex-col justify-between items-start gap-2 rounded-xl border p-3.5 cursor-default transition-all duration-500 overflow-hidden lg:flex-row lg:items-center lg:gap-3 lg:px-4 lg:py-3 ${active === hub.id
+                      ? 'border-[var(--gold)]/40 bg-[var(--gold-muted)] shadow-[0_4px_20px_rgba(212,175,55,0.08)]'
+                      : 'border-[var(--border)] bg-[var(--bg-surface)]/60 hover:border-[var(--gold)]/20 hover:bg-[var(--bg-surface)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.03)]'
+                      }`}
                     initial={{ opacity: 0, x: 20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
@@ -466,21 +460,19 @@ export function GlobalPresence() {
                       <span className="hidden lg:inline-block w-5 shrink-0 font-mono text-[10px] font-bold text-[var(--text-muted)]">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      
+
                       <span
-                        className={`h-2 w-2 shrink-0 rounded-full transition-all duration-300 ${
-                          active === hub.id
-                            ? 'bg-[var(--gold)] shadow-[0_0_8px_var(--gold)] scale-110'
-                            : 'bg-[var(--text-muted)]/30'
-                        }`}
+                        className={`h-2 w-2 shrink-0 rounded-full transition-all duration-300 ${active === hub.id
+                          ? 'bg-[var(--gold)] shadow-[0_0_8px_var(--gold)] scale-110'
+                          : 'bg-[var(--text-muted)]/30'
+                          }`}
                       />
 
                       {/* City (on mobile, we group the city inside this top header) */}
                       <div className="min-w-0 flex-1 lg:hidden">
                         <p
-                          className={`font-display text-sm sm:text-base font-bold leading-none transition-colors duration-300 truncate ${
-                            active === hub.id ? 'text-[var(--gold)]' : 'text-[var(--text)]'
-                          }`}
+                          className={`font-display text-sm sm:text-base font-bold leading-none transition-colors duration-300 truncate ${active === hub.id ? 'text-[var(--gold)]' : 'text-[var(--text)]'
+                            }`}
                         >
                           {hub.city}
                         </p>
@@ -490,9 +482,8 @@ export function GlobalPresence() {
                     {/* City and Role (Desktop layout, or mobile layout wrapped nicely) */}
                     <div className="min-w-0 flex-1 hidden lg:block">
                       <p
-                        className={`font-display text-base font-bold leading-none transition-colors duration-300 ${
-                          active === hub.id ? 'text-[var(--gold)] font-bold' : 'text-[var(--text)]'
-                        }`}
+                        className={`font-display text-base font-bold leading-none transition-colors duration-300 ${active === hub.id ? 'text-[var(--gold)] font-bold' : 'text-[var(--text)]'
+                          }`}
                       >
                         {hub.city}
                       </p>
@@ -536,7 +527,7 @@ export function GlobalPresence() {
               </span>
               <h3 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight text-[var(--text)] sm:text-4xl">
                 Four Continents One Supply Chain.
-             
+
               </h3>
               <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--text-muted)]">
                 Containerised B2B wholesale cargo dispatched via Jebel Ali Port to distributors, hospitality groups, and institutional buyers in 50+ nations.

@@ -52,7 +52,7 @@ export default function ContactClient() {
     <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero */}
       <div className="border-b border-[var(--border)] bg-[var(--bg-surface)] pt-32 pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">Contact Us</span>
             <h1 className="mt-3 font-display text-display-md font-semibold text-[var(--text)]">
