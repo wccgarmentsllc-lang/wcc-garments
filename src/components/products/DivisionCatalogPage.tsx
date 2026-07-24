@@ -58,6 +58,7 @@ export async function DivisionCatalogPage({
     status: cat.status || 'active',
     displayOrder: cat.displayOrder || cat.display_order || 1,
     image: cat.image,
+    images: Array.isArray(cat.images) && cat.images.length > 0 ? cat.images : (cat.image ? [cat.image] : []),
     subCategories: (cat.subCategories || cat.sub_categories || []).map((sub: any) => ({
       id: sub.id,
       name: sub.name,
@@ -289,7 +290,7 @@ export async function DivisionCatalogPage({
           </div>
         </header>
 
-        <section className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 lg:py-0">
+        <section className="mx-auto max-w-[1560px] px-6 lg:px-12 lg:py-0">
           <DivisionProductsClient
             products={mappedProducts}
             categories={divisionCategories}

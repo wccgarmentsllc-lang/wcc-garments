@@ -226,3 +226,64 @@ export const DEFAULT_FRAGRANCE = {
   ]
 }
 
+import type { BannerCarouselConfig } from '@/types/banner'
+
+export const DEFAULT_BANNER_CAROUSEL: BannerCarouselConfig = {
+  enabled: true,
+  autoPlay: true,
+  autoPlayInterval: 5000,
+  showIndicators: true,
+  showArrows: true,
+  banners: [
+    {
+      id: "banner-1",
+      title: "INDUSTRIAL ELEGANCE & GLOBAL FASHION",
+      subtitle: "Bespoke Garments, Corporate Uniforms & Luxury Hotel Textiles",
+      description: "Delivering world-class garment manufacturing, custom corporate uniforms, and hospitality linens across 50+ countries from our Dubai headquarters.",
+      image: {
+        desktop: "/images/products/egyptian_cotton_shirt.png",
+        mobile: "/images/products/egyptian_cotton_shirt.png"
+      },
+      badge: "CAMPAIGN 2026",
+      ctaText: "EXPLORE COLLECTION",
+      ctaLink: "/products/garments",
+      active: true,
+      displayOrder: 1,
+      theme: "dark" as const
+    },
+    {
+      id: "banner-2",
+      title: "PREMIUM HOSPITALITY & BEDDING SOLUTIONS",
+      subtitle: "ISO 9001:2015 Certified Commercial Hotel Supply",
+      description: "Plush ring-spun cotton bath towels, 600TC Egyptian cotton sheets, and elegant table linens crafted for world-class hotel suites.",
+      image: {
+        desktop: "/images/products/hotel_bed_linen.png",
+        mobile: "/images/products/hotel_bed_linen.png"
+      },
+      badge: "LUXURY SUITE",
+      ctaText: "HOSPITALITY CATALOG",
+      ctaLink: "/products/garments",
+      active: true,
+      displayOrder: 2,
+      theme: "dark" as const
+    },
+    {
+      id: "banner-3",
+      title: "BULK GARMENT ORDERS & OEM CONTRACTS",
+      subtitle: "Direct Factory Shipping with Custom Branding",
+      description: "Large-scale clothing production for international brands, wholesalers, and commercial buyers with strict quality benchmarks.",
+      image: {
+        desktop: "/images/bulkoffer/premium_hoodie.png",
+        mobile: "/images/bulkoffer/premium_hoodie.png"
+      },
+      badge: "FACTORY DIRECT",
+      ctaText: "REQUEST QUOTATION",
+      ctaLink: "/contact",
+      active: true,
+      displayOrder: 3,
+      theme: "dark" as const
+    }
+  ]
+}
+
+

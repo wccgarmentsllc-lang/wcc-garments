@@ -20,6 +20,7 @@ export default function HomePage() {
 
       <main className="relative z-20 mx-auto max-w-[1440px] px-0 mt-[100vh]">       
           <WhoWeAre />
+      
           <BulkOfferBanner />
           <DivisionCutouts />
           <GarmentsBrands />

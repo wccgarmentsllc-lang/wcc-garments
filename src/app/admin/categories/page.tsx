@@ -27,6 +27,7 @@ interface CatItem {
   displayOrder: number
   subCategories: SubCatItem[]
   image?: string
+  images?: string[]
 }
 
 const STATUS_STYLES: Record<ItemStatus, string> = {
@@ -53,7 +54,7 @@ const getDivisionIcon = (slug: string) => {
 // removed SECTION_SLUGS
 
 // ── Empty form state ───────────────────────────────────────────────────────────
-const EMPTY_CAT = { divisionSlug: 'garments', name: '', slug: '', status: 'active' as ItemStatus, image: '' }
+const EMPTY_CAT = { divisionSlug: 'garments', name: '', slug: '', status: 'active' as ItemStatus, image: '', images: [] as string[] }
 const EMPTY_SUB = { name: '', slug: '', status: 'active' as ItemStatus, image: '' }
 
 export default function AdminCategoriesPage() {
@@ -151,16 +152,51 @@ export default function AdminCategoriesPage() {
     }
   }
 
+  const [manualCatImageUrl, setManualCatImageUrl] = useState('')
+
+  const removeCatImage = (indexToRemove: number) => {
+    setCatForm((prev) => {
+      const newImages = (prev.images || []).filter((_, idx) => idx !== indexToRemove)
+      return { ...prev, images: newImages, image: newImages[0] || '' }
+    })
+  }
+
+  const moveCatImage = (fromIndex: number, toIndex: number) => {
+    setCatForm((prev) => {
+      const current = [...(prev.images || [])]
+      if (toIndex < 0 || toIndex >= current.length) return prev
+      const [moved] = current.splice(fromIndex, 1)
+      current.splice(toIndex, 0, moved)
+      return { ...prev, images: current, image: current[0] || '' }
+    })
+  }
+
+  const addManualCatImage = () => {
+    if (!manualCatImageUrl.trim()) return
+    setCatForm((prev) => {
+      const newImages = [...(prev.images || []), manualCatImageUrl.trim()]
+      return { ...prev, images: newImages, image: newImages[0] || '' }
+    })
+    setManualCatImageUrl('')
+  }
+
   const handleDropCat = async (e: React.DragEvent) => {
     e.preventDefault()
     e.stopPropagation()
     setDragActiveCat(false)
-    const file = e.dataTransfer.files?.[0]
-    if (file && file.type.startsWith("image/")) {
+    const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/'))
+    if (files.length > 0) {
       setUploadingImage('cat')
       try {
-        const url = await api.uploadFile(file)
-        setCatForm(prev => ({ ...prev, image: url }))
+        const uploadedUrls: string[] = []
+        for (const file of files) {
+          const url = await api.uploadFile(file)
+          if (url) uploadedUrls.push(url)
+        }
+        setCatForm(prev => {
+          const newImages = [...(prev.images || []), ...uploadedUrls]
+          return { ...prev, images: newImages, image: newImages[0] || '' }
+        })
       } catch (err) {
         console.error('Upload failed:', err)
         alert('Failed to upload image. Please check Supabase configuration.')
@@ -221,6 +257,7 @@ export default function AdminCategoriesPage() {
               status: cat.status as ItemStatus,
               displayOrder: cat.displayOrder || cat.display_order,
               image: cat.image,
+              images: Array.isArray(cat.images) && cat.images.length > 0 ? cat.images : (cat.image ? [cat.image] : []),
               subCategories: (cat.subCategories || cat.sub_categories || []).map((s: any) => ({
                 id: s.id, name: s.name, slug: s.slug,
                 status: s.status as ItemStatus, displayOrder: s.displayOrder || s.display_order,
@@ -239,16 +276,25 @@ export default function AdminCategoriesPage() {
   }
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'cat' | 'sub' | 'div') => {
-    const file = e.target.files?.[0]
-    if (file) {
+    const files = Array.from(e.target.files || []).filter(f => f.type.startsWith('image/'))
+    if (files.length > 0) {
       setUploadingImage(type as any)
       try {
-        const url = await api.uploadFile(file)
         if (type === 'cat') {
-          setCatForm(prev => ({ ...prev, image: url }))
+          const uploadedUrls: string[] = []
+          for (const file of files) {
+            const url = await api.uploadFile(file)
+            if (url) uploadedUrls.push(url)
+          }
+          setCatForm(prev => {
+            const newImages = [...(prev.images || []), ...uploadedUrls]
+            return { ...prev, images: newImages, image: newImages[0] || '' }
+          })
         } else if (type === 'sub') {
+          const url = await api.uploadFile(files[0])
           setSubForm(prev => ({ ...prev, image: url }))
         } else {
+          const url = await api.uploadFile(files[0])
           setDivForm(prev => ({ ...prev, image: url }))
         }
       } catch (err) {
@@ -281,8 +327,21 @@ export default function AdminCategoriesPage() {
   const divOptions = divisionsData.map((d) => ({ slug: d.slug, name: d.name }))
 
   // ── Category CRUD ────────────────────────────────────────────────────────────
-  const openAddCat = () => { setCatForm(EMPTY_CAT); setEditingCat(null); setCatModal('add') }
-  const openEditCat = (c: CatItem) => { setEditingCat(c); setCatForm({ divisionSlug: c.divisionSlug, name: c.name, slug: c.slug, status: c.status, image: c.image || '' }); setCatModal('edit') }
+  const openAddCat = () => { setCatForm(EMPTY_CAT); setEditingCat(null); setManualCatImageUrl(''); setCatModal('add') }
+  const openEditCat = (c: CatItem) => {
+    setEditingCat(c)
+    const catImages = Array.isArray(c.images) && c.images.length > 0 ? c.images : (c.image ? [c.image] : [])
+    setCatForm({
+      divisionSlug: c.divisionSlug,
+      name: c.name,
+      slug: c.slug,
+      status: c.status,
+      image: c.image || catImages[0] || '',
+      images: catImages,
+    })
+    setManualCatImageUrl('')
+    setCatModal('edit')
+  }
 
   const syncDivisionToDB = async (divisionSlug: string, updatedCategories: any[]) => {
     const div = divisionsData.find(d => d.slug === divisionSlug)
@@ -296,22 +355,42 @@ export default function AdminCategoriesPage() {
     setSaving(true)
     
     let updatedList = [...categories]
+    const finalImages = catForm.images && catForm.images.length > 0
+      ? catForm.images
+      : (catForm.image ? [catForm.image] : [])
+    const primaryImage = finalImages[0] || catForm.image || ''
+
     if (catModal === 'add') {
       const newCat: CatItem = {
         id: `CAT-${Date.now()}`, divisionSlug: catForm.divisionSlug,
         divisionName: divOptions.find((d) => d.slug === catForm.divisionSlug)?.name ?? catForm.divisionSlug,
-        name: catForm.name, slug: catForm.slug, status: catForm.status, image: catForm.image,
+        name: catForm.name, slug: catForm.slug, status: catForm.status,
+        image: primaryImage,
+        images: finalImages,
         displayOrder: categories.filter((c) => c.divisionSlug === catForm.divisionSlug).length + 1,
         subCategories: [],
       }
       updatedList.push(newCat)
     } else if (catModal === 'edit' && editingCat) {
-      updatedList = categories.map((c) => c.id === editingCat.id ? { ...c, ...catForm, divisionName: divOptions.find((d) => d.slug === catForm.divisionSlug)?.name ?? catForm.divisionSlug } : c)
+      updatedList = categories.map((c) => c.id === editingCat.id ? {
+        ...c,
+        ...catForm,
+        image: primaryImage,
+        images: finalImages,
+        divisionName: divOptions.find((d) => d.slug === catForm.divisionSlug)?.name ?? catForm.divisionSlug
+      } : c)
     }
     
     // Extract just the categories for this division to save to DB
     const divCats = updatedList.filter(c => c.divisionSlug === catForm.divisionSlug).map(c => ({
-      id: c.id, name: c.name, slug: c.slug, status: c.status, displayOrder: c.displayOrder, subCategories: c.subCategories, image: c.image
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+      status: c.status,
+      displayOrder: c.displayOrder,
+      subCategories: c.subCategories,
+      image: c.image,
+      images: c.images,
     }))
     
     await syncDivisionToDB(catForm.divisionSlug, divCats)
@@ -325,7 +404,7 @@ export default function AdminCategoriesPage() {
     const updatedList = categories.filter((c) => c.id !== id)
     
     const divCats = updatedList.filter(c => c.divisionSlug === divSlug).map(c => ({
-      id: c.id, name: c.name, slug: c.slug, status: c.status, displayOrder: c.displayOrder, subCategories: c.subCategories, image: c.image
+      id: c.id, name: c.name, slug: c.slug, status: c.status, displayOrder: c.displayOrder, subCategories: c.subCategories, image: c.image, images: c.images
     }))
     await syncDivisionToDB(divSlug, divCats)
     setCategories(updatedList)
@@ -547,8 +626,37 @@ export default function AdminCategoriesPage() {
                         <span className="font-mono text-[9px] text-neutral-400 dark:text-white/30">{cat.id}</span>
                         <span className="font-body text-sm font-semibold text-neutral-900 dark:text-white">{cat.name}</span>
                         <span className="font-mono text-[10px] text-neutral-400 dark:text-white/30">/products/{cat.divisionSlug}/{cat.slug}</span>
+                        
+                        {/* Category Banner Carousel Status Badge */}
+                        {((cat.images && cat.images.length > 0) || cat.image) ? (
+                          <span className="inline-flex items-center gap-1.5 bg-gold/10 border border-gold/30 px-2 py-0.5 text-[9px] font-mono font-bold text-gold">
+                            <span>📷 {cat.images && cat.images.length > 0 ? cat.images.length : 1} Banner Image{(cat.images?.length || 1) > 1 ? 's (Carousel Active)' : ''}</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 px-2 py-0.5 text-[9px] font-mono text-neutral-400">
+                            <span>📷 Default Banner</span>
+                          </span>
+                        )}
                       </div>
-                      <p className="font-mono text-[9px] text-neutral-400 dark:text-white/20 mt-0.5">{cat.subCategories.length} sub-categories</p>
+                      
+                      <div className="flex items-center gap-3 mt-1">
+                        <p className="font-mono text-[9px] text-neutral-400 dark:text-white/20">{cat.subCategories.length} sub-categories</p>
+                        
+                        {/* Inline Thumbnails Preview */}
+                        {cat.images && cat.images.length > 0 && (
+                          <div className="flex items-center gap-1">
+                            {cat.images.slice(0, 4).map((imgUrl, i) => (
+                              <div key={i} className="relative h-5 w-8 overflow-hidden border border-neutral-300 dark:border-white/20 bg-black">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={imgUrl} alt={`Thumbnail ${i}`} className="h-full w-full object-cover" />
+                              </div>
+                            ))}
+                            {cat.images.length > 4 && (
+                              <span className="text-[8px] font-mono text-gold font-bold">+{cat.images.length - 4}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       {/* Status toggle badge */}
@@ -559,13 +667,17 @@ export default function AdminCategoriesPage() {
                       >
                         {STATUS_LABELS[cat.status]}
                       </button>
+                      <button
+                        onClick={() => openEditCat(cat)}
+                        className="flex items-center gap-1.5 border border-gold/30 bg-gold/10 text-gold hover:bg-gold hover:text-white transition-all px-2.5 py-1 font-mono text-[9px] font-bold shadow-sm cursor-pointer"
+                        title="Add, delete, or re-order banner carousel images for this category"
+                      >
+                        <Edit2 className="h-3 w-3" /> Manage Images ({cat.images?.length || (cat.image ? 1 : 0)})
+                      </button>
                       <button onClick={() => openAddSub(cat.id)} className="flex items-center gap-1 border border-neutral-200 bg-neutral-50 dark:border-white/15 dark:bg-white/5 px-2.5 py-1 font-mono text-[9px] font-bold text-neutral-700 dark:text-white hover:bg-gold hover:text-white dark:hover:text-white transition-all">
                         <Plus className="h-3 w-3" /> Sub
                       </button>
-                      <button onClick={() => openEditCat(cat)} className="flex h-7 w-7 items-center justify-center border border-gold/20 bg-gold/10 text-gold hover:bg-gold hover:text-white transition-colors">
-                        <Edit2 className="h-3 w-3" />
-                      </button>
-                      <button onClick={() => deleteCat(cat.id, cat.divisionSlug)} className="flex h-7 w-7 items-center justify-center border border-red-500/20 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors">
+                      <button onClick={() => deleteCat(cat.id, cat.divisionSlug)} className="flex h-7 w-7 items-center justify-center border border-red-500/20 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors" title="Delete category">
                         <Trash2 className="h-3 w-3" />
                       </button>
                     </div>
@@ -662,73 +774,132 @@ export default function AdminCategoriesPage() {
                   </select>
                 </div>
                 <div>
-                  <label className={labelCls}>Category Image</label>
-                  
-                  {catForm.image ? (
-                    <div className="relative aspect-video w-full rounded-none overflow-hidden bg-neutral-100 border border-neutral-200 dark:bg-black dark:border-white/10 group">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={catForm.image} alt="Category preview" className="h-full w-full object-cover" />
-                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-                        <button
-                          type="button"
-                          onClick={async () => {
-                            const imgUrl = catForm.image
-                            setCatForm(prev => ({ ...prev, image: '' }))
-                            if (imgUrl) {
-                              try {
-                                await api.deleteFile(imgUrl)
-                              } catch (err) {
-                                console.error('Failed to delete file from Cloudinary:', err)
-                              }
-                            }
-                          }}
-                          className="bg-white/10 hover:bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-none transition-all border border-white/20 hover:border-transparent flex items-center gap-1 font-mono uppercase tracking-wider"
+                  <div className="flex items-center justify-between mb-2">
+                    <label className={labelCls}>Category Banner Images (Carousel)</label>
+                    <span className="font-mono text-[9px] text-gold font-bold">
+                      {catForm.images?.length || 0} Image{(catForm.images?.length || 0) === 1 ? '' : 's'}
+                      {(catForm.images?.length || 0) > 1 ? ' · Carousel Active' : ' · Static Image'}
+                    </span>
+                  </div>
+
+                  {/* List of current uploaded images */}
+                  {catForm.images && catForm.images.length > 0 && (
+                    <div className="space-y-2 mb-4 max-h-[220px] overflow-y-auto pr-1">
+                      {catForm.images.map((imgUrl, index) => (
+                        <div
+                          key={index}
+                          className="relative flex items-center justify-between gap-3 border border-neutral-200 bg-neutral-50 dark:border-white/10 dark:bg-white/5 p-2 rounded-none"
                         >
-                          <Trash2 className="h-3 w-3" /> Remove Image
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div
-                      onDragEnter={handleDragCat}
-                      onDragOver={handleDragCat}
-                      onDragLeave={handleDragCat}
-                      onDrop={handleDropCat}
-                      onClick={() => document.getElementById('cat-device-upload-input')?.click()}
-                      className={`relative border border-dashed p-6 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
-                        dragActiveCat
-                          ? 'border-gold bg-gold/5'
-                          : 'border-neutral-200 bg-neutral-50 hover:border-gold/40 hover:bg-neutral-100/50 dark:border-white/10 dark:bg-white/5 dark:hover:border-gold/40 dark:hover:bg-white/[0.08]'
-                      }`}
-                    >
-                      <input
-                        id="cat-device-upload-input"
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload(e, 'cat')}
-                        className="hidden"
-                      />
-                      <Upload className={`h-5 w-5 mb-2 transition-colors ${dragActiveCat ? 'text-gold' : 'text-neutral-400 dark:text-white/40'}`} />
-                      {uploadingImage === 'cat' ? (
-                        <p className="text-[10px] font-mono text-gold animate-pulse">Uploading asset...</p>
-                      ) : (
-                        <>
-                          <p className="text-[10px] font-bold text-neutral-800 dark:text-white/80 uppercase tracking-wide">Click or drag image here</p>
-                          <p className="text-[8px] font-mono text-neutral-400 dark:text-white/40 mt-1">PNG, JPG, JPEG, WEBP up to 5MB</p>
-                        </>
-                      )}
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="relative h-12 w-16 shrink-0 overflow-hidden border border-neutral-200 dark:border-white/10 bg-black">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={imgUrl} alt={`Image ${index + 1}`} className="h-full w-full object-cover" />
+                            </div>
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono text-[10px] font-bold text-neutral-800 dark:text-white uppercase">
+                                  Image {index + 1}
+                                </span>
+                                {index === 0 && (
+                                  <span className="bg-gold/20 text-gold text-[8px] font-mono px-1.5 py-0.5 uppercase font-bold">
+                                    Primary / Cover
+                                  </span>
+                                )}
+                              </div>
+                              <p className="font-mono text-[8px] text-neutral-400 dark:text-white/40 truncate max-w-[180px]">
+                                {imgUrl}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-1 shrink-0">
+                            {index > 0 && (
+                              <button
+                                type="button"
+                                onClick={() => moveCatImage(index, index - 1)}
+                                title="Move up"
+                                className="px-1.5 py-0.5 bg-neutral-200 dark:bg-white/10 hover:text-gold font-mono text-[10px] cursor-pointer"
+                              >
+                                ↑
+                              </button>
+                            )}
+                            {index < catForm.images.length - 1 && (
+                              <button
+                                type="button"
+                                onClick={() => moveCatImage(index, index + 1)}
+                                title="Move down"
+                                className="px-1.5 py-0.5 bg-neutral-200 dark:bg-white/10 hover:text-gold font-mono text-[10px] cursor-pointer"
+                              >
+                                ↓
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => removeCatImage(index)}
+                              title="Delete Image"
+                              className="p-1 text-red-500 hover:text-red-600 cursor-pointer ml-1"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
 
-                  {/* Manual input fallback */}
-                  <div className="mt-3">
-                    <label className="mb-1 block text-[9px] font-bold uppercase tracking-wider text-neutral-400 dark:text-white/30 font-mono">Or enter image URL</label>
+                  {/* Drop zone for adding images */}
+                  <div
+                    onDragEnter={handleDragCat}
+                    onDragOver={handleDragCat}
+                    onDragLeave={handleDragCat}
+                    onDrop={handleDropCat}
+                    onClick={() => document.getElementById('cat-device-upload-input')?.click()}
+                    className={`relative border border-dashed p-4 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${
+                      dragActiveCat
+                        ? 'border-gold bg-gold/5'
+                        : 'border-neutral-200 bg-neutral-50 hover:border-gold/40 hover:bg-neutral-100/50 dark:border-white/10 dark:bg-white/5 dark:hover:border-gold/40 dark:hover:bg-white/[0.08]'
+                    }`}
+                  >
                     <input
-                      value={catForm.image}
-                      onChange={(e) => setCatForm({ ...catForm, image: e.target.value })}
-                      placeholder="https://example.com/image.png"
+                      id="cat-device-upload-input"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={(e) => handleImageUpload(e, 'cat')}
+                      className="hidden"
+                    />
+                    <Upload className={`h-5 w-5 mb-1.5 transition-colors ${dragActiveCat ? 'text-gold' : 'text-neutral-400 dark:text-white/40'}`} />
+                    {uploadingImage === 'cat' ? (
+                      <p className="text-[10px] font-mono text-gold animate-pulse">Uploading asset(s)...</p>
+                    ) : (
+                      <>
+                        <p className="text-[10px] font-bold text-neutral-800 dark:text-white/80 uppercase tracking-wide">Click or drag images here to add</p>
+                        <p className="text-[8px] font-mono text-neutral-400 dark:text-white/40 mt-0.5">Select 1 or more images (PNG, JPG, WEBP)</p>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Manual URL input */}
+                  <div className="mt-3 flex gap-2">
+                    <input
+                      value={manualCatImageUrl}
+                      onChange={(e) => setManualCatImageUrl(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault()
+                          addManualCatImage()
+                        }
+                      }}
+                      placeholder="Or enter image URL (https://...)"
                       className={inputCls}
                     />
+                    <button
+                      type="button"
+                      onClick={addManualCatImage}
+                      className="bg-neutral-800 dark:bg-neutral-700 text-white font-mono text-[10px] font-bold uppercase px-3 py-2 shrink-0 hover:bg-gold transition-colors cursor-pointer"
+                    >
+                      Add URL
+                    </button>
                   </div>
                 </div>
               </div>

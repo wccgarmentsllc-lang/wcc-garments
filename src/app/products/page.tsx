@@ -144,18 +144,27 @@ export default async function ProductsHubPage() {
             </div>
 
             {/* Stats row */}
-            <div className="mt-10 flex flex-wrap gap-0 border border-[var(--border)] bg-[var(--bg)]/60 divide-x divide-[var(--border)] backdrop-blur-sm w-fit">
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 border border-[var(--border)] bg-[var(--bg)]/60 backdrop-blur-sm w-full sm:w-fit">
               {[
                 { label: 'Divisions', value: '6' },
                 { label: 'Products', value: `${MOCK_PRODUCTS.length}+` },
                 { label: 'Countries Served', value: SITE_CONFIG.countries },
                 { label: 'Years Active', value: SITE_CONFIG.years },
-              ].map((stat) => (
-                <div key={stat.label} className="px-5 py-3">
-                  <p className="text-[9px] uppercase tracking-[0.16em]  text-[var(--text-muted)]">
+              ].map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`px-4 sm:px-5 py-3 text-center sm:text-left ${
+                    i % 2 === 0 ? 'border-r border-[var(--border)]' : ''
+                  } ${
+                    i < 2 ? 'border-b sm:border-b-0 border-[var(--border)]' : ''
+                  } ${
+                    i < 3 ? 'sm:border-r sm:border-[var(--border)]' : ''
+                  }`}
+                >
+                  <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                     {stat.label}
                   </p>
-                  <p className="mt-0.5 text-base font-semibold text-center text-[var(--text)]">{stat.value}</p>
+                  <p className="mt-0.5 text-base font-semibold text-[var(--text)]">{stat.value}</p>
                 </div>
               ))}
             </div>

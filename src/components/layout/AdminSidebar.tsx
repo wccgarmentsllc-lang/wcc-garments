@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Package, FolderOpen, Film, Inbox, Megaphone, LogOut, Menu, X, ShieldCheck, Mail, Award, Layers, Sun, Moon, BookOpen } from 'lucide-react'
+import { LayoutDashboard, Package, FolderOpen, Film, Inbox, Megaphone, LogOut, Menu, X, ShieldCheck, Mail, Award, Layers, Sun, Moon, BookOpen, Sliders } from 'lucide-react'
 import { useAdmin } from '@/context/AdminContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useThemeContext } from '@/context/ThemeContext'
@@ -12,6 +12,7 @@ import { useThemeContext } from '@/context/ThemeContext'
 const ADMIN_LINKS = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard, badge: '' },
   { name: 'Website Content', href: '/admin/sections', icon: Layers, badge: '' },
+  { name: 'Banner Carousel', href: '/admin/banners', icon: Sliders, badge: 'New' },
   { name: 'Products', href: '/admin/products', icon: Package, badge: '' },
   { name: 'Brands', href: '/admin/brands', icon: Award, badge: '' },
   { name: 'Categories', href: '/admin/categories', icon: FolderOpen, badge: '' },

@@ -17,6 +17,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any[]>([])
@@ -225,7 +226,7 @@ export function Navbar() {
             {/* Premium Hamburger Button */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="relative z-[120] flex h-11 w-11 items-center justify-center lg:hidden rounded-full border border-neutral-200/50 dark:border-neutral-800/80 bg-neutral-100/80 dark:bg-neutral-900/80 backdrop-blur-md shadow-md"
+              className="relative z-[120] flex h-11 w-11 items-center justify-center lg:hidden rounded-full border border-black/15 dark:border-white/20 bg-black/5 dark:bg-white/10 backdrop-blur-md shadow-sm"
               aria-label="Toggle menu"
             >
               {/* Animated Gold Ring on Open */}
@@ -239,7 +240,7 @@ export function Navbar() {
               {/* 3 Animated Bars */}
               <div className="relative flex flex-col items-center justify-center gap-[5px] w-5 h-5">
                 <motion.span
-                  className="block h-[1.5px] w-5 bg-black dark:bg-white origin-center"
+                  className="block h-[1.5px] w-5 origin-center bg-black dark:bg-white"
                   animate={isMobileOpen
                     ? { rotate: 45, y: 6.5, backgroundColor: '#DAA520' }
                     : { rotate: 0, y: 0 }
@@ -255,7 +256,7 @@ export function Navbar() {
                   transition={{ duration: 0.2 }}
                 />
                 <motion.span
-                  className="block h-[1.5px] w-5 bg-black dark:bg-white origin-center"
+                  className="block h-[1.5px] w-5 origin-center bg-black dark:bg-white"
                   animate={isMobileOpen
                     ? { rotate: -45, y: -6.5, backgroundColor: '#DAA520' }
                     : { rotate: 0, y: 0 }
@@ -409,27 +410,13 @@ export function Navbar() {
 
             {/* Premium Floating Drawer (takes about 75-80% width, beautifully carded) */}
             <motion.div
-              className="fixed top-[76px] right-4 bottom-4 w-[calc(100vw-32px)] max-w-[340px] z-[110] flex flex-col overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text)] shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-[30px] dark:shadow-[0_25px_60px_rgba(0,0,0,0.85)] lg:hidden"
+              className="fixed top-[76px] right-4 bottom-4 w-[calc(100vw-32px)] max-w-[340px] z-[110] flex flex-col overflow-hidden border border-[var(--border)] bg-white dark:bg-black text-[var(--text)] shadow-[0_25px_60px_rgba(0,0,0,0.18)] backdrop-blur-[30px] dark:shadow-[0_25px_60px_rgba(0,0,0,0.85)] lg:hidden"
               initial={{ x: '110%', opacity: 0, scale: 0.95 }}
               animate={{ x: 0, opacity: 1, scale: 1 }}
               exit={{ x: '110%', opacity: 0, scale: 0.95 }}
               transition={{ type: 'spring', damping: 26, stiffness: 220 }}
             >
-              {/* Premium texture & glows inside drawer */}
-              <div
-                className="pointer-events-none absolute inset-0 z-0 opacity-[0.025] dark:hidden"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.7) 2px, rgba(0,0,0,0.7) 3px)',
-                  backgroundSize: '100% 4px',
-                }}
-              />
-              <div
-                className="pointer-events-none absolute inset-0 z-0 hidden opacity-[0.03] dark:block"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.8) 2px, rgba(255,255,255,0.8) 3px)',
-                  backgroundSize: '100% 4px',
-                }}
-              />
+              {/* Gold glow accent */}
               <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full opacity-30"
                 style={{ background: 'radial-gradient(circle, rgba(218,165,32,0.4) 0%, transparent 70%)' }}
               />
@@ -450,44 +437,123 @@ export function Navbar() {
                 <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--text-muted)] mb-6">Directory</p>
 
                 <div className="space-y-1">
-                  {NAV_LINKS.map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.08 + i * 0.05 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMobileOpen(false)}
-                        className="group relative flex items-center justify-between py-3.5"
-                      >
-                        <div className="flex items-baseline gap-3">
-                          <span className="font-mono text-[10px] font-bold text-[var(--text-muted)] opacity-60 transition-colors group-hover:text-gold group-hover:opacity-100">
-                            {String(i + 1).padStart(2, '0')}
-                          </span>
-                          <span
-                            className={`font-display text-xl font-bold tracking-tight transition-all duration-300 group-hover:text-gold ${
-                              pathname === link.href ? 'text-gold' : 'text-[var(--text)]'
-                            }`}
+                  {NAV_LINKS.map((link, i) => {
+                    if (link.name === 'Products') {
+                      return (
+                        <motion.div
+                          key={link.href}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.08 + i * 0.05 }}
+                        >
+                          {/* Products accordion trigger */}
+                          <button
+                            onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                            className="group relative flex w-full items-center justify-between py-3.5"
                           >
-                            {link.name}
-                          </span>
-                        </div>
-                        <ArrowUpRight className="h-4 w-4 text-[var(--text-muted)] opacity-45 transition-all duration-300 group-hover:rotate-12 group-hover:text-gold group-hover:opacity-100" />
-                      </Link>
-                      <div className="h-[1px] bg-[var(--border)]" />
-                    </motion.div>
-                  ))}
+                            <div className="flex items-baseline gap-3">
+                              <span className="font-mono text-[10px] font-bold text-[var(--text-muted)] opacity-60 transition-colors group-hover:text-gold group-hover:opacity-100">
+                                {String(i + 1).padStart(2, '0')}
+                              </span>
+                              <span className={`font-display text-xl font-bold tracking-tight transition-all duration-300 group-hover:text-gold ${
+                                pathname.startsWith('/products') ? 'text-gold' : 'text-[var(--text)]'
+                              }`}>
+                                Products
+                              </span>
+                            </div>
+                            <motion.div
+                              animate={{ rotate: isMobileProductsOpen ? 180 : 0 }}
+                              transition={{ duration: 0.25 }}
+                            >
+                              <ChevronDown className="h-4 w-4 text-[var(--text-muted)] opacity-60 group-hover:text-gold group-hover:opacity-100" />
+                            </motion.div>
+                          </button>
+
+                          {/* Products sub-links accordion */}
+                          <AnimatePresence initial={false}>
+                            {isMobileProductsOpen && (
+                              <motion.div
+                                key="products-sub"
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.28, ease: 'easeInOut' }}
+                                className="overflow-hidden"
+                              >
+                                <div className="pb-3 pl-8 space-y-1">
+                                  <Link
+                                    href="/products/garments"
+                                    onClick={() => setIsMobileOpen(false)}
+                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
+                                  >
+                                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">Garments Division</span>
+                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
+                                  </Link>
+                                  <Link
+                                    href="/products/households"
+                                    onClick={() => setIsMobileOpen(false)}
+                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
+                                  >
+                                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">Households Division</span>
+                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
+                                  </Link>
+                                  <Link
+                                    href="/products"
+                                    onClick={() => setIsMobileOpen(false)}
+                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
+                                  >
+                                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">All Products</span>
+                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                          <div className="h-[1px] bg-[var(--border)]" />
+                        </motion.div>
+                      )
+                    }
+
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.08 + i * 0.05 }}
+                      >
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsMobileOpen(false)}
+                          className="group relative flex items-center justify-between py-3.5"
+                        >
+                          <div className="flex items-baseline gap-3">
+                            <span className="font-mono text-[10px] font-bold text-[var(--text-muted)] opacity-60 transition-colors group-hover:text-gold group-hover:opacity-100">
+                              {String(i + 1).padStart(2, '0')}
+                            </span>
+                            <span
+                              className={`font-display text-xl font-bold tracking-tight transition-all duration-300 group-hover:text-gold ${
+                                pathname === link.href ? 'text-gold' : 'text-[var(--text)]'
+                              }`}
+                            >
+                              {link.name}
+                            </span>
+                          </div>
+                          <ArrowUpRight className="h-4 w-4 text-[var(--text-muted)] opacity-45 transition-all duration-300 group-hover:rotate-12 group-hover:text-gold group-hover:opacity-100" />
+                        </Link>
+                        <div className="h-[1px] bg-[var(--border)]" />
+                      </motion.div>
+                    )
+                  })}
                 </div>
               </div>
 
               {/* Bottom Quick Contact Panel */}
-              <div className="relative z-10 p-5 bg-black/[0.03] border-t border-[var(--border)] rounded-b-3xl dark:bg-black/40">
+              <div className="relative z-10 p-5 bg-neutral-100/70 dark:bg-neutral-950 border-t border-[var(--border)] rounded-b-3xl">
                 <div className="grid grid-cols-2 gap-2.5">
                   <a
                     href={`mailto:${config.email}`}
-                    className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-2.5 transition-all duration-300 hover:border-gold/40 hover:bg-gold/5"
+                    className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-white dark:bg-black p-2.5 transition-all duration-300 hover:border-gold/40 hover:bg-gold/5"
                   >
                     <Mail className="h-3.5 w-3.5 text-gold shrink-0" />
                     <div className="min-w-0">
@@ -499,7 +565,7 @@ export function Navbar() {
                     href={`https://wa.me/${config.whatsapp.replace(/[^0-9]/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-2.5 transition-all duration-300 hover:border-emerald-400/40 hover:bg-emerald-400/5"
+                    className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-white dark:bg-black p-2.5 transition-all duration-300 hover:border-emerald-400/40 hover:bg-emerald-400/5"
                   >
                     <MessageCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
                     <div>
