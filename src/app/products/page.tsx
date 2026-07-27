@@ -115,7 +115,7 @@ export default async function ProductsHubPage() {
       <div className="min-h-screen bg-[var(--bg)]">
         {/* ── Hero ── */}
         <header className="bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.09),transparent_40%),var(--bg-surface)] py-28 md:py-28">
-          <div className="mx-auto max-w-[1560px] px-6 lg:px-12">
+          <div className="mx-auto max-w-[1560px] px-3 lg:px-12">
             {/* Breadcrumb */}
             <nav
               aria-label="Breadcrumb"
@@ -153,13 +153,10 @@ export default async function ProductsHubPage() {
               ].map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`px-4 sm:px-5 py-3 text-center sm:text-left ${
-                    i % 2 === 0 ? 'border-r border-[var(--border)]' : ''
-                  } ${
-                    i < 2 ? 'border-b sm:border-b-0 border-[var(--border)]' : ''
-                  } ${
-                    i < 3 ? 'sm:border-r sm:border-[var(--border)]' : ''
-                  }`}
+                  className={`px-4 sm:px-5 py-3 text-center sm:text-left ${i % 2 === 0 ? 'border-r border-[var(--border)]' : ''
+                    } ${i < 2 ? 'border-b sm:border-b-0 border-[var(--border)]' : ''
+                    } ${i < 3 ? 'sm:border-r sm:border-[var(--border)]' : ''
+                    }`}
                 >
                   <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                     {stat.label}
@@ -172,14 +169,14 @@ export default async function ProductsHubPage() {
         </header>
 
         {/* ── Division Grid ── */}
-        <section className="mx-auto max-w-[1560px] px-6 lg:px-12">
+        <section className="mx-auto max-w-[1560px] px-3 lg:px-12">
           <div className="mb-10 flex items-end justify-between gap-4">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold/80 mb-5">
                 Browse by Division
               </p>
               <h2 className="mt-2 font-display text-2xl font-semibold text-[var(--text)] md:text-3xl">
-                Select a Product <span className='text-gold'>Category</span> 
+                Select a Product <span className='text-gold'>Category</span>
               </h2>
             </div>
             <p className="hidden text-xs uppercase tracking-[0.14em] text-[var(--text-muted)] md:block">
@@ -203,7 +200,7 @@ export default async function ProductsHubPage() {
 
         {/* ── B2B Trust Strip ── */}
         <section className="py-10">
-          <div className="mx-auto max-w-[1560px] px-6 py-10 lg:px-12 bg-[var(--bg-surface)] ">
+          <div className="mx-auto max-w-[1560px] px-3 py-10 lg:px-12 bg-[var(--bg-surface)] ">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { label: 'Quote-Based Pricing', desc: 'No public pricing. MOQ-tiered quotes provided within 24 hrs.' },

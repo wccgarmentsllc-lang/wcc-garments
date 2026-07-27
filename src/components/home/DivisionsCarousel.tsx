@@ -106,7 +106,7 @@ export function DivisionsCarousel() {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative bg-white dark:bg-[#0A0A0A] border-t border-black/8 dark:border-white/8 py-16 lg:py-24"
+      className="relative bg-white dark:bg-[#0A0A0A] dark:border-white/8 py-16 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px] px-2 lg:px-10">
 
@@ -153,7 +153,7 @@ export function DivisionsCarousel() {
         </motion.div>
 
         {/* ── Tab Bar ── */}
-        <div className="mb-6 hidden sm:flex items-center gap-0 overflow-x-auto no-scrollbar border-b border-black/8 dark:border-white/8">
+        <div className="mb-6 hidden sm:flex items-center gap-0 overflow-x-auto no-scrollbar">
           {divisionsList.map((div: any, idx: number) => {
             const isActive = idx === activeIndex
             const label = div.slug === 'households' ? 'Households & Acc.' : div.name
@@ -181,7 +181,7 @@ export function DivisionsCarousel() {
         </div>
 
         {/* ── Main Slide Panel ── */}
-        <div className="relative overflow-hidden rounded-none border border-black/8 dark:border-white/8 bg-neutral-50 dark:bg-neutral-950">
+        <div className="relative overflow-hidden rounded-none border border-black/10  bg-neutral-50 dark:bg-neutral-950">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={active.slug}
@@ -224,14 +224,14 @@ export function DivisionsCarousel() {
                 <button
                   onClick={nextSlide}
                   aria-label="Next Slide"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 flex items-center justify-center bg-white/80 dark:bg-black/60 border border-black/10 dark:border-white/20 text-[#0A0A0A] dark:text-white hover:bg-gold hover:text-black hover:border-gold transition-all duration-150 opacity-0 group-hover:opacity-100"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 flex items-center justify-center bg-white/80 dark:bg-black/60  text-[#0A0A0A] dark:text-white hover:bg-gold hover:text-black hover:border-gold transition-all duration-150 opacity-0 group-hover:opacity-100"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
 
               {/* Right: Content */}
-              <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 bg-white dark:bg-neutral-950 border-t lg:border-t-0 lg:border-l border-black/8 dark:border-white/8">
+              <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 bg-white dark:bg-neutral-950">
                 <div>
                   {/* Division label */}
                   <p className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-gold mb-3">
@@ -305,10 +305,10 @@ export function DivisionsCarousel() {
                 </div>
 
                 {/* CTA */}
-                <div className="mt-6">
+                <div className="mt-6 text-center">
                   <Link
                     href={`/products/${active.slug}`}
-                    className="inline-flex w-full items-center justify-center gap-2 bg-gold text-white text-[11px] font-bold uppercase tracking-[0.2em] py-3 px-6 hover:bg-[#0A0A0A] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200 group/btn"
+                    className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-gold text-white text-[11px] font-bold uppercase tracking-[0.2em] py-3 px-6 hover:bg-[#0A0A0A] hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-200 group/btn"
                   >
                     <span>Explore {active.name} Catalogue</span>
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
