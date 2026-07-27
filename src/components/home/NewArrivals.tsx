@@ -62,7 +62,7 @@ export function NewArrivals() {
             </p>
           </div>
 
-          <div className="hidden sm:flex flex-wrap items-center justify-center lg:justify-end gap-5">
+          <div className="hidden sm:flex flex-wrap items-center justify-start lg:justify-end gap-5">
             <Link
               href="/contact?source=new-arrivals&intent=request-quote&businessType=Wholesale%20Distributor"
               className="group inline-flex items-center gap-2 border border-gold  px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold transition-all hover:bg-gold hover:text-gold whitespace-nowrap hover:text-white"
@@ -88,8 +88,8 @@ export function NewArrivals() {
         </div>
 
         {/* Filter Tabs - Swipable on mobile, centered on desktop */}
-        <div className="hidden sm:block mt-16 w-full">
-          <div className="flex w-full overflow-x-auto pb-4 lg:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="md:mt-16 mt-8 w-full">
+          <div className="flex w-full overflow-x-auto pb-4 md:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="inline-flex min-w-max items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] p-2">
               {CATEGORIES.map((cat) => (
                 <button
@@ -114,7 +114,7 @@ export function NewArrivals() {
           </div>
         </div>
         {/* Perfectly Aligned 4-Column Card Grid */}
-        <div className="mt-12 min-h-[500px]" ref={gridRef}>
+        <div className="mt-5 md:mt-12 min-h-[500px]" ref={gridRef}>
           {products.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 15 }}

@@ -27,7 +27,7 @@ export function ManufacturingStory() {
 
   const scroll = (dir: 'prev' | 'next') => {
     if (!scrollRef.current) return
-    scrollRef.current.scrollBy({ left: dir === 'next' ? 320 : -320, behavior: 'smooth' })
+    scrollRef.current.scrollBy({ left: dir === 'next' ? 324 : -324, behavior: 'smooth' })
   }
 
   return (
@@ -43,7 +43,7 @@ export function ManufacturingStory() {
               {data.indicator}
             </span>
           </div>
-          <h2 className="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
             {data.headingStart}<span className='text-gold'>{data.headingHighlight}</span>
           </h2>
           <p className="mt-3 text-xs uppercase tracking-widest text-white/50 font-mono">
@@ -81,40 +81,39 @@ export function ManufacturingStory() {
           return (
             <div
               key={scene.step}
-              className="group relative h-[460px] w-[calc(100vw-48px)] sm:w-[330px] flex-shrink-0 overflow-hidden border border-white/10 rounded-none bg-neutral-950 p-6 flex flex-col justify-between transition-all duration-500 hover:border-gold/40 hover:shadow-[0_20px_50px_rgba(218,165,32,0.15)] snap-start"
+              className="group relative h-[380px] w-[calc(100vw-48px)] sm:w-[300px] flex-shrink-0 overflow-hidden border border-white/10 rounded-none bg-neutral-950 p-6 flex flex-col justify-between transition-all duration-500 hover:border-gold/40 snap-start"
             >
               {/* Card Image Background */}
-              <div className="absolute inset-0 z-0 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.2s] ease-out rounded-none">
+              <div className="absolute inset-0 z-0 group-hover:scale-105 transition-all duration-[1.2s] ease-out rounded-none">
                 <ResponsivePicture
                   src={scene.image}
                   alt={scene.title}
                   fill
                   unoptimized={true}
                   className="object-cover transition-all duration-[1s] ease-out rounded-none"
-                  sizes="330px"
+                  sizes="300px"
                   priority={idx < 3}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent rounded-none" />
               </div>
 
               {/* Header: Step Indicator & Icon */}
               <div className="relative z-10 flex items-start justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-none border border-white/10 bg-black/80 backdrop-blur-md text-white shadow-lg">
-                  <span className="font-mono text-base font-bold tracking-tight">
+                <div className="flex h-9 w-9 items-center justify-center rounded-none border border-white/10 bg-black/80 backdrop-blur-md text-white shadow-lg">
+                  <span className="font-mono text-sm font-bold tracking-tight">
                     {scene.step}
                   </span>
                 </div>
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/80 backdrop-blur-md text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-white transition-all duration-500 shadow-lg">
-                  <Icon className="h-4.5 w-4.5 text-white" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/80 backdrop-blur-md text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-white transition-all duration-500 shadow-lg">
+                  <Icon className="h-4 w-4 text-white" />
                 </div>
               </div>
 
               {/* Bottom Details */}
-              <div className="relative z-10 bg-black/80 backdrop-blur-xl border border-white/10 p-5 rounded-none mt-auto shadow-2xl">
-                <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
+              <div className="relative z-10 bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-none mt-auto shadow-2xl">
+                <h3 className="font-display text-base sm:text-lg font-bold text-white group-hover:text-gold transition-colors duration-300">
                   {scene.title}
                 </h3>
-                <p className="mt-2.5 text-xs sm:text-xs leading-relaxed text-white/80">
+                <p className="mt-1.5 text-[11px] sm:text-[11px] leading-snug text-white/80">
                   {scene.desc}
                 </p>
               </div>

@@ -26,10 +26,10 @@ const CATEGORIES = (division.categories ?? []) as GarmentCategory[]
 const SLUG_TO_CATEGORY: Record<string, string[]> = {
   'formal-shirts': ['Formal Shirts', 'Casual Shirts'],
   'blazers-suits': ['Blazers & Suits', 'Formal Outerwear'],
-  'jeans-denims':  ['Jeans & Denims', 'Cargo Pants'],
-  'polo-tshirts':  ['Polo Shirts', 'T-Shirts', 'Polo & T-Shirts'],
-  'trousers':      ['Trousers & Chinos', 'Trousers', 'Chinos'],
-  'jackets':       ['Outerwear & Jackets', 'Outerwear', 'Jackets'],
+  'jeans-denims': ['Jeans & Denims', 'Cargo Pants'],
+  'polo-tshirts': ['Polo Shirts', 'T-Shirts', 'Polo & T-Shirts'],
+  'trousers': ['Trousers & Chinos', 'Trousers', 'Chinos'],
+  'jackets': ['Outerwear & Jackets', 'Outerwear', 'Jackets'],
 }
 
 const BRANDS_CONFIG = [
@@ -69,7 +69,7 @@ export default function AllProductsClient() {
       // Brand filter
       if (activeBrand !== 'all' && p.brand_slug !== activeBrand) return false
 
-      const categories = p.categories && p.categories.length > 0 
+      const categories = p.categories && p.categories.length > 0
         ? p.categories.map((c: any) => typeof c === 'string' ? c : c.name)
         : [p.category?.name ?? (p as unknown as Record<string, string>)['category'] ?? ''];
 
@@ -102,7 +102,7 @@ export default function AllProductsClient() {
       <header className="relative overflow-hidden border-b border-white/10 pt-12 pb-16 md:pt-20 md:pb-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(218,165,32,0.07),transparent_60%)]" />
 
-        <div className="relative mx-auto max-w-[1560px] px-6 lg:px-12">
+        <div className="relative mx-auto max-w-[1560px] px-3 lg:px-12">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-white/30">
             <Link href="/" className="hover:text-gold transition-colors">Home</Link>
@@ -122,7 +122,7 @@ export default function AllProductsClient() {
               All Garment <span className="text-gold">Products</span>
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/50 md:text-base font-light">
-              Browse our complete garment catalog — every category, every brand, every style displayed in one unified view. 
+              Browse our complete garment catalog — every category, every brand, every style displayed in one unified view.
               Perfect for wholesale buyers exploring our full B2B range.
             </p>
           </div>
@@ -177,11 +177,10 @@ export default function AllProductsClient() {
               </span>
               <button
                 onClick={() => setActiveBrand('all')}
-                className={`shrink-0 px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${
-                  activeBrand === 'all'
+                className={`shrink-0 px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${activeBrand === 'all'
                     ? 'border-gold bg-gold/15 text-gold'
                     : 'border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:text-white'
-                }`}
+                  }`}
               >
                 All Brands
               </button>
@@ -189,11 +188,10 @@ export default function AllProductsClient() {
                 <button
                   key={b.slug}
                   onClick={() => setActiveBrand(b.slug)}
-                  className={`shrink-0 px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${
-                    activeBrand === b.slug
+                  className={`shrink-0 px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${activeBrand === b.slug
                       ? 'border-gold bg-gold/15 text-gold'
                       : 'border-white/10 bg-white/5 text-white/50 hover:border-white/30 hover:text-white'
-                  }`}
+                    }`}
                 >
                   {b.name}
                 </button>
@@ -240,7 +238,7 @@ export default function AllProductsClient() {
       </div>
 
       {/* ── ALL PRODUCTS FLAT GRID ──────────────────────────────────── */}
-      <main className="mx-auto max-w-[1560px] px-6 lg:px-12 py-12">
+      <main className="mx-auto max-w-[1560px] px-3 lg:px-12 py-12">
         {filteredProducts.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((p, i) => (
@@ -273,7 +271,7 @@ export default function AllProductsClient() {
 
       {/* ── ENQUIRY CTA ─────────────────────────────────────────────── */}
       <section className="border-t border-white/10 bg-[#0A0A0A]">
-        <div className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mx-auto max-w-[1560px] px-3 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">BULK ENQUIRY</span>
             <h3 className="mt-3 font-display text-3xl sm:text-4xl font-semibold text-white">
@@ -291,7 +289,7 @@ export default function AllProductsClient() {
 
       {/* ── BACK NAVIGATION ─────────────────────────────────────────── */}
       <div className="border-t border-white/[0.07] bg-[#080808]">
-        <div className="mx-auto max-w-[1560px] px-6 lg:px-12 py-8 flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-[1560px] px-3 lg:px-12 py-8 flex items-center justify-between gap-4">
           <Link
             href="/products/garments"
             className="flex items-center gap-2 border border-white/10 bg-white/5 px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-white/50 hover:border-gold hover:text-gold transition-all duration-300"

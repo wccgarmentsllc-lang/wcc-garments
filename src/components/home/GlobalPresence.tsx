@@ -95,7 +95,7 @@ export function GlobalPresence() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-[var(--bg)] py-16 sm:py-20 lg:py-28"
+      className="relative overflow-hidden bg-[var(--bg)] py-10 sm:py-20 lg:py-28"
       data-cursor="view"
     >
       <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
@@ -514,7 +514,7 @@ export function GlobalPresence() {
             EXPORT DISTRIBUTION — below the map panel
         ══════════════════════════════════════════════════ */}
         <motion.div
-          className="mt-16 border-t border-[var(--border)] pt-12"
+          className=" pt-12"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}

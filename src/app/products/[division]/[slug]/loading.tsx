@@ -1,7 +1,7 @@
 export default function ProductDetailLoading() {
   return (
     <div className="min-h-screen bg-[var(--bg)] pt-24">
-      <div className="mx-auto max-w-[1560px] px-6 lg:px-12">
+      <div className="mx-auto max-w-[1560px] px-3 lg:px-12">
         <div className="py-10">
           <div className="h-4 w-80 animate-pulse bg-[var(--bg-subtle)]" />
         </div>

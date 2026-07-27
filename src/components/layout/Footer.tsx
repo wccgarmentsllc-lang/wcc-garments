@@ -7,22 +7,14 @@ import { ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react'
 import { SITE_CONFIG, DIVISIONS, NAV_LINKS } from '@/lib/constants'
 import NewsletterSubscribe from '../home/NewsletterSubscribe'
 
-import { useState, useEffect } from 'react'
-import { contentStore } from '@/lib/content-store'
 import { useWebsiteContent } from '@/hooks/useWebsiteContent'
 
 export function Footer() {
   const pathname = usePathname()
   const { data: config } = useWebsiteContent('site_config', SITE_CONFIG)
-  const [divisions, setDivisions] = useState(DIVISIONS)
+  // Use static DIVISIONS from constants to avoid stale localStorage data
+  const divisions = DIVISIONS
   const isAdmin = pathname.startsWith('/admin')
-
-  useEffect(() => {
-    setDivisions(contentStore.getDivisions())
-  }, [])
-
-  const getDivisionLabel = (name: string) =>
-    name.replace(/^div[-\s]*\d+\s*[:.-]?\s*/i, '').trim()
 
   if (isAdmin) return null
 
@@ -30,10 +22,10 @@ export function Footer() {
     <footer className="relative z-20 border-t border-white/10 bg-[#0A0A0A]">
       <NewsletterSubscribe/>
       {/* Main Footer */}
-      <div className="mx-auto max-w-[1440px] px-2 py-20 lg:px-12">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-[1440px] px-4 py-16 lg:px-12">
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="group flex items-center gap-3">
               <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden transition-transform duration-500 group-hover:scale-105">
                 <Image
@@ -102,9 +94,10 @@ export function Footer() {
                 <li key={div.slug}>
                   <Link
                     href={`/products/${div.slug}`}
-                    className="group flex items-center gap-2 text-sm text-white transition-colors hover:text-gold"
+                    className="group flex items-center gap-1 text-sm text-white transition-colors hover:text-gold"
                   >
-                    {getDivisionLabel(div.name)}
+                    {div.name}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
                   </Link>
                 </li>
               ))}
@@ -112,7 +105,7 @@ export function Footer() {
           </div>
 
           {/* Executive Direct Contacts */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h4 className="text-[11px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
               Executive Direct
             </h4>
@@ -133,7 +126,7 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-6 px-6 py-8 md:flex-row lg:px-12">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-4 px-4 py-6 md:flex-row lg:px-12">
           <p className="text-xs text-neutral-400">
             © {new Date().getFullYear()} {config.fullName}. All rights reserved.
           </p>

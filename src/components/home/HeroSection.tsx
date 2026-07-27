@@ -138,7 +138,7 @@ export function HeroSection(): JSX.Element {
         />
 
         {/* Hero Content */}
-        <div className="relative z-[5] w-full flex flex-col items-center justify-center hover-trigger cursor-default px-6 md:px-0 py-16 md:py-0">
+        <div className="relative z-[5] w-full flex flex-col items-center justify-center hover-trigger cursor-default px-3 md:px-0 py-16 md:py-0">
           <div className="relative w-full max-w-[1440px] md:px-12 flex flex-col md:grid md:grid-cols-12 md:grid-rows-[auto_auto] md:gap-8 md:items-center gap-6 justify-center items-center">
             {/* ── TEXT BLOCK ── */}
             <div className="contents md:flex md:flex-col md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-2 md:self-center md:items-start">

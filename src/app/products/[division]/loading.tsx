@@ -4,7 +4,7 @@ export default function DivisionCategoryLoading() {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <div className="border-b border-[var(--border)] bg-[var(--bg-surface)] pt-28 pb-14 md:pt-36 md:pb-16">
-        <div className="mx-auto max-w-[1560px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1560px] px-3 lg:px-12">
           <div className="h-3 w-48 animate-pulse bg-[var(--bg-subtle)]" />
           <div className="mt-8 h-4 w-32 animate-pulse bg-[var(--bg-subtle)]" />
           <div className="mt-4 h-12 w-3/4 animate-pulse bg-[var(--bg-subtle)]" />

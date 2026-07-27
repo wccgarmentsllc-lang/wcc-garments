@@ -153,10 +153,10 @@ export function WhoWeAre() {
                 </div>
               )}
 
-              <div className="mt-10 flex items-center gap-6">
+              <div className="mt-10 flex items-center justify-center lg:justify-start gap-6">
                 <Link
                   href="/about"
-                  className="group btn-gold font-mono text-xs font-bold tracking-[0.2em] rounded-none flex items-center justify-center gap-2 w-full lg:w-auto"
+                  className="group btn-gold font-mono text-xs font-bold tracking-[0.2em] rounded-none flex items-center justify-center gap-2 w-full sm:w-auto"
                 >
                   Explore Corporate Heritage
                   <span className="relative flex h-4 w-4 items-center justify-center">

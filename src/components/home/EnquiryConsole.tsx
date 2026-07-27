@@ -131,20 +131,20 @@ export function EnquiryConsole({
             <div className="mt-2 uppercase">
               <TypewriterEffect words={words} />
             </div>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-[var(--text-muted)]">
+            <p className="mt-4 max-w-2xl lg:max-w-sm text-sm leading-relaxed text-[var(--text-muted)]">
               Whether you need bulk garments, hospitality uniforms, or custom OEM manufacturing — our executive team responds within 24 hours.
             </p>
 
-            <div className="mt-10 space-y-5">
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-5">
               <a
                 href={`tel:${config.phone}`}
                 className="flex items-center gap-4 text-sm text-[var(--text)] transition-colors hover:text-gold relative z-20"
               >
-                <div className="flex h-10 w-10 items-center justify-center border border-[var(--border)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--border)]">
                   <Phone className="h-4 w-4 text-gold" />
                 </div>
                 <div>
-                  <p className="font-medium">{config.phone}</p>
+                  <p className="font-medium whitespace-nowrap">{config.phone}</p>
                   <p className="text-[11px] text-[var(--text-muted)]">UAE Direct Line</p>
                 </div>
               </a>
@@ -152,11 +152,11 @@ export function EnquiryConsole({
                 href={`mailto:${config.email}`}
                 className="flex items-center gap-4 text-sm text-[var(--text)] transition-colors hover:text-gold relative z-20"
               >
-                <div className="flex h-10 w-10 items-center justify-center border border-[var(--border)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--border)]">
                   <Mail className="h-4 w-4 text-gold" />
                 </div>
                 <div>
-                  <p className="font-medium">{config.email}</p>
+                  <p className="font-medium whitespace-nowrap">Email Us</p>
                   <p className="text-[11px] text-[var(--text-muted)]">Sales &amp; Enquiries</p>
                 </div>
               </a>
@@ -166,11 +166,11 @@ export function EnquiryConsole({
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-sm text-[var(--text)] transition-colors hover:text-gold relative z-20"
               >
-                <div className="flex h-10 w-10 items-center justify-center border border-[var(--border)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[var(--border)]">
                   <MessageCircle className="h-4 w-4 text-gold" />
                 </div>
                 <div>
-                  <p className="font-medium">WhatsApp Business</p>
+                  <p className="font-medium whitespace-nowrap">WhatsApp</p>
                   <p className="text-[11px] text-[var(--text-muted)]">Quick Response</p>
                 </div>
               </a>

@@ -18,16 +18,14 @@ export default function HomePage() {
       <div className="fixed inset-0 z-0">
         <HeroSection />
       </div>
-
       <main className="relative z-20 mx-auto max-w-[1440px] px-0 mt-[100vh]">       
           <WhoWeAre />
-      
+          <DivisionsCarousel />
           <BulkOfferBanner />
           <DivisionCutouts />
           <GarmentsBrands />
           <NewArrivals />
           <KillingOffers />
-          <DivisionsCarousel />
           <GlobalPresence />
           <ManufacturingStory />
           <CoverDemo />
