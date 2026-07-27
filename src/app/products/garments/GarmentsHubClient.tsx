@@ -167,6 +167,25 @@ export default function GarmentsHubClient() {
       .catch((err) => console.error('Failed to sync live garments categories:', err))
   }, [])
 
+  useEffect(() => {
+    // Auto-scroll on initial load if filters are active
+    const newCat = searchParams.get('category') || 'all'
+    const newBrand = searchParams.get('brand') || 'all'
+    const isSelectingFilter = newCat !== 'all' || newBrand !== 'all'
+
+    if (isSelectingFilter) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('products-grid')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 400, behavior: 'smooth' })
+        }
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [searchParams])
+
   // Normalize a string for comparison (lowercase, alphanumeric only)
   const normCat = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 
@@ -214,7 +233,19 @@ export default function GarmentsHubClient() {
     }
     router.replace(`/products/garments${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      const newCat = params.get('category') || 'all'
+      const newBrand = params.get('brand') || 'all'
+      const isSelectingFilter = newCat !== 'all' || newBrand !== 'all'
+      if (isSelectingFilter) {
+        const el = document.getElementById('products-grid')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 400, behavior: 'smooth' })
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }, 100)
   }
 
@@ -246,12 +277,12 @@ export default function GarmentsHubClient() {
       <div className="mx-auto max-w-[1560px] lg:mx-12 mx-6 bg-[var(--bg)] border border-[var(--border)] px-1">
         <div className="flex items-center justify-between gap-4 py-1 bg-[var(--bg)]">
           <div className="min-w-0 flex-1 overflow-x-auto scrollbar-hide">
-            <div className="flex w-max items-center gap-0"> 
+            <div className="flex w-max items-center gap-0">
               <button
                 onClick={() => updateFilters('all', null)}
                 className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${urlCategory === 'all'
-                    ? 'text-gold'
-                    : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+                  ? 'text-gold'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text)]'
                   }`}
               >
                 All Categories
@@ -266,10 +297,10 @@ export default function GarmentsHubClient() {
                     onClick={() => !isDisabled && updateFilters(cat.slug, null)}
                     disabled={isDisabled}
                     className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${isActive
-                        ? 'text-gold'
-                        : isDisabled
-                          ? 'text-[var(--text-muted)] opacity-40 cursor-not-allowed'
-                          : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+                      ? 'text-gold'
+                      : isDisabled
+                        ? 'text-[var(--text-muted)] opacity-40 cursor-not-allowed'
+                        : 'text-[var(--text-muted)] hover:text-[var(--text)]'
                       }`}
                   >
                     {cat.name}
@@ -298,13 +329,13 @@ export default function GarmentsHubClient() {
       {/* ── HERO ────────────────────────────────────────────────────── */}
       {/* ── HEADER ─────────────────────────────────────────────────── */}
       <header className={`relative overflow-hidden transition-all duration-300 ${(!!activeCategory || !!activeBrand)
-          ? 'pt-12 pb-6 md:pt-16 md:pb-8'
-          : 'pt-12 pb-16 md:pt-20 md:pb-20'
+        ? 'pt-12 pb-6 md:pt-16 md:pb-8'
+        : 'pt-12 pb-16 md:pt-20 md:pb-20'
         }`}>
         {/* Subtle gold radial */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(218,165,32,0.07),transparent_60%)]" />
 
-        <div className="relative mx-auto max-w-[1560px] px-6 lg:px-12">
+        <div className="relative mx-auto max-w-[1560px] px-3 lg:px-12">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[var(--text-muted)]">
             <Link href="/" className="hover:text-gold transition-colors">Home</Link>
@@ -361,7 +392,7 @@ export default function GarmentsHubClient() {
 
       {/* ── INTERACTIVE MANUFACTURING HOUSES SHOWCASE (BRAND BROWSE) ── */}
       {urlCategory === 'all' && urlBrand === 'all' && (
-        <section className="mx-auto max-w-[1560px] px-6 lg:px-12 py-16 border-b border-[var(--border)]">
+        <section className="mx-auto max-w-[1560px] px-3 lg:px-12 py-16 border-b border-[var(--border)]">
           <div className="text-center max-w-3xl mx-auto mb-5">
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
               ✦ OUR GARMENT BRANDS
@@ -411,8 +442,6 @@ export default function GarmentsHubClient() {
 
 
 
-      {/* ── STICKY CATEGORY FILTER BAR ─────────────────────────────── */}
-      {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar()}
 
       {/* ── CONTENT AREA ────────────────────────────────────────────── */}
       <AnimatePresence mode="wait">
@@ -426,7 +455,7 @@ export default function GarmentsHubClient() {
           >
             {/* Spotlight Brand Profile */}
             {activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12">
+              <section className="mx-auto max-w-[1560px] px-3 lg:px-12">
                 <div className="relative border border-gold/30 bg-[var(--surface-card)] overflow-hidden p-2 sm:p-10 flex flex-col md:flex-row gap-8 items-center justify-between">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(218,165,32,0.06),transparent_50%)]" />
 
@@ -454,42 +483,7 @@ export default function GarmentsHubClient() {
                       ))}
                     </div>
 
-                    {/* Category Filter Pills within this Brand */}
-                    <div className="border-t border-[var(--border)] pt-5 mt-4">
-                      <span className="block text-[9px] font-mono uppercase text-[var(--text-muted)] tracking-widest mb-3">
-                        Filter Category within {activeBrand.name}
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        <button
-                          onClick={() => updateFilters('all', null)}
-                          className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${urlCategory === 'all'
-                            ? 'border-gold bg-gold/15 text-gold'
-                            : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
-                            }`}
-                        >
-                          All Collections
-                        </button>
-                        {categories.map((cat) => {
-                          const isActive = urlCategory === cat.slug
-                          const isDisabled = cat.status === 'coming-soon'
-                          return (
-                            <button
-                              key={cat.slug}
-                              onClick={() => !isDisabled && updateFilters(cat.slug, null)}
-                              disabled={isDisabled}
-                              className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors ${isActive
-                                ? 'border-gold bg-gold/15 text-gold'
-                                : isDisabled
-                                  ? 'border-[var(--border)] bg-transparent text-[var(--text-muted)] opacity-30 cursor-not-allowed'
-                                  : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
-                                }`}
-                            >
-                              {cat.name}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
+
                   </div>
 
                   <div className="relative z-10 shrink-0 flex flex-col gap-3 w-full md:w-auto">
@@ -505,9 +499,12 @@ export default function GarmentsHubClient() {
               </section>
             )}
 
+            {/* ── STICKY CATEGORY FILTER BAR ─────────────────────────────── */}
+            {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar('mb-8')}
+
             {/* Category Grid */}
             {!activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 py-14">
+              <section className="mx-auto max-w-[1560px] px-3 lg:px-12 py-14">
                 <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div className="min-w-0">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">GARMENTS CATALOG</span>
@@ -688,7 +685,7 @@ export default function GarmentsHubClient() {
             {/* Sub-categories */}
             {activeCategory.subCategories && activeCategory.subCategories.length > 0 && (
               <div className="border-b border-[var(--border)] bg-[var(--surface-card)]">
-                <div className="mx-auto max-w-[1560px] px-6 lg:px-12 py-6">
+                <div className="mx-auto max-w-[1560px] px-3 lg:px-12 py-6">
                   <p className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-muted)] mb-3">Sub-Categories</p>
                   <div className="flex flex-wrap gap-2">
                     {activeCategory.subCategories.map((sub) => (
@@ -719,7 +716,7 @@ export default function GarmentsHubClient() {
             />
 
             {/* Back to all */}
-            <div className="mx-auto max-w-[1560px] px-6 lg:px-12 pb-14 flex items-center justify-between gap-4">
+            <div className="mx-auto max-w-[1560px] px-3 lg:px-12 pb-14 flex items-center justify-between gap-4">
               <button
                 onClick={() => updateFilters('all', null)}
                 className="flex items-center gap-2 border border-[var(--border)] bg-[var(--surface)] px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)] hover:border-gold hover:text-gold transition-all duration-300"
@@ -733,7 +730,7 @@ export default function GarmentsHubClient() {
 
       {/* ── ENQUIRY CTA ─────────────────────────────────────────────── */}
       <section className="border-t border-[var(--border)] bg-[var(--surface)]">
-        <div className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mx-auto max-w-[1560px] px-3 py-12  flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">BULK ENQUIRY</span>
             <h3 className="mt-3 font-display text-3xl sm:text-4xl font-semibold text-[var(--text)]">

@@ -71,6 +71,7 @@ export function KillingOffers() {
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: EASE_BEZIER }}
+              className="w-full"
             >
               <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
                 {data?.indicator}
@@ -81,10 +82,10 @@ export function KillingOffers() {
               <h2 className="font-display text-4xl sm:text-5xl font-bold uppercase text-gold leading-tight">
                 {data?.headingHighlight}
               </h2>
-              <p className="mt-6 max-w-sm text-sm leading-relaxed text-neutral-400">
+              <p className="mt-6 max-w-2xl lg:max-w-sm text-sm leading-relaxed text-neutral-400">
                 {data?.description}
               </p>
-              <div className="mt-8 flex justify-center lg:justify-start">
+              <div className="mt-8 flex justify-start">
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 border border-white/20 bg-white/5 backdrop-blur-md px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-gold hover:text-white hover:border-gold"

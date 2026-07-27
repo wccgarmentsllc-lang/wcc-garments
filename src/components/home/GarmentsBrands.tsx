@@ -158,7 +158,7 @@ export function GarmentsBrands() {
             >
               <Link
                 href={brand.href}
-                className={`group relative flex flex-col overflow-hidden ${brand.bg} border border-[var(--border)] transition-all duration-500 hover:border-gold/30`}
+                className={`group relative flex flex-col overflow-hidden ${brand.bg} dark:border-none border transition-all duration-500 hover:border-gold/30`}
                 data-cursor="view"
               >
                 {/* Background photo with overlay */}

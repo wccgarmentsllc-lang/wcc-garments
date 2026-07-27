@@ -223,6 +223,25 @@ export function DivisionProductsClient({
   const [catalogueError, setCatalogueError] = useState('')
   const [isDescExpanded, setIsDescExpanded] = useState(false)
 
+  useEffect(() => {
+    // Auto-scroll on initial load if filters are active
+    const newCat = searchParams.get('category') || 'all'
+    const newBrand = searchParams.get('brand') || 'all'
+    const isSelectingFilter = newCat !== 'all' || newBrand !== 'all'
+
+    if (isSelectingFilter) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('products-grid')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          window.scrollTo({ top: 400, behavior: 'smooth' })
+        }
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [searchParams])
+
   const handleCatalogueSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!catalogueName || !catalogueEmail) {
@@ -259,24 +278,24 @@ export function DivisionProductsClient({
   const urlBrand = searchParams.get('brand') || initialBrandSlug || 'all'
 
   const activeCategory = categories.find((c) => c.slug === urlCategory) || null
-  
+
   // Use DB brands if provided, otherwise fallback to hardcoded config
-  const divisionBrands = dbBrands.length > 0 
+  const divisionBrands = dbBrands.length > 0
     ? dbBrands.map((b) => ({
-        slug: b.slug,
-        name: b.name,
-        tagline: b.tagline || 'Verified Brand',
-        desc: b.description || 'Premium products from this manufacturer.',
-        moq: 'Contact for MOQ',
-        styles: 'Various Styles',
-        segment: 'core',
-        badge: 'VERIFIED BRAND',
-        style: 'border-gold text-gold bg-gold/5',
-        perfectFor: ['Wholesale Buyers', 'B2B Partners', 'Retailers'],
-        bgImage: b.logo_desktop || '/images/hos-2.png',
-        logo: b.logo_mobile || b.logo_desktop || '',
-        brandImage: b.logo_desktop || b.logo_mobile || '',
-      }))
+      slug: b.slug,
+      name: b.name,
+      tagline: b.tagline || 'Verified Brand',
+      desc: b.description || 'Premium products from this manufacturer.',
+      moq: 'Contact for MOQ',
+      styles: 'Various Styles',
+      segment: 'core',
+      badge: 'VERIFIED BRAND',
+      style: 'border-gold text-gold bg-gold/5',
+      perfectFor: ['Wholesale Buyers', 'B2B Partners', 'Retailers'],
+      bgImage: b.logo_desktop || '/images/hos-2.png',
+      logo: b.logo_mobile || b.logo_desktop || '',
+      brandImage: b.logo_desktop || b.logo_mobile || '',
+    }))
     : (BRANDS_CONFIG_BY_DIVISION[divisionSlug] || [])
 
   const activeBrand = divisionBrands.find((b) => b.slug === urlBrand) || null
@@ -287,10 +306,10 @@ export function DivisionProductsClient({
   const filteredProducts = products.filter((p) => {
     let categoryMatch = true
     if (activeCategory) {
-      const categories = p.categories && p.categories.length > 0 
+      const categories = p.categories && p.categories.length > 0
         ? p.categories.map((c: any) => typeof c === 'string' ? { name: c, slug: c.toLowerCase().replace(/[^a-z0-9]+/g, '-') } : c)
         : (p.category ? [p.category] : []);
-        
+
       const activeName = norm(activeCategory.name)
       const activeSlug = norm(activeCategory.slug)
 
@@ -336,7 +355,9 @@ export function DivisionProductsClient({
     }
     router.push(`/products/${divisionSlug}${params.toString() ? '?' + params.toString() : ''}`, { scroll: false })
     setTimeout(() => {
-      const isSelectingFilter = (catSlug && catSlug !== 'all') || (brandSlug && brandSlug !== 'all')
+      const newCat = params.get('category') || 'all'
+      const newBrand = params.get('brand') || 'all'
+      const isSelectingFilter = newCat !== 'all' || newBrand !== 'all'
       if (isSelectingFilter) {
         const el = document.getElementById('products-grid')
         if (el) {
@@ -380,11 +401,10 @@ export function DivisionProductsClient({
           <div className="flex w-max min-w-full items-center gap-0">
             <button
               onClick={() => updateFilters('all', null)}
-              className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
-                urlCategory === 'all'
+              className={`relative shrink-0 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${urlCategory === 'all'
                   ? 'text-gold font-extrabold'
                   : 'text-[var(--text-muted)] hover:text-[var(--text)]'
-              }`}
+                }`}
             >
               All Categories
             </button>
@@ -399,13 +419,12 @@ export function DivisionProductsClient({
                     key={category.slug}
                     onClick={() => !isDisabled && updateFilters(category.slug, null)}
                     disabled={isDisabled}
-                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${
-                      isActive
+                    className={`relative shrink-0 flex items-center gap-2 px-5 py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${isActive
                         ? 'text-gold font-extrabold cursor-pointer'
                         : isDisabled
-                        ? 'text-[var(--text-muted)]/30 cursor-not-allowed'
-                        : 'text-[var(--text-muted)] hover:text-[var(--text)] cursor-pointer'
-                    }`}
+                          ? 'text-[var(--text-muted)]/30 cursor-not-allowed'
+                          : 'text-[var(--text-muted)] hover:text-[var(--text)] cursor-pointer'
+                      }`}
                   >
                     {category.name}
                     {isDisabled && (
@@ -430,7 +449,7 @@ export function DivisionProductsClient({
 
       {/* ── BRAND BROWSE SECTION ── */}
       {urlCategory === 'all' && urlBrand === 'all' && divisionBrands.length > 0 && (
-        <section className="mx-auto max-w-[1560px] px-6 lg:px-12 py-16 border-b border-[var(--border)]">
+        <section className="mx-auto max-w-[1560px] lg:px-12 py-16 border-b border-[var(--border)]">
           <div className="text-center max-w-3xl mx-auto mb-5">
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">
               ✦ PARTNER BRANDS
@@ -483,8 +502,6 @@ export function DivisionProductsClient({
       )}
 
 
-      {/* ── STICKY CATEGORY FILTER BAR ── */}
-      {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar()}
 
       {/* ── CONTENT AREA ── */}
       <AnimatePresence mode="wait">
@@ -545,45 +562,10 @@ export function DivisionProductsClient({
                       ))}
                     </div>
 
-                    {/* Category Filter Pills within this Brand */}
-                    <div className="hidden md:block border-t border-[var(--border)] pt-5 mt-4">
-                      <span className="block text-[9px] font-mono uppercase text-[var(--text-muted)] tracking-widest mb-3">
-                        Filter Category within {activeBrand.name}
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        <button
-                          onClick={() => updateFilters('all', null)}
-                          className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${urlCategory === 'all'
-                              ? 'border-gold bg-gold/15 text-gold'
-                              : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
-                            }`}
-                        >
-                          All Collections
-                        </button>
-                        {categories.map((cat) => {
-                          const isActive = urlCategory === cat.slug
-                          const isDisabled = cat.status === 'coming-soon'
-                          return (
-                            <button
-                              key={cat.slug}
-                              onClick={() => !isDisabled && updateFilters(cat.slug, null)}
-                              disabled={isDisabled}
-                              className={`px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${isActive
-                                  ? 'border-gold bg-gold/15 text-gold'
-                                  : isDisabled
-                                    ? 'border-[var(--border)] bg-transparent text-[var(--text-muted)] opacity-30 cursor-not-allowed'
-                                    : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] hover:border-[var(--text-muted)] hover:text-[var(--text)]'
-                                }`}
-                            >
-                              {cat.name}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
+
                   </div>
 
-                  <div className="relative z-10 shrink-0 flex flex-col gap-3 w-full md:w-auto">
+                  {/* <div className="relative z-10 shrink-0 flex flex-col gap-3 w-full md:w-auto">
                     <button
                       onClick={() => updateFilters(null, 'all')}
                       className="bg-gold hover:bg-gold/90 text-white py-2.5 sm:py-3 px-5 sm:px-6 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-center transition-all flex items-center justify-center gap-2 shadow-2xl cursor-pointer"
@@ -591,38 +573,44 @@ export function DivisionProductsClient({
                       <span>Show All Brands</span>
                       <X className="h-4 w-4" />
                     </button>
-                  </div>
+                  </div> */}
                 </div>
 
-                {/* Catalogue Request CTA Bar */}
-                {(activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft' || activeBrand.slug === 'vandegraff') && (
-                  <div className="mt-4 sm:mt-6 border border-dashed border-gold/30 bg-gold/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
-                    <div className="flex items-center gap-3.5 w-full sm:w-auto">
-                      <div className="hidden sm:flex h-10 w-10 shrink-0 rounded-full bg-gold/10 items-center justify-center border border-gold/20">
-                        <BookOpen className="h-5 w-5 text-gold" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Request WCC {activeBrand.name} Catalogue</h4>
-                        <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
-                      </div>
+              </section>
+            )}
+
+            {/* ── STICKY CATEGORY FILTER BAR ── */}
+            {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar(activeBrand ? 'mb-6' : 'mb-8')}
+
+            {/* Catalogue Request CTA Bar */}
+            {activeBrand && (activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft' || activeBrand.slug === 'vandegraff') && (
+              <section className="mx-auto max-w-[1560px] sm:px-0 mb-8">
+                <div className="border border-dashed border-gold/30 bg-gold/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
+                  <div className="flex items-center gap-3.5 w-full sm:w-auto">
+                    <div className="hidden sm:flex h-10 w-10 shrink-0 rounded-full bg-gold/10 items-center justify-center border border-gold/20">
+                      <BookOpen className="h-5 w-5 text-gold" />
                     </div>
-                    <button
-                      onClick={() => setIsCatalogueOpen(true)}
-                      className="relative w-full sm:w-auto shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
-                    >
-                      <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
-                        <div className="w-8 bg-white/20" />
-                      </div>
-                      Request Catalogue
-                    </button>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Request WCC {activeBrand.name} Catalogue</h4>
+                      <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                    </div>
                   </div>
-                )}
+                  <button
+                    onClick={() => setIsCatalogueOpen(true)}
+                    className="relative w-full sm:w-auto shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
+                  >
+                    <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+                      <div className="w-8 bg-white/20" />
+                    </div>
+                    Request Catalogue
+                  </button>
+                </div>
               </section>
             )}
 
             {/* Category Grid */}
             {!activeBrand && (
-              <section className="mx-auto max-w-[1560px] px-6 lg:px-12 py-14">
+              <section className="mx-auto max-w-[1560px] lg:px-12 py-14">
                 <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div className="min-w-0">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{divisionName.toUpperCase()} CATALOG</span>
@@ -659,8 +647,8 @@ export function DivisionProductsClient({
                           onClick={() => !isDisabled && updateFilters(cat.slug, null)}
                           disabled={isDisabled}
                           className={`group relative block w-full text-left overflow-hidden border transition-all duration-500 cursor-pointer ${isDisabled
-                              ? 'border-[var(--border)] cursor-not-allowed'
-                              : 'border-[var(--border)] hover:border-gold/40 hover:shadow-[0_20px_60px_rgba(218,165,32,0.08)]'
+                            ? 'border-[var(--border)] cursor-not-allowed'
+                            : 'border-[var(--border)] hover:border-gold/40 hover:shadow-[0_20px_60px_rgba(218,165,32,0.08)]'
                             }`}
                         >
                           {/* Image */}
@@ -670,9 +658,9 @@ export function DivisionProductsClient({
                               alt={cat.name}
                               fill
                               className={`object-cover transition-transform duration-700 ease-out ${isDisabled
-                                  ? 'grayscale opacity-30'
-                                  : 'group-hover:scale-[1.04]'
-                              }`}
+                                ? 'grayscale opacity-30'
+                                : 'group-hover:scale-[1.04]'
+                                }`}
                               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
                             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -708,8 +696,8 @@ export function DivisionProductsClient({
                           <div className="bg-[var(--surface-card)] border-t border-[var(--border)] p-5">
                             <div className="flex items-center justify-between gap-2">
                               <h3 className={`font-display text-lg font-bold uppercase transition-colors duration-300 ${isDisabled
-                                  ? 'text-[var(--text-muted)] opacity-30'
-                                  : 'text-[var(--text)] group-hover:text-gold'
+                                ? 'text-[var(--text-muted)] opacity-30'
+                                : 'text-[var(--text)] group-hover:text-gold'
                                 }`}>
                                 {cat.name}
                               </h3>
@@ -772,7 +760,7 @@ export function DivisionProductsClient({
               const imageMap = CATEGORY_IMAGES[divisionSlug] || {}
               const fallbackImage = activeCategory.image || imageMap[activeCategory.slug] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&q=80'
               const fallbackImages = Array.isArray(fallbackImage) ? fallbackImage : [fallbackImage]
-              
+
               const categoryImages = (activeCategory.images && activeCategory.images.length > 0)
                 ? activeCategory.images
                 : fallbackImages
@@ -795,15 +783,15 @@ export function DivisionProductsClient({
             {/* Sub-categories */}
             {activeCategory.subCategories && activeCategory.subCategories.length > 0 && (
               <div className="border-b border-[var(--border)] bg-[var(--surface-card)]">
-                <div className="mx-auto max-w-[1560px] px-6 lg:px-12 py-6">
+                <div className="mx-auto max-w-[1560px] px-3 lg:px-12 py-6">
                   <p className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-muted)] mb-3">Sub-Categories</p>
                   <div className="flex flex-wrap gap-2">
                     {activeCategory.subCategories.map((sub) => (
                       <span
                         key={sub.id}
                         className={`px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider border transition-colors ${sub.status === 'active'
-                            ? 'border-gold/30 bg-gold/10 text-gold cursor-default'
-                            : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] opacity-50'
+                          ? 'border-gold/30 bg-gold/10 text-gold cursor-default'
+                          : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] opacity-50'
                           }`}
                       >
                         {sub.name}
@@ -827,7 +815,7 @@ export function DivisionProductsClient({
             />
 
             {/* Back to all button */}
-            <div className="mx-auto max-w-[1560px] px-6 lg:px-12 pb-14 flex items-center justify-between gap-4">
+            <div className="mx-auto max-w-[1560px] px-3 lg:px-12 pb-14 flex items-center justify-between gap-4">
               <button
                 onClick={() => updateFilters('all', null)}
                 className="flex items-center gap-2 border border-[var(--border)] bg-[var(--surface)] px-6 py-3 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)] hover:border-gold hover:text-gold transition-all duration-300 cursor-pointer"
@@ -841,7 +829,7 @@ export function DivisionProductsClient({
 
       {/* ── ENQUIRY CTA SECTION ── */}
       <section className="border-t border-[var(--border)] bg-[var(--surface)]">
-        <div className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mx-auto max-w-[1560px] py-12  flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">BULK ENQUIRY</span>
             <h3 className="mt-3 font-display text-3xl sm:text-4xl font-semibold text-[var(--text)]">
@@ -1029,7 +1017,7 @@ function ProductsGrid({
   const urlBrand = searchParams.get('brand') || 'all'
 
   return (
-    <section id="products-grid" className="mx-auto max-w-[1560px]  py-8 lg:px-12 border-t border-[var(--border)] scroll-mt-[70px]">
+    <section id="products-grid" className="mx-auto max-w-[1560px]  py-8  border-t border-[var(--border)] scroll-mt-[70px]">
       <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.4em] text-gold">{subheading}</span>

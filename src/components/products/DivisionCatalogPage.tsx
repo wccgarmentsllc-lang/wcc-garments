@@ -95,7 +95,7 @@ export async function DivisionCatalogPage({
       .select('*')
       .eq('division_slug', divisionSlug)
       .order('display_order', { ascending: true })
-      
+
     if (error) throw error
     if (data) {
       dbBrands = data
@@ -130,7 +130,7 @@ export async function DivisionCatalogPage({
   // Resolve brand display name from DB brands for breadcrumb
   const activeBrandName = initialBrandSlug
     ? (dbBrands as any[]).find((b) => b.slug === initialBrandSlug)?.name ||
-      initialBrandSlug.replace(/-/g, ' ')
+    initialBrandSlug.replace(/-/g, ' ')
     : null
 
   const breadcrumbSchema = {
@@ -203,10 +203,9 @@ export async function DivisionCatalogPage({
       />
 
       <div className="min-h-screen bg-[var(--bg)]">
-        <header className={` bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.09),transparent_40%),var(--bg-surface)] transition-all duration-300 ${
-          isFiltered ? 'pt-28 pb-6 md:pt-32 md:pb-8' : 'pt-28 pb-12 md:pt-36 md:pb-16'
-        }`}>
-          <div className="mx-auto max-w-[1560px] px-6 lg:px-12">
+        <header className={` bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.09),transparent_40%),var(--bg-surface)] transition-all duration-300 ${isFiltered ? 'pt-28 pb-6 md:pt-32 md:pb-8' : 'pt-28 pb-12 md:pt-36 md:pb-16'
+          }`}>
+          <div className="mx-auto max-w-[1560px] px-3 lg:px-12">
             <nav
               aria-label="Breadcrumb"
               className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-[var(--text-muted)]"
@@ -250,8 +249,8 @@ export async function DivisionCatalogPage({
                   </p>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-0 divide-x divide-[var(--border)] border border-[var(--border)] bg-[var(--bg)]/60 backdrop-blur-sm w-fit">
-                  <div className="px-5 py-3">
+                <div className="mt-10 grid grid-cols-2 md:flex md:flex-row border-l border-t border-[var(--border)] bg-[var(--bg)]/60 backdrop-blur-sm w-full md:w-fit">
+                  <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
                     <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                       {division.stat1Label}
                     </p>
@@ -259,7 +258,7 @@ export async function DivisionCatalogPage({
                       {division.stat1Value}
                     </p>
                   </div>
-                  <div className="px-5 py-3">
+                  <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
                     <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                       {division.stat2Label}
                     </p>
@@ -267,7 +266,7 @@ export async function DivisionCatalogPage({
                       {division.stat2Value}
                     </p>
                   </div>
-                  <div className="px-5 py-3">
+                  <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
                     <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                       {division.stat3Label}
                     </p>
@@ -275,7 +274,7 @@ export async function DivisionCatalogPage({
                       {division.stat3Value}
                     </p>
                   </div>
-                  <div className="px-5 py-3">
+                  <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
                     <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                       Products
                     </p>
@@ -290,7 +289,7 @@ export async function DivisionCatalogPage({
           </div>
         </header>
 
-        <section className="mx-auto max-w-[1560px] px-6 lg:px-12 lg:py-0">
+        <section className="mx-auto max-w-[1560px] px-3 lg:px-12 lg:py-0">
           <DivisionProductsClient
             products={mappedProducts}
             categories={divisionCategories}
@@ -303,7 +302,7 @@ export async function DivisionCatalogPage({
         </section>
 
         <section className="border-t border-[var(--border)] bg-[var(--bg-surface)]">
-          <div className="mx-auto max-w-[1560px] px-6 py-12 lg:px-12 lg:py-16">
+          <div className="mx-auto max-w-[1560px] px-3 py-12 lg:px-12 lg:py-16">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div className="md:col-span-2 lg:col-span-1">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold/80">
@@ -317,9 +316,8 @@ export async function DivisionCatalogPage({
                 </p>
                 <Link
                   href={`/contact?division=${divisionSlug}&source=division_catalog`}
-                  className={`mt-5 inline-flex items-center gap-2 border border-gold bg-gold px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors hover:bg-gold/90 ${
-                    isHouseholdsDivision ? 'text-white' : 'text-black'
-                  }`}
+                  className={`mt-5 inline-flex items-center gap-2 border border-gold bg-gold px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors hover:bg-gold/90 ${isHouseholdsDivision ? 'text-white' : 'text-black'
+                    }`}
                 >
                   Request a Quote
                 </Link>
@@ -364,7 +362,7 @@ export async function DivisionCatalogPage({
         </section>
 
         <section className="border-t border-[var(--border)]">
-          <div className="mx-auto max-w-[1560px] px-6 py-10 lg:px-12">
+          <div className="mx-auto max-w-[1560px] px-3 py-10 lg:px-12">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
               Also Browse
             </p>

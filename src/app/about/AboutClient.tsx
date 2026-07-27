@@ -7,76 +7,23 @@ import { GlobalPresence } from '@/components/home/GlobalPresence'
 import { MapPin, Target, Lightbulb, Users, ShieldCheck, Factory, Globe2, Layers } from 'lucide-react'
 import { useWebsiteContent } from '@/hooks/useWebsiteContent'
 
-const TIMELINE = [
-  { year: '2001', event: 'WCC Fashions founded in Bangalore, India.' },
-  { year: '2005', event: 'Expanded production to key textile hubs: Ahmedabad, Delhi, and Ludhiana.' },
-  { year: '2010', event: 'Strategic shift of Headquarters to Dubai, UAE for global export reach.' },
-  { year: '2014', event: 'Launched dedicated Uniforms & Workwear and Hospitality textile divisions.' },
-  { year: '2018', event: 'International expansion with production facilities in Bangladesh and China.' },
-  { year: '2022', event: 'Achieved major export milestones serving B2B clients across 50+ nations.' },
-  { year: '2026', event: 'Celebrating 25+ years of industrial-scale manufacturing excellence.' },
-]
-
-const LOCATIONS = [
-  { country: 'UAE', city: 'Dubai', role: 'Global Headquarters', detail: 'Strategic hub for sales, customer relations, and export operations to GCC, Africa, and beyond.' },
-  { country: 'India', city: '5 Production Centers', role: 'Primary Manufacturing', detail: 'Vertically integrated facilities across Ahmedabad, Ludhiana, Bangalore, Delhi, and Tirupur.' },
-  { country: 'Bangladesh', city: 'Dhaka', role: 'Bulk Production', detail: 'High-volume, cost-effective manufacturing facility ensuring competitive pricing.' },
-  { country: 'China', city: 'Guangzhou', role: 'Sourcing & Mfg', detail: 'Strategic sourcing operations and specialized raw material manufacturing.' },
-]
-
-const VALUES = [
-  { title: 'Quality Assurance', desc: 'Export-grade quality standards in every stitch and thread.' },
-  { title: 'Scale & Capability', desc: 'Industrial-scale manufacturing handling small programs to massive contracts.' },
-  { title: 'Global Reach', desc: 'Manufacturing across 3 countries, supplying to businesses in 50+ nations.' },
-  { title: 'Partnership Approach', desc: 'Building long-term relationships. We grow when you grow.' },
-]
-
-const DEFAULT_ABOUT = {
-  heroImage: "/images/about-hero.jpg",
-  heroSince: "Since 2001",
-  heroHeadingStart: "25+ Years of",
-  heroHeadingHighlight: "Manufacturing Excellence",
-  heroDescriptions: [
-    "Established over **30 years ago** as **WCC Garments Trading LLC**, and now known as **WCC Fashions**, the company has earned the trust of leading retailers across the GCC and Middle East through its commitment to quality, reliability, and long-standing industry partnerships. Building on this strong foundation, WCC Fashions has expanded beyond apparel into **home furnishings, household products, and premium home & car fragrances**, delivering comprehensive lifestyle solutions for the retail and hospitality sectors.",
-
-  ],
-  stats: [
-    { value: "50+", label: "Countries" },
-    { value: "7", label: "Production Facilities" },
-    { value: "6", label: "Specialized Divisions" },
-    { value: "25+", label: "Years Experience" }
-  ],
-  missionTitle: "Our Mission",
-  missionDesc: "To provide businesses worldwide with reliable, scalable, and high-quality textile manufacturing solutions. We strive to simplify global procurement for our B2B partners through vertical integration, multi-country production, and an unwavering commitment to export-grade quality.",
-  visionTitle: "Our Vision",
-  visionDesc: "To be the most trusted global manufacturing partner for corporate, hospitality, and retail sectors, recognized for our quarter-century of expertise, ethical production standards, and ability to deliver exceptional value at an industrial scale.",
-  footprintTitle: "Global Footprint",
-  footprintDesc: "7 international production and sourcing locations across 3 countries, strategically headquartered in Dubai.",
-  locations: LOCATIONS,
-  journeyTitle: "Our Journey",
-  journeyDesc: "From our origins in Bangalore in 2001 to our current status as a Dubai-headquartered global manufacturing group, our 25-year journey has been defined by continuous expansion, uncompromised quality, and strong B2B partnerships.",
-  timeline: TIMELINE,
-  valuesTitle: "Our Core Values",
-  values: VALUES,
-  galleryTitle: "Warehouse & Production Gallery",
-  galleryDesc: "A glimpse into our manufacturing excellence, warehouse operations, and global production capabilities.",
-  gallery: [
-    { image: "/images/gallery/ourgalleryimage.png", title: "PREMIUM MATERIALS", subtitle: "OUR PROCESS" },
-    { image: "/images/gallery/ourgalleryimage4.png", title: "PRECISE PRODUCTION", subtitle: "OUR PROCESS" },
-    { image: "/images/gallery/ourgalleryimage3.png", title: "QUALITY ASSURED", subtitle: "OUR PROCESS" },
-    { image: "/images/gallery/ourgalleryimage5.png", title: "PREMIUM MATERIALS", subtitle: "OUR PROCESS" }
-  ]
-}
-
 export default function AboutClient() {
-  const { data } = useWebsiteContent('about-page', DEFAULT_ABOUT)
+  const { data, loading } = useWebsiteContent('about-page')
+
+  if (loading || !data) {
+    return (
+      <div className="min-h-screen bg-[var(--bg)] mt-16 flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[var(--bg)] mt-16 font-sans">
       {/* Hero */}
-      <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[70vh] w-full flex items-center overflow-hidden pt-10">
+      <div className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[90vh] w-full flex items-end overflow-hidden pt-10">
         <Image
-          src={data.heroImage || DEFAULT_ABOUT.heroImage}
+          src={data.heroImage || ''}
           alt="WCC Fashions Manufacturing Facility"
           fill
           className="object-cover object-center"
@@ -92,17 +39,16 @@ export default function AboutClient() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-[50%] lg:w-[35%]"
+            className="w-full md:w-[50%] lg:w-[50%]"
           >
             <span className="font-display text-sm font-semibold tracking-widest text-gold uppercase mb-6 block font-mono">
               {data.heroSince}
             </span>
-            <h1 className="font-display text-5xl lg:text-5xl leading-[1.1] font-bold text-white mb-6">
-              {data.heroHeadingStart} <br />
-              <span className="font-bold text-gold">{data.heroHeadingHighlight}</span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl  font-bold text-white mb-6">
+             About WCC Fashions
             </h1>
             <div className="space-y-4 mb-10">
-              {(data.heroDescriptions ?? [data.heroDescription]).map((para: string, i: number) => (
+              {(data.heroDescriptions ?? [data.heroDescription]).filter(Boolean).map((para: string, i: number) => (
                 <p key={i} className="text-sm leading-relaxed text-neutral-300">
                   {para.split(/\*\*(.+?)\*\*/).map((chunk: string, j: number) =>
                     j % 2 === 1
@@ -117,7 +63,7 @@ export default function AboutClient() {
       </div>
 
       {/* Hero Stats Bar */}
-      <div className="bg-black py-10 border-b border-[var(--border)]">
+      <div className="bg-black py-10">
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex items-center gap-4 text-left lg:justify-center">
@@ -153,10 +99,10 @@ export default function AboutClient() {
       </div>
 
       {/* Mission & Vision */}
-      <div className="py-section border-b border-[var(--border)] relative overflow-hidden">
+      <div className="py-10 relative overflow-hidden">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[1px] bg-[var(--border)] hidden lg:block" />
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10 grid lg:grid-cols-2 gap-16 relative z-10">
-          <motion.div className="bg-[var(--bg)] p-8 border border-[var(--border)]" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.div className="bg-[var(--bg)] md:p-8 p-4 border border-[var(--border)]" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="flex items-center gap-4 mb-6">
               <Target className="w-8 h-8 text-gold" />
               <h2 className="font-display text-2xl font-semibold">{data.missionTitle}</h2>
@@ -165,7 +111,7 @@ export default function AboutClient() {
               {data.missionDesc}
             </p>
           </motion.div>
-          <motion.div className="bg-[var(--bg)] p-8 border border-[var(--border)]" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <motion.div className="bg-[var(--bg)] md:p-8 p-4 border border-[var(--border)]" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <div className="flex items-center gap-4 mb-6">
               <Lightbulb className="w-8 h-8 text-gold" />
               <h2 className="font-display text-2xl font-semibold">{data.visionTitle}</h2>
@@ -178,7 +124,7 @@ export default function AboutClient() {
       </div>
 
       {/* Global Manufacturing Footprint */}
-      <div className="bg-[var(--bg-surface)] py-section border-b border-[var(--border)]">
+      <div className="bg-[var(--bg-surface)] py-10">
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <RevealText>
@@ -208,7 +154,7 @@ export default function AboutClient() {
       <GlobalPresence />
 
       {/* Timeline */}
-      <div className="py-section bg-[var(--bg)] border-t border-[var(--border)] overflow-hidden">
+      <div className="py-10 bg-[var(--bg)] overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <RevealText>
@@ -293,7 +239,7 @@ export default function AboutClient() {
       </div>
 
       {/* Values */}
-      <div className="bg-[var(--bg-surface)] pt-16 lg:pt-20 pb-16 lg:pb-24 border-t border-[var(--border)]">
+      <div className="bg-[var(--bg-surface)] py-10 lg:py-10">
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10 text-center">
           <RevealText><h2 className="font-display text-display-sm font-semibold text-[var(--text)]">{data.valuesTitle}</h2></RevealText>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -311,7 +257,7 @@ export default function AboutClient() {
         </div>
       </div>
 
-      <div className="text-center mb-10 pt-10">
+      <div className="text-center py-10">
         <span className="font-mono text-[9px] font-bold pb-5 uppercase tracking-[0.3em] text-[var(--gold)] font-mono">
           GALLERY
         </span>
@@ -326,12 +272,12 @@ export default function AboutClient() {
       </div>
 
       {/* Our Process Gallery Section */}
-      <div className="pt-16 lg:pt-24 pb-16 lg:pb-20 overflow-hidden">
+      <div className=" lg:pt-16 pb-16 lg:pb-20 overflow-hidden">
         <div className="mx-auto max-w-[1440px] px-3 lg:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 auto-rows-[300px] md:auto-rows-[350px]">
             <div className="col-span-1 md:col-span-2 lg:col-span-1 relative rounded-xl overflow-hidden">
               <Image
-                src={data.gallery?.[3]?.image || DEFAULT_ABOUT.gallery[3].image}
+                src={data.gallery?.[3]?.image || ''}
                 alt={data.gallery?.[3]?.title || "Premium Materials"}
                 fill
                 className="object-cover"
@@ -339,12 +285,12 @@ export default function AboutClient() {
 
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
 
-              <div className="absolute top-8 left-8 right-8 z-10">
+              <div className="absolute top-32 left-8 right-8 z-10">
                 <span className="font-display text-[11px] font-bold tracking-[0.2em] text-neutral-300 uppercase mb-4 block font-mono">
                   {data.gallery?.[3]?.subtitle || "OUR PROCESS"}
                 </span>
 
-                <h2 className="font-display text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
+                <h2 className="font-display text-3xl md:text-4xl text-nowrap lg:text-5xl font-bold text-white leading-[1.1]">
                   {data.gallery?.[3]?.title?.split(' ')?.[0]}
                   <br />
                   {data.gallery?.[3]?.title?.split(' ')?.slice(1)?.join(' ')}
@@ -366,7 +312,7 @@ export default function AboutClient() {
               viewport={{ once: true }}
             >
               <Image
-                src={data.gallery?.[0]?.image || DEFAULT_ABOUT.gallery[0].image}
+                src={data.gallery?.[0]?.image || ''}
                 alt={data.gallery?.[0]?.title || "Premium Materials"}
                 fill
                 className="object-cover"
@@ -386,7 +332,7 @@ export default function AboutClient() {
               transition={{ delay: 0.1 }}
             >
               <Image
-                src={data.gallery?.[1]?.image || DEFAULT_ABOUT.gallery[1].image}
+                src={data.gallery?.[1]?.image || ''}
                 alt={data.gallery?.[1]?.title || "Precise Production"}
                 fill
                 className="object-cover"
@@ -406,7 +352,7 @@ export default function AboutClient() {
               transition={{ delay: 0.2 }}
             >
               <Image
-                src={data.gallery?.[2]?.image || DEFAULT_ABOUT.gallery[2].image}
+                src={data.gallery?.[2]?.image || ''}
                 alt={data.gallery?.[2]?.title || "Quality Assured"}
                 fill
                 className="object-cover"

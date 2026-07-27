@@ -144,7 +144,7 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
       </Link>
 
       {/* Text Info — flex-1 + justify-between pins footer to bottom */}
-      <div className="flex flex-1 flex-col justify-between p-4">
+      <div className="flex flex-1 flex-col justify-between py-4 px-0">
         <div>
           <div className="flex items-center justify-between gap-2">
             <span className="block text-[9px] font-medium uppercase tracking-[0.18em] text-gold/90">
