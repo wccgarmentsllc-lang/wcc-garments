@@ -254,7 +254,7 @@ export function BannerCarouselEditor({ initialData }: Props) {
                     isDark ? 'bg-black/20 hover:bg-black/40' : 'bg-white hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center gap-4 flex-1">
+                  <div className="flex items-center gap-4 flex-1 min-w-0">
                     {/* Thumbnail */}
                     <div className="relative w-24 h-16 bg-neutral-900 overflow-hidden border border-white/10 shrink-0">
                       {imgUrl ? (
@@ -288,7 +288,7 @@ export function BannerCarouselEditor({ initialData }: Props) {
                   </div>
 
                   {/* Actions & Reordering */}
-                  <div className="flex items-center gap-2 self-end md:self-center shrink-0">
+                  <div className="flex items-center flex-wrap gap-2 self-end md:self-center">
                     <button
                       onClick={() => handleMoveOrder(index, 'up')}
                       disabled={index === 0}
