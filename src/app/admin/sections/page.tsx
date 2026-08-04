@@ -105,7 +105,7 @@ export default function AdminSectionsPage() {
   const themeBgSidebar = isDark ? 'bg-white/5' : 'bg-white shadow-sm'
 
   const tabClass = (tab: ActiveSection) => `
-    flex items-center gap-3 w-full px-4 py-3.5 text-xs font-mono font-semibold uppercase tracking-wider text-left border-l-2 transition-all rounded-none
+    flex items-center gap-3 w-full px-4 py-3.5 text-xs font-mono font-semibold uppercase tracking-wide text-left border-l-2 transition-all rounded-none overflow-hidden
     ${activeTab === tab 
       ? 'bg-gold/10 text-gold border-gold font-bold shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]' 
       : isDark
@@ -140,63 +140,63 @@ export default function AdminSectionsPage() {
           </span>
           <button onClick={() => setActiveTab('bannerCarousel')} className={tabClass('bannerCarousel')}>
             <Sliders className="h-4 w-4 shrink-0" />
-            <span>0. Banner Carousel</span>
+            <span className="whitespace-nowrap truncate">0. Banner Carousel</span>
           </button>
           <button onClick={() => setActiveTab('hero')} className={tabClass('hero')}>
             <Layout className="h-4 w-4 shrink-0" />
-            <span>1. Hero Section</span>
+            <span className="whitespace-nowrap truncate">1. Hero Section</span>
           </button>
           <button onClick={() => setActiveTab('who')} className={tabClass('who')}>
             <Users className="h-4 w-4 shrink-0" />
-            <span>2. About Section</span>
+            <span className="whitespace-nowrap truncate">2. About Section</span>
           </button>
           <button onClick={() => setActiveTab('garment')} className={tabClass('garment')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>3. Division Cutouts (Garments)</span>
+            <span className="whitespace-nowrap truncate">3. Division Cutouts (Garments)</span>
           </button>
           <button onClick={() => setActiveTab('uniforms')} className={tabClass('uniforms')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>3.5 Uniforms Showcase</span>
+            <span className="whitespace-nowrap truncate">3.5 Uniforms Showcase</span>
           </button>
           <button onClick={() => setActiveTab('hospitality')} className={tabClass('hospitality')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>4. Hospitality Showcase</span>
+            <span className="whitespace-nowrap truncate">4. Hospitality Showcase</span>
           </button>
           <button onClick={() => setActiveTab('household')} className={tabClass('household')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>5. Household Showcase</span>
+            <span className="whitespace-nowrap truncate">5. Household Showcase</span>
           </button>
           <button onClick={() => setActiveTab('homeShowcase')} className={tabClass('homeShowcase')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>5.2 Home Showcase</span>
+            <span className="whitespace-nowrap truncate">5.2 Home Showcase</span>
           </button>
           <button onClick={() => setActiveTab('fragrance')} className={tabClass('fragrance')}>
             <Layers className="h-4 w-4 shrink-0" />
-            <span>5.5 Fragrance Showcase</span>
+            <span className="whitespace-nowrap truncate">5.5 Fragrance Showcase</span>
           </button>
           <button onClick={() => setActiveTab('bulk')} className={tabClass('bulk')}>
             <Sliders className="h-4 w-4 shrink-0" />
-            <span>6. Bulk Offer Banner</span>
+            <span className="whitespace-nowrap truncate">6. Bulk Offer Banner</span>
           </button>
           <button onClick={() => setActiveTab('global')} className={tabClass('global')}>
             <Settings className="h-4 w-4 shrink-0" />
-            <span>7. Contact & General</span>
+            <span className="whitespace-nowrap truncate">7. Contact & General</span>
           </button>
           <button onClick={() => setActiveTab('expansion')} className={tabClass('expansion')}>
             <TrendingUp className="h-4 w-4 shrink-0" />
-            <span>8. Future Expansion</span>
+            <span className="whitespace-nowrap truncate">8. Future Expansion</span>
           </button>
           <button onClick={() => setActiveTab('pipeline')} className={tabClass('pipeline')}>
             <FileText className="h-4 w-4 shrink-0" />
-            <span>9. Dubai Pipeline</span>
+            <span className="whitespace-nowrap truncate">9. Dubai Pipeline</span>
           </button>
           <button onClick={() => setActiveTab('newsletter')} className={tabClass('newsletter')}>
             <Mail className="h-4 w-4 shrink-0" />
-            <span>10. Newsletter Strip</span>
+            <span className="whitespace-nowrap truncate">10. Newsletter Strip</span>
           </button>
           <button onClick={() => setActiveTab('aboutPage')} className={tabClass('aboutPage')}>
             <Info className="h-4 w-4 shrink-0" />
-            <span>11. About Page Content</span>
+            <span className="whitespace-nowrap truncate">11. About Page Content</span>
           </button>
         </div>
 
