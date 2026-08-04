@@ -476,13 +476,13 @@ export function DivisionProductsClient({
                   onClick={() => updateFilters(null, b.slug)}
                   className="group relative flex flex-col overflow-hidden w-full text-left transition-all duration-500 cursor-pointer"
                 >
-                  <div className="w-full border-2 border-transparent group-hover:border-[var(--border)] flex flex-col bg-[var(--bg-surface)] overflow-hidden">
+                  <div className="w-full border-2 border-transparent  flex flex-col  overflow-hidden">
                     <div className="relative w-full aspect-[4/3] flex items-center justify-center">
                       <Image
                         src={b.brandImage}
                         fill
                         alt={`${b.name} logo`}
-                        className="object-fill transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-auto object-contain max-h-[180px] sm:max-h-[220px] border border-gray"
                       />
                     </div>
                   </div>
