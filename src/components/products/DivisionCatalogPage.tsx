@@ -105,7 +105,7 @@ export async function DivisionCatalogPage({
 
   const otherDivisions = DIVISIONS.filter((item) => item.slug !== divisionSlug)
 
-  const mappedProducts = products.map((product) => ({
+  const mappedProducts = products.map((product: any) => ({
     id: product.id,
     name: product.name,
     slug: product.slug,
@@ -164,7 +164,7 @@ export async function DivisionCatalogPage({
     description: division.metaDescription,
     url: `${SITE_CONFIG.url || 'https://wccfashions.com'}/products/${division.slug}`,
     numberOfItems: products.length,
-    itemListElement: products.map((product, index) => ({
+    itemListElement: products.map((product: any, index: number) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: product.name,

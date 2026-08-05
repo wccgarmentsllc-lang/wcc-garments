@@ -40,20 +40,30 @@ const division = DIVISIONS.find((d) => d.slug === 'garments')!
 const CATEGORIES = (division.categories ?? []) as GarmentCategory[]
 
 const CATEGORY_IMAGES: Record<string, string> = {
+  'shirts': '/images/formal-shirts.png',
   'formal-shirts': '/images/formal-shirts.png',
-  'blazers-suits': '/images/Blazers and suits.png',
-  'jeans-denims': '/images/jeans-denims.png',
+  't-shirts': '/images/polo tshirts.png',
   'polo-tshirts': '/images/polo tshirts.png',
+  'jeans': '/images/jeans-denims.png',
+  'jeans-denims': '/images/jeans-denims.png',
   'trousers': '/images/trousers.png',
+  'cargos': '/images/products/cargo_work_pants.png',
+  'track-pants': '/images/Blazers and suits.png',
+  'blazers-suits': '/images/Blazers and suits.png',
   'jackets': '/images/jackets.png',
 }
 
 const STYLE_COUNT: Record<string, string> = {
+  'shirts': '140+ Styles',
   'formal-shirts': '140+ Styles',
-  'blazers-suits': '80+ Styles',
-  'jeans-denims': '210+ Styles',
+  't-shirts': '320+ Styles',
   'polo-tshirts': '320+ Styles',
+  'jeans': '210+ Styles',
+  'jeans-denims': '210+ Styles',
   'trousers': '110+ Styles',
+  'cargos': '95+ Styles',
+  'track-pants': '85+ Styles',
+  'blazers-suits': '80+ Styles',
   'jackets': '95+ Styles',
 }
 
