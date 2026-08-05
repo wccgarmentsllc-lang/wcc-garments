@@ -116,6 +116,19 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
 }
 
 const CATEGORY_IMAGES: Record<string, Record<string, string>> = {
+  garments: {
+    'shirts': '/images/formal-shirts.png',
+    'formal-shirts': '/images/formal-shirts.png',
+    't-shirts': '/images/polo tshirts.png',
+    'polo-tshirts': '/images/polo tshirts.png',
+    'jeans': '/images/jeans-denims.png',
+    'jeans-denims': '/images/jeans-denims.png',
+    'trousers': '/images/trousers.png',
+    'cargos': '/images/products/cargo_work_pants.png',
+    'track-pants': '/images/Blazers and suits.png',
+    'blazers-suits': '/images/Blazers and suits.png',
+    'jackets': '/images/jackets.png',
+  },
   hospitality: {
     'barware': '/images/hos-1.png',
     'cookware': '/images/hos-2.png',
@@ -152,10 +165,23 @@ const CATEGORY_IMAGES: Record<string, Record<string, string>> = {
     'eau-de-parfum': '/images/fragrance.png',
     'private-label': '/images/fragrance.png',
     'raw-materials': '/images/fragrance.png',
-  }
+  },
 }
 
 const STYLE_COUNT: Record<string, Record<string, string>> = {
+  garments: {
+    'shirts': '140+ Styles',
+    'formal-shirts': '140+ Styles',
+    't-shirts': '320+ Styles',
+    'polo-tshirts': '320+ Styles',
+    'jeans': '210+ Styles',
+    'jeans-denims': '210+ Styles',
+    'trousers': '110+ Styles',
+    'cargos': '95+ Styles',
+    'track-pants': '85+ Styles',
+    'blazers-suits': '80+ Styles',
+    'jackets': '95+ Styles',
+  },
   hospitality: {
     'barware': '110+ Styles',
     'cookware': '80+ Styles',
@@ -222,6 +248,22 @@ export function DivisionProductsClient({
   const [catalogueState, setCatalogueState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [catalogueError, setCatalogueError] = useState('')
   const [isDescExpanded, setIsDescExpanded] = useState(false)
+  const [liveCategories, setLiveCategories] = useState(categories)
+
+  useEffect(() => {
+    setLiveCategories(categories)
+  }, [categories])
+
+  useEffect(() => {
+    fetch(`/api/categories?division=${divisionSlug}`, { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setLiveCategories(json.data)
+        }
+      })
+      .catch((err) => console.error('Failed to sync live categories:', err))
+  }, [divisionSlug])
 
   useEffect(() => {
     // Auto-scroll on initial load if filters are active
@@ -277,8 +319,7 @@ export function DivisionProductsClient({
   const urlCategory = searchParams.get('category') || initialCategorySlug || 'all'
   const urlBrand = searchParams.get('brand') || initialBrandSlug || 'all'
 
-  const activeCategory = categories.find((c) => c.slug === urlCategory) || null
-
+  const activeCategory = liveCategories.find((c) => c.slug === urlCategory) || null
   // Use DB brands if provided, otherwise fallback to hardcoded config
   const divisionBrands = dbBrands.length > 0
     ? dbBrands.map((b) => ({
@@ -621,12 +662,12 @@ export function DivisionProductsClient({
                     </div>
                   </div>
                   <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider">
-                    {categories.filter((c) => c.status === 'active').length} active · {categories.filter((c) => c.status === 'coming-soon').length} coming soon
+                    {liveCategories.filter((c) => c.status === 'active').length} active · {liveCategories.filter((c) => c.status === 'coming-soon').length} coming soon
                   </p>
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {categories.sort((a, b) => a.displayOrder - b.displayOrder).map((cat, index) => {
+                  {liveCategories.sort((a, b) => a.displayOrder - b.displayOrder).map((cat, index) => {
                     const status = cat.status as CatStatus
                     const cfg = STATUS_CONFIG[status] ?? STATUS_CONFIG['active']
                     const imageMap = CATEGORY_IMAGES[divisionSlug] || {}

@@ -23,6 +23,46 @@ export async function GET() {
     // 1. Seed Categories (Divisions)
     results.categories = []
     for (const div of DIVISIONS) {
+      const { data: existing } = await supabase
+        .from('categories')
+        .select('id, sub_categories')
+        .eq('slug', div.slug)
+        .single()
+
+      const existingSubCats = Array.isArray(existing?.sub_categories) ? existing.sub_categories : []
+      const imageMapBySlug: Record<string, { image?: string; subCatImageMap: Record<string, string> }> = {}
+      for (const oldCat of existingSubCats) {
+        if (oldCat.slug) {
+          const subMap: Record<string, string> = {}
+          const oldSubs = oldCat.sub_categories || oldCat.subCategories || []
+          for (const oldSub of oldSubs) {
+            if (oldSub.slug && oldSub.image) {
+              subMap[oldSub.slug] = oldSub.image
+            }
+          }
+          imageMapBySlug[oldCat.slug] = {
+            image: oldCat.image,
+            subCatImageMap: subMap,
+          }
+        }
+      }
+
+      const mergedCategories = div.categories.map((c: any) => {
+        const existingData = imageMapBySlug[c.slug]
+        const catImage = existingData?.image || c.image || ''
+        const rawSubs = c.subCategories || []
+        const mergedSubs = rawSubs.map((sub: any) => ({
+          ...sub,
+          image: existingData?.subCatImageMap[sub.slug] || sub.image || '',
+        }))
+        return {
+          ...c,
+          image: catImage,
+          subCategories: undefined,
+          sub_categories: mergedSubs,
+        }
+      })
+
       const payload = {
         name: div.name,
         slug: div.slug,
@@ -40,13 +80,9 @@ export async function GET() {
         stat2_value: div.stat2Value,
         stat3_label: div.stat3Label,
         stat3_value: div.stat3Value,
-        sub_categories: div.categories.map(c => ({
-          ...c,
-          subCategories: undefined,
-          sub_categories: c.subCategories || []
-        }))
+        sub_categories: mergedCategories,
       }
-      const { data: existing } = await supabase.from('categories').select('id').eq('slug', div.slug).single()
+
       if (existing) {
         await supabase.from('categories').update(payload).eq('slug', div.slug)
         results.categories.push({ slug: div.slug, action: 'updated' })
