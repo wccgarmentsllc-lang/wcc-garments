@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     // Fragrance
     'wholesale perfume manufacturer UAE', 'oud fragrance supplier Dubai', 'private label perfume UAE',
     // Trust
-    'WCC Fashions', 'Western Clothing Company UAE', 'Aanya Homecraft', 'Horeca24h',
+    'WCC Fashions', 'Western Clothing Company UAE', 'Hometra', 'Horeca24h',
   ],
 
   authors: [{ name: 'WCC Fashions LLC', url: BASE_URL }],

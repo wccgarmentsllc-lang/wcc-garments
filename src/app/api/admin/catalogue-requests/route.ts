@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest) {
       const proto = request.headers.get('x-forwarded-proto') || 'https'
       const baseUrl = `${proto}://${host}`
 
-      const brandName = reqData.brand_slug === 'horeca24h' ? 'Horeca24h' : 'Aanya Homecraft'
+      const brandName = reqData.brand_slug === 'horeca24h' ? 'Horeca24h' : 'Hometra'
       const catalogueType = reqData.brand_slug === 'horeca24h' ? 'Hospitality & Serveware' : 'Household & Cookware'
       const downloadLink = `${baseUrl}/api/catalogue-request/download?id=${reqData.id}`
 
