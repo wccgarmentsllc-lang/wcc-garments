@@ -281,72 +281,44 @@ export function Navbar() {
             >
               <div className="mx-auto max-w-[1440px] px-6 py-10 lg:px-12">
                 <div className="grid gap-10 lg:grid-cols-12">
-                  {/* Column 1: Core B2B Divisions */}
-                  <div className="lg:col-span-4 space-y-6">
+                  {/* Column 1: All 6 B2B Divisions */}
+                  <div className="lg:col-span-7 space-y-6">
                     <div className="border-b border-black/10 dark:border-white/10 pb-3 flex items-center gap-2">
                       <Layers className="h-4 w-4 text-gold shrink-0" />
                       <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
                         Global B2B Divisions
                       </span>
                     </div>
-                    <div className="space-y-4 font-sans text-xs">
+                    <div className="grid grid-cols-2 gap-3 font-sans text-xs">
                       {[
-                        { href: '/products/garments', icon: <Factory className="h-4 w-4" />, label: 'Garments Division', desc: 'Premium corporate shirts, twill trousers, and bespoke formalwear manufactured for global B2B export.', color: 'text-gold' },
-                        { href: '/products/households', icon: <Package className="h-4 w-4" />, label: 'Households Division', desc: 'Premium triply cookware, elegant cutlery, and artisanal wood serveware in collaboration with Aanya Homecraft.', color: 'text-amber-400' },
+                        { href: '/products/garments', icon: <Factory className="h-4 w-4" />, label: 'Garments', desc: 'Premium corporate shirts, twill trousers, and bespoke formalwear for global B2B export.', color: 'text-gold', tag: 'DIV-01' },
+                        { href: '/products/households', icon: <Package className="h-4 w-4" />, label: 'Households', desc: 'Premium triply cookware, elegant cutlery, and artisanal wood serveware with Hometra.', color: 'text-amber-400', tag: 'DIV-02' },
+                        { href: '/products/hospitality', icon: <Building2 className="h-4 w-4" />, label: 'Hospitality', desc: 'Finest B2B hospitality textiles and Horeca equipment for hotels and restaurants.', color: 'text-blue-400', tag: 'DIV-03' },
+                        { href: '/products/uniforms', icon: <Briefcase className="h-4 w-4" />, label: 'Uniforms', desc: 'Professional uniforms for every sector — hospitality, corporate, industrial.', color: 'text-emerald-400', tag: 'DIV-04' },
+                        { href: '/products/home', icon: <Home className="h-4 w-4" />, label: 'Home Textiles', desc: 'Luxury home textiles for retailers and distributors — bedding, cushions, and more.', color: 'text-purple-400', tag: 'DIV-05' },
+                        { href: '/products/fragrance', icon: <Sparkles className="h-4 w-4" />, label: 'Fragrance', desc: 'Authentic Arabian fragrances, private label ready for global distribution.', color: 'text-rose-400', tag: 'DIV-06' },
                       ].map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
                           onClick={() => setMegaMenuOpen(false)}
-                          className="group block rounded-none border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/5 p-5 transition-all hover:bg-gold/10 hover:border-gold/50 flex flex-col justify-between space-y-3 shadow-sm"
+                          className="group block rounded-none border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/5 p-4 transition-all hover:bg-gold/10 hover:border-gold/50 flex flex-col justify-between space-y-2 shadow-sm"
                         >
-                          <div className="flex items-center gap-3 font-body text-xs font-bold uppercase tracking-wider text-black dark:text-white group-hover:text-gold">
-                            <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 dark:bg-black border border-black/10 dark:border-white/10 group-hover:border-gold ${item.color}`}>{item.icon}</div>
-                            <span>{item.label}</span>
+                          <div className="flex items-center gap-2.5">
+                            <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-100 dark:bg-black border border-black/10 dark:border-white/10 group-hover:border-gold shrink-0 ${item.color}`}>{item.icon}</div>
+                            <div>
+                              <span className="font-mono text-[8px] text-black/40 dark:text-white/40 tracking-widest">{item.tag}</span>
+                              <div className="font-body text-[11px] font-bold uppercase tracking-wider text-black dark:text-white group-hover:text-gold transition-colors leading-tight">{item.label}</div>
+                            </div>
                           </div>
-                          <p className="text-black/60 dark:text-white/60 leading-relaxed text-[11px] font-light">{item.desc}</p>
+                          <p className="text-black/55 dark:text-white/55 leading-relaxed text-[10px] font-light">{item.desc}</p>
                         </Link>
                       ))}
                     </div>
                   </div>
 
-                  {/* Column 2: Top Selling Garments */}
-                  <div className="lg:col-span-4 space-y-6 lg:border-l lg:border-black/10 lg:dark:border-white/10 lg:pl-8">
-                    <div className="border-b border-black/10 dark:border-white/10 pb-3 flex items-center gap-2">
-                      <Flame className="h-4 w-4 text-gold shrink-0" />
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
-                        Top Selling Garments
-                      </span>
-                    </div>
-                    <div className="space-y-4">
-                      {getMenuProducts(garmentsItems, [
-                        { href: getProductHref('garments', 'egyptian-cotton-premium-shirts'), img: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400&q=80', alt: 'Premium Shirt', title: 'Egyptian Cotton Shirts', sub: '300TC / Bespoke corporate fits', moq: 'MOQ: 500 Pcs', badge: 'High Demand', badgeColor: 'text-gold bg-gold/10' },
-                        { href: getProductHref('garments', 'executive-velvet-blazer'), img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&q=80', alt: 'Velvet Blazer', title: 'Executive Velvet Blazer', sub: 'Italian cotton velvet blazers', moq: 'MOQ: 50 Units', badge: 'Bespoke Cut', badgeColor: 'text-blue-400 bg-blue-400/10' },
-                      ], 'garments').map((item) => (
-                        <Link key={item.href} href={item.href} onClick={() => setMegaMenuOpen(false)} className="group flex items-center gap-4 rounded-none border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/5 p-3 transition-all hover:border-gold hover:bg-black/[0.05] dark:hover:bg-white/10">
-                          {/* Pure White Background Container for Product Image */}
-                          <div className="relative h-14 w-14 flex-shrink-0 rounded-none overflow-hidden bg-white border border-neutral-200 p-0.5 shadow-sm">
-                            <div className="relative w-full h-full bg-white">
-                              <Image src={item.img} alt={item.alt} fill className="object-contain transition-transform group-hover:scale-110" />
-                            </div>
-                          </div>
-                          <div>
-                            <h5 className="font-body text-xs font-bold uppercase tracking-wider text-black dark:text-white group-hover:text-gold transition-colors">{item.title}</h5>
-                            <p className="text-[10px] text-black/50 dark:text-white/50 font-body mt-0.5">{item.sub}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className="text-[9px] font-mono text-gold font-semibold">{item.moq}</span>
-                              <span className={`inline-flex items-center text-[8px] font-body font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${item.badgeColor}`}>
-                                {item.badge}
-                              </span>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Column 3: Top Selling Households */}
-                  <div className="lg:col-span-4 space-y-6 lg:border-l lg:border-black/10 lg:dark:border-white/10 lg:pl-8">
+                  {/* Column 2: Top Selling Households */}
+                  <div className="lg:col-span-5 space-y-6 lg:border-l lg:border-black/10 lg:dark:border-white/10 lg:pl-8">
                     <div className="border-b border-black/10 dark:border-white/10 pb-3 flex items-center gap-2">
                       <Sparkles className="h-4 w-4 text-gold shrink-0" />
                       <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
@@ -355,7 +327,7 @@ export function Navbar() {
                     </div>
                     <div className="space-y-4">
                       {getMenuProducts(householdsItems, [
-                        { href: getProductHref('households', 'triply-stainless-steel-casserole'), img: '/images/hh-1.png', alt: 'Triply Casserole', title: 'Triply Casserole', sub: 'Aanya Homecraft premium cookware', moq: 'MOQ: 100 Pcs', badge: 'New Arrival', badgeColor: 'text-emerald-400 bg-emerald-400/10' },
+                        { href: getProductHref('households', 'triply-stainless-steel-casserole'), img: '/images/hh-1.png', alt: 'Triply Casserole', title: 'Triply Casserole', sub: 'Hometra premium cookware', moq: 'MOQ: 100 Pcs', badge: 'New Arrival', badgeColor: 'text-emerald-400 bg-emerald-400/10' },
                         { href: getProductHref('hospitality', 'hotel-bed-linen-collection'), img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80', alt: 'Bedding', title: 'Hotel Bed Linen Collection', sub: '400TC Combed Egyptian Cotton', moq: 'MOQ: 200 Sets', badge: 'Premium Tier', badgeColor: 'text-amber-400 bg-amber-400/10' },
                       ], 'households').map((item) => (
                         <Link key={item.href} href={item.href} onClick={() => setMegaMenuOpen(false)} className="group flex items-center gap-4 rounded-none border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/5 p-3 transition-all hover:border-gold hover:bg-black/[0.05] dark:hover:bg-white/10">
@@ -481,29 +453,32 @@ export function Navbar() {
                                 className="overflow-hidden"
                               >
                                 <div className="pb-3 pl-8 space-y-1">
-                                  <Link
-                                    href="/products/garments"
-                                    onClick={() => setIsMobileOpen(false)}
-                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
-                                  >
-                                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">Garments Division</span>
-                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
-                                  </Link>
-                                  <Link
-                                    href="/products/households"
-                                    onClick={() => setIsMobileOpen(false)}
-                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
-                                  >
-                                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">Households Division</span>
-                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
-                                  </Link>
+                                  {[
+                                    { href: '/products/garments', label: 'Garments', tag: 'DIV-01', color: 'group-hover:border-gold' },
+                                    { href: '/products/households', label: 'Households', tag: 'DIV-02', color: 'group-hover:border-amber-400' },
+                                    { href: '/products/hospitality', label: 'Hospitality', tag: 'DIV-03', color: 'group-hover:border-blue-400' },
+                                    { href: '/products/uniforms', label: 'Uniforms', tag: 'DIV-04', color: 'group-hover:border-emerald-400' },
+                                    { href: '/products/home', label: 'Home Textiles', tag: 'DIV-05', color: 'group-hover:border-purple-400' },
+                                    { href: '/products/fragrance', label: 'Fragrance', tag: 'DIV-06', color: 'group-hover:border-rose-400' },
+                                  ].map((div) => (
+                                    <Link
+                                      key={div.href}
+                                      href={div.href}
+                                      onClick={() => setIsMobileOpen(false)}
+                                      className={`group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 transition-colors ${div.color}`}
+                                    >
+                                      <span className="font-mono text-[8px] text-[var(--text-muted)] opacity-50 group-hover:opacity-80 transition-opacity shrink-0">{div.tag}</span>
+                                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">{div.label}</span>
+                                      <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all ml-auto" />
+                                    </Link>
+                                  ))}
                                   <Link
                                     href="/products"
                                     onClick={() => setIsMobileOpen(false)}
-                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors"
+                                    className="group flex items-center gap-3 py-2.5 border-l-2 border-[var(--border)] pl-4 hover:border-gold transition-colors mt-1"
                                   >
                                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] group-hover:text-gold transition-colors">All Products</span>
-                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all" />
+                                    <ArrowUpRight className="h-3 w-3 text-[var(--text-muted)] opacity-40 group-hover:text-gold group-hover:opacity-100 transition-all ml-auto" />
                                   </Link>
                                 </div>
                               </motion.div>

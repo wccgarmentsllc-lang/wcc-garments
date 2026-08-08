@@ -12,7 +12,7 @@ const DEFAULT_HOUSEHOLDS = {
   indicator: "OUR HOUSEHOLD DIVISION",
   headingStart: "Household & ",
   headingHighlight: "Kitchenware",
-  description: "Explore our premium kitchenware, culinary tools, and home essentials. In collaboration with Aanya Homecraft, we offer tri-ply cookware, artisan table serveware, and smart organization solutions for modern home and commercial kitchens.",
+  description: "Explore our premium kitchenware, culinary tools, and home essentials. In collaboration with Hometra, we offer tri-ply cookware, artisan table serveware, and smart organization solutions for modern home and commercial kitchens.",
   categories: [
     { name: 'Triply Cookware', slug: 'cookware', tagline: 'Professional triply cookware for healthier, faster and even cooking', count: '100+ MOQ', image: '/images/hh-1.png' },
     { name: 'Premium Cutlery', slug: 'cutlery', tagline: 'Elegant stainless steel cutlery for refined everyday dining', count: '250+ MOQ', image: '/images/hh-2.png' },

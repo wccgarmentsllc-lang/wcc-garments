@@ -49,7 +49,7 @@ async function run() {
   const backfill = [
     { slugs: ['treasure', 'vandegraff', 'tom-jack'], division: 'garments' },
     { slugs: ['horeca24h'], division: 'hospitality' },
-    { slugs: ['aanya-homecraft'], division: 'households' },
+    { slugs: ['hometra'], division: 'households' },
   ];
 
   for (const entry of backfill) {
