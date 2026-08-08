@@ -8,7 +8,7 @@ ALTER TABLE public.brands
 -- 2. Backfill existing known brands
 UPDATE public.brands SET division_slug = 'garments'   WHERE slug IN ('treasure', 'vandegraff', 'tom-jack');
 UPDATE public.brands SET division_slug = 'hospitality' WHERE slug IN ('horeca24h');
-UPDATE public.brands SET division_slug = 'households'  WHERE slug IN ('aanya-homecraft');
+UPDATE public.brands SET division_slug = 'households'  WHERE slug IN ('hometra');
 
 -- 3. Make the column NOT NULL now that rows are backfilled
 ALTER TABLE public.brands

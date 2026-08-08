@@ -67,7 +67,7 @@ export default function AdminCatalogueRequestsPage() {
   }
 
   const filteredRequests = requests.filter(req => {
-    const brandName = req.brand_slug === 'horeca24h' ? 'horeca24h' : 'aanya homecraft'
+    const brandName = req.brand_slug === 'horeca24h' ? 'horeca24h' : 'hometra'
     const matchSearch = req.name.toLowerCase().includes(search.toLowerCase()) ||
                         req.email.toLowerCase().includes(search.toLowerCase()) ||
                         (req.company && req.company.toLowerCase().includes(search.toLowerCase())) ||

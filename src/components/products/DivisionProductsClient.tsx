@@ -81,8 +81,8 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
   ],
   households: [
     {
-      slug: 'aanya-homecraft',
-      name: 'Aanya Homecraft',
+      slug: 'hometra',
+      name: 'Hometra',
       tagline: 'Artisanal Woodenware & High-Performance Cookware',
       desc: 'Premium tri-ply stainless steel cookware and handcrafted acacia wood serving bowls. Fusing traditional craftsmanship with modern kitchen utility.',
       moq: '100 units',
@@ -92,8 +92,8 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
       style: 'border-gold text-gold bg-gold/5',
       perfectFor: ['Premium Retailers', 'Kitchenware Distributors', 'Corporate Gifting', 'Modern Homes'],
       bgImage: '/images/hh-1.png',
-      logo: '/images/logo/aanyahomecraft.png',
-      brandImage: '/images/logo/aanyahomecraft.png',
+      logo: '/images/logo/hometra.png',
+      brandImage: '/images/logo/hometra.png',
     }
   ],
   home: [
@@ -583,7 +583,7 @@ export function DivisionProductsClient({
             {!activeBrand && urlCategory === 'all' ? null : renderCategoryFilterBar(activeBrand ? 'mb-6' : 'mb-8')}
 
             {/* Catalogue Request CTA Bar */}
-            {activeBrand && (activeBrand.slug === 'horeca24h' || activeBrand.slug === 'aanya-homecraft' || activeBrand.slug === 'vandegraff') && (
+            {activeBrand && (activeBrand.slug === 'horeca24h' || activeBrand.slug === 'hometra' || activeBrand.slug === 'vandegraff') && (
               <section className="mx-auto max-w-[1560px] sm:px-0 mb-8">
                 <div className="border border-dashed border-gold/30 bg-gold/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
                   <div className="flex items-center gap-3.5 w-full sm:w-auto">
@@ -591,19 +591,24 @@ export function DivisionProductsClient({
                       <BookOpen className="h-5 w-5 text-gold" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Request WCC {activeBrand.name} Catalogue</h4>
+                      <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Download WCC {activeBrand.name} Brochure</h4>
                       <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setIsCatalogueOpen(true)}
-                    className="relative w-full sm:w-auto shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
+                  <a
+                    href={
+                      activeBrand.slug === 'horeca24h' ? '/catelog/horeca.pdf' :
+                      activeBrand.slug === 'hometra' ? '/catelog/hometra.pdf' :
+                      `/catalogues/${activeBrand.slug}-catalogue.pdf`
+                    }
+                    download
+                    className="relative block text-center w-full sm:w-auto shrink-0 overflow-hidden bg-gold hover:bg-gold/90 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
                   >
                     <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
                       <div className="w-8 bg-white/20" />
                     </div>
-                    Request Catalogue
-                  </button>
+                    Download Brochure
+                  </a>
                 </div>
               </section>
             )}
