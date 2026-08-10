@@ -28,6 +28,20 @@ export interface BulkOffer {
   slideImages: string[];
 }
 
+export interface HeroSlide {
+  id: number | string;
+  tag: string;
+  titleLine1: string;
+  titleLine2: string;
+  highlightWord: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  image?: string;
+  desktopImage?: string;
+  mobileImage?: string;
+}
+
 export interface HeroCampaign {
   id: number | string;
   center: string;
@@ -38,7 +52,10 @@ export interface HeroCampaign {
 }
 
 export interface HeroConfig {
-  campaigns: HeroCampaign[];
+  autoPlay?: boolean;
+  interval?: number;
+  slides?: HeroSlide[];
+  campaigns?: HeroCampaign[];
 }
 
 export interface WhoWeAre {
