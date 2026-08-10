@@ -17,29 +17,60 @@ export const DEFAULT_BULK_OFFER = {
 }
 
 export const DEFAULT_HERO = {
-  campaigns: [
+  autoPlay: true,
+  interval: 5000,
+  slides: [
     {
       id: 1,
-      center: "/images/products/egyptian_cotton_shirt.png",
-      left: "/images/products/cargo_work_pants.png",
-      right: "/images/products/chef_uniform.png",
-      title: "Industrial Elegance",
-      tag: "Campaign 2026"
+      tag: "GARMENTS & APPAREL",
+      titleLine1: "Built for Brands.",
+      titleLine2: "Made for Scale.",
+      highlightWord: "Scale.",
+      description: "End-to-end garment manufacturing for fashion brands, retailers and global buyers.",
+      ctaText: "EXPLORE GARMENTS",
+      ctaLink: "/products/garments",
+      image: "/images/products/egyptian_cotton_shirt.png",
+      desktopImage: "/images/products/egyptian_cotton_shirt.png",
+      mobileImage: "/images/products/egyptian_cotton_shirt.png"
     },
     {
       id: 2,
-      center: "/images/products/hotel_bed_linen.png",
-      left: "/images/products/luxury_bath_towels.png",
-      right: "/images/products/egyptian_cotton_shirt.png",
-      title: "Hospitality & Bedding",
-      tag: "Luxury Suite"
+      tag: "HOSPITALITY & LINENS",
+      titleLine1: "Crafted for Luxury.",
+      titleLine2: "Engineered for Suites.",
+      highlightWord: "Suites.",
+      description: "High-thread-count Egyptian cotton linens, plush bath towels, and custom hotel room textiles.",
+      ctaText: "EXPLORE HOSPITALITY",
+      ctaLink: "/products/garments",
+      image: "/images/products/hotel_bed_linen.png",
+      desktopImage: "/images/products/hotel_bed_linen.png",
+      mobileImage: "/images/products/hotel_bed_linen.png"
     },
     {
       id: 3,
-      center: "/images/products/chef_uniform.png",
-      left: "/images/products/cargo_work_pants.png",
-      right: "/images/products/hotel_bed_linen.png",
-      title: "Professional Workwear",
+      tag: "UNIFORMS & WORKWEAR",
+      titleLine1: "Industrial Grade.",
+      titleLine2: "Precision Engineered.",
+      highlightWord: "Engineered.",
+      description: "Heavy-duty chef coats, security uniforms, and tactical corporate workwear built for daily endurance.",
+      ctaText: "EXPLORE WORKWEAR",
+      ctaLink: "/products/garments",
+      image: "/images/products/chef_uniform.png",
+      desktopImage: "/images/products/chef_uniform.png",
+      mobileImage: "/images/products/chef_uniform.png"
+    },
+    {
+      id: 4,
+      tag: "WHOLESALE & FABRICS",
+      titleLine1: "Global Supply Chain.",
+      titleLine2: "Direct OEM Capacity.",
+      highlightWord: "Capacity.",
+      description: "Delivering export-grade garments, custom bulk apparel, and private label solutions to 50+ countries.",
+      ctaText: "REQUEST QUOTATION",
+      ctaLink: "/contact",
+      image: "/images/bulkoffer/premium_hoodie.png",
+      desktopImage: "/images/bulkoffer/premium_hoodie.png",
+      mobileImage: "/images/bulkoffer/premium_hoodie.png"
     }
   ]
 }
