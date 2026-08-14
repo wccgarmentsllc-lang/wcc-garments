@@ -189,6 +189,12 @@ export default function NewProductPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!formData.brand_slug && formData.category_ids.length === 0) {
+      alert('Please select either a brand or at least one category, or both.')
+      return
+    }
+
     setSaving(true)
     
     try {
@@ -218,7 +224,7 @@ export default function NewProductPage() {
         featured: formData.featured,
         specifications,
         tags: formData.tags,
-        brand_slug: hasBrands ? formData.brand_slug : null
+        brand_slug: formData.brand_slug || null
       }
 
       const token = localStorage.getItem('wcc-admin-token') || ''
@@ -229,7 +235,7 @@ export default function NewProductPage() {
           ...formData,
           id: res.data.id,
           slug: res.data.slug || formData.slug,
-          brand_slug: hasBrands ? formData.brand_slug : null,
+          brand_slug: formData.brand_slug || null,
           category: formData.category_ids.length > 0 ? {
             id: formData.category_ids[0],
             division_id: formData.division_id,
@@ -422,8 +428,8 @@ export default function NewProductPage() {
                 return (
                   <>
                     <div>
-                      <label className={labelClass}>{formData.division_id} Brand Label {availableBrands.length > 0 ? '*' : ''}</label>
-                      <select name="brand_slug" value={formData.brand_slug} onChange={handleChange} className={inputClass} required={availableBrands.length > 0}>
+                      <label className={labelClass}>{formData.division_id} Brand Label</label>
+                      <select name="brand_slug" value={formData.brand_slug} onChange={handleChange} className={inputClass}>
                         <option value="">-- Select {formData.division_id} Brand --</option>
                         {availableBrands.map((b) => (
                           <option key={b.slug} value={b.slug}>{b.name}</option>
@@ -432,7 +438,7 @@ export default function NewProductPage() {
                     </div>
 
                     <div>
-                      <label className={labelClass}>Categories *</label>
+                      <label className={labelClass}>Categories</label>
                       {availableCategories.length > 0 ? (
                         <div className="space-y-2 max-h-48 overflow-y-auto p-3 border border-neutral-200 dark:border-white/10 rounded-xl bg-white dark:bg-black/60">
                           {availableCategories.map(c => (
@@ -462,7 +468,6 @@ export default function NewProductPage() {
                           onChange={(e) => setFormData(prev => ({ ...prev, category_ids: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }))} 
                           className={inputClass} 
                           placeholder="e.g. Bed Linen, Formal Shirts (comma separated)" 
-                          required 
                         />
                       )}
                     </div>
