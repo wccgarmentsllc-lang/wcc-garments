@@ -826,6 +826,33 @@ export function DivisionProductsClient({
               )
             })()}
 
+            {/* Category Brochure CTA Bar */}
+            <section className="mx-auto max-w-[1560px] px-3 lg:px-12 mt-8 mb-6">
+              <div className="border border-dashed border-blue-500/30 bg-blue-500/5 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 font-mono">
+                <div className="flex items-center gap-3.5 w-full sm:w-auto">
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 rounded-full bg-blue-500/10 items-center justify-center border border-blue-500/20">
+                    <BookOpen className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">
+                      DOWNLOAD WCC {activeCategory.name.toUpperCase()} BROCHURE
+                    </h4>
+                    <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                  </div>
+                </div>
+                <a
+                  href={`/catelog/${activeCategory.name.toUpperCase()}.pdf`}
+                  download
+                  className="relative block text-center w-full sm:w-auto shrink-0 overflow-hidden bg-blue-500 hover:bg-blue-600 text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-5 sm:px-6 py-3 sm:py-3.5 shadow-xl transition-all cursor-pointer group"
+                >
+                  <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]">
+                    <div className="w-8 bg-white/20" />
+                  </div>
+                  DOWNLOAD BROCHURE
+                </a>
+              </div>
+            </section>
+
             {/* Sub-categories */}
             {activeCategory.subCategories && activeCategory.subCategories.length > 0 && (
               <div className="border-b border-[var(--border)] bg-[var(--surface-card)]">
