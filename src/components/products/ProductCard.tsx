@@ -60,7 +60,7 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex w-full flex-col border border-[var(--border)] h-full"
+      className="group flex w-full min-w-0 flex-col border border-[var(--border)] h-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -82,18 +82,18 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
             src={product.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=85'}
             alt={product.name}
             fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] p-4"
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           />
 
           {/* Secondary Image on Hover */}
           {product.images && product.images.length > 1 && (
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out">
+            <div className="absolute inset-0 h-full w-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out bg-white">
               <Image
                 src={product.images[1]}
                 alt={`${product.name} secondary`}
                 fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.03] p-4"
                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
               />
             </div>
@@ -144,25 +144,25 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
       </Link>
 
       {/* Text Info — flex-1 + justify-between pins footer to bottom */}
-      <div className="flex flex-1 flex-col justify-between py-4 px-0 sm:px-2">
-        <div>
+      <div className="flex flex-1 flex-col justify-between py-4 px-3 sm:px-4">
+        <div className="overflow-hidden w-full">
           <div className="flex items-center justify-between gap-2">
-            <span className="block text-[9px] font-medium uppercase tracking-[0.18em] text-gold/90">
+            <span className="block text-[9px] font-medium uppercase tracking-[0.18em] text-gold/90 truncate">
               {product.division?.name || 'WCC DIVISION'}
             </span>
             {product.brand_slug && (
-              <span className="px-2 py-0.5 text-[8px] font-mono font-bold tracking-[0.15em] uppercase border border-[var(--border)] text-[var(--text-muted)] bg-[var(--bg)]">
+              <span className="px-2 py-0.5 text-[8px] font-mono font-bold tracking-[0.15em] uppercase border border-[var(--border)] text-[var(--text-muted)] bg-[var(--bg)] shrink-0">
                 {product.brand_name || product.brand_slug.replace(/-/g, ' ')}
               </span>
             )}
           </div>
 
-          <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text)] transition-colors duration-300 md:text-lg">
+          <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text)] transition-colors duration-300 md:text-lg line-clamp-2 break-words">
             {product.name}
           </h3>
 
           {product.short_description && (
-            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--text-muted)]">
+            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--text-muted)] break-all">
               {product.short_description}
             </p>
           )}
@@ -170,13 +170,13 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
 
         {/* Footer: always pinned at bottom */}
         <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3">
-          <span className="text-sm text-[var(--text-muted)] line-clamp-1 pr-2">
+          <span className="text-sm text-[var(--text-muted)] line-clamp-1 pr-2 break-all">
             {product.categories && product.categories.length > 0
               ? product.categories.map((c: any) => c.name).join(', ')
               : product.category?.name || 'Textile'}
           </span>
           {product.moq && (
-            <span className="border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] whitespace-nowrap">
+            <span className="border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] whitespace-nowrap shrink-0">
               MOQ {product.moq}
             </span>
           )}
