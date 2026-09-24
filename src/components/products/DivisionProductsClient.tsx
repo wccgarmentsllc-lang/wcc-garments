@@ -138,6 +138,9 @@ const CATEGORY_IMAGES: Record<string, Record<string, string>> = {
     'storage-serving': '/images/hos-5.png',
     'storage': '/images/hos-5.png',
     'serving': '/images/hos-3.png',
+    'hotel-linen': '/images/products/hotel_bed_linen.png',
+    'chef-uniforms': '/images/products/chef_uniform.png',
+    'buffet-serveware': '/images/hos-3.png',
   },
   households: {
     'cookware': '/images/hh-1.png',
@@ -191,6 +194,9 @@ const STYLE_COUNT: Record<string, Record<string, string>> = {
     'storage-serving': '90+ Styles',
     'storage': '90+ Styles',
     'serving': '60+ Styles',
+    'hotel-linen': '120+ Styles',
+    'chef-uniforms': '90+ Styles',
+    'buffet-serveware': '110+ Styles',
   },
   households: {
     'cookware': '80+ Styles',

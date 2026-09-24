@@ -27,9 +27,18 @@ const CATEGORY_ALIASES: Record<string, Record<string, string>> = {
     cookwareproducts: 'cookware',
     servingtools: 'serving-tools',
     servingkitchentools: 'serving-tools',
+    kitchentools: 'serving-tools',
     cutlery: 'cutlery',
     tablecutlery: 'cutlery',
     storageserving: 'storage-serving',
+    storage: 'storage-serving',
+    serving: 'storage-serving',
+    hotellinen: 'hotel-linen',
+    hotelbedlinen: 'hotel-linen',
+    bedlinen: 'hotel-linen',
+    chefuniforms: 'chef-uniforms',
+    chefuniform: 'chef-uniforms',
+    buffetserveware: 'buffet-serveware',
   },
 }
 

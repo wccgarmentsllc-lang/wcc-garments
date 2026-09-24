@@ -82,6 +82,9 @@ export const DIVISIONS = [
       { id: 'HOS-CAT-09', name: 'Serving & Kitchen Tools', slug: 'serving-tools', status: 'active' as const, displayOrder: 3, image: '/images/hos-3.png', subCategories: [] },
       { id: 'HOS-CAT-10', name: 'Table Cutlery', slug: 'cutlery', status: 'active' as const, displayOrder: 4, image: '/images/hos-4.png', subCategories: [] },
       { id: 'HOS-CAT-11', name: 'Storage & Serving', slug: 'storage-serving', status: 'active' as const, displayOrder: 5, image: '/images/hos-5.png', subCategories: [] },
+      { id: 'HOS-CAT-12', name: 'Hotel Bed Linen', slug: 'hotel-linen', status: 'active' as const, displayOrder: 6, image: '/images/products/hotel_bed_linen.png', subCategories: [] },
+      { id: 'HOS-CAT-13', name: 'Chef Uniforms', slug: 'chef-uniforms', status: 'active' as const, displayOrder: 7, image: '/images/products/chef_uniform.png', subCategories: [] },
+      { id: 'HOS-CAT-14', name: 'Buffet & Serveware', slug: 'buffet-serveware', status: 'active' as const, displayOrder: 8, image: '/images/hos-3.png', subCategories: [] },
     ],
   },
 

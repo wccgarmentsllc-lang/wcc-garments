@@ -145,10 +145,12 @@ export const DEFAULT_HOSPITALITY = {
   categories: [
     { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ MOQ', image: '/images/hos-1.png' },
     { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ MOQ', image: '/images/hos-2.png' },
-    { name: 'Kitchen Tools', slug: 'kitchen-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
+    { name: 'Serving & Kitchen Tools', slug: 'serving-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
     { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ MOQ', image: '/images/hos-4.png' },
-    { name: 'Storage', slug: 'storage', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' },
-    { name: 'Serving', slug: 'serving', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ MOQ', image: '/images/hos-3.png' }
+    { name: 'Storage & Serving', slug: 'storage-serving', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' },
+    { name: 'Hotel Bed Linen', slug: 'hotel-linen', tagline: 'Luxury 600TC Egyptian cotton hotel sheets & bedding', count: '100+ MOQ', image: '/images/products/hotel_bed_linen.png' },
+    { name: 'Chef Uniforms', slug: 'chef-uniforms', tagline: 'Professional double-breasted chef coats & aprons', count: '100+ MOQ', image: '/images/products/chef_uniform.png' },
+    { name: 'Buffet & Serveware', slug: 'buffet-serveware', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ MOQ', image: '/images/hos-3.png' }
   ]
 }
 
@@ -268,66 +270,6 @@ export const DEFAULT_FRAGRANCE = {
     { name: 'Eau de Parfum', slug: 'eau-de-parfum', tagline: 'Long lasting French and oriental designer perfumes', count: '60+ MOQ', image: '/images/fragrance.png' },
     { name: 'Private Label', slug: 'private-label', tagline: 'Custom perfume bottle design, outer box and labels', count: '20+ MOQ', image: '/images/fragrance.png' },
     { name: 'Raw Materials', slug: 'raw-materials', tagline: 'High-grade perfume ingredients, essential oils and bases', count: '15+ MOQ', image: '/images/fragrance.png' }
-  ]
-}
-
-import type { BannerCarouselConfig } from '@/types/banner'
-
-export const DEFAULT_BANNER_CAROUSEL: BannerCarouselConfig = {
-  enabled: true,
-  autoPlay: true,
-  autoPlayInterval: 5000,
-  showIndicators: true,
-  showArrows: true,
-  banners: [
-    {
-      id: "banner-1",
-      title: "INDUSTRIAL ELEGANCE & GLOBAL FASHION",
-      subtitle: "Bespoke Garments, Corporate Uniforms & Luxury Hotel Textiles",
-      description: "Delivering world-class garment manufacturing, custom corporate uniforms, and hospitality linens across 50+ countries from our Dubai headquarters.",
-      image: {
-        desktop: "/images/products/egyptian_cotton_shirt.png",
-        mobile: "/images/products/egyptian_cotton_shirt.png"
-      },
-      badge: "CAMPAIGN 2026",
-      ctaText: "EXPLORE COLLECTION",
-      ctaLink: "/products/garments",
-      active: true,
-      displayOrder: 1,
-      theme: "dark" as const
-    },
-    {
-      id: "banner-2",
-      title: "PREMIUM HOSPITALITY & BEDDING SOLUTIONS",
-      subtitle: "ISO 9001:2015 Certified Commercial Hotel Supply",
-      description: "Plush ring-spun cotton bath towels, 600TC Egyptian cotton sheets, and elegant table linens crafted for world-class hotel suites.",
-      image: {
-        desktop: "/images/products/hotel_bed_linen.png",
-        mobile: "/images/products/hotel_bed_linen.png"
-      },
-      badge: "LUXURY SUITE",
-      ctaText: "HOSPITALITY CATALOG",
-      ctaLink: "/products/garments",
-      active: true,
-      displayOrder: 2,
-      theme: "dark" as const
-    },
-    {
-      id: "banner-3",
-      title: "BULK GARMENT ORDERS & OEM CONTRACTS",
-      subtitle: "Direct Factory Shipping with Custom Branding",
-      description: "Large-scale clothing production for international brands, wholesalers, and commercial buyers with strict quality benchmarks.",
-      image: {
-        desktop: "/images/bulkoffer/premium_hoodie.png",
-        mobile: "/images/bulkoffer/premium_hoodie.png"
-      },
-      badge: "FACTORY DIRECT",
-      ctaText: "REQUEST QUOTATION",
-      ctaLink: "/contact",
-      active: true,
-      displayOrder: 3,
-      theme: "dark" as const
-    }
   ]
 }
 

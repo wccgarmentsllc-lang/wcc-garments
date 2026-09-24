@@ -12,7 +12,6 @@ import { useThemeContext } from '@/context/ThemeContext'
 const ADMIN_LINKS = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard, badge: '' },
   { name: 'Website Content', href: '/admin/sections', icon: Layers, badge: '' },
-  { name: 'Banner Carousel', href: '/admin/banners', icon: Sliders, badge: 'New' },
   { name: 'Products', href: '/admin/products', icon: Package, badge: '' },
   { name: 'Brands', href: '/admin/brands', icon: Award, badge: '' },
   { name: 'Categories', href: '/admin/categories', icon: FolderOpen, badge: '' },

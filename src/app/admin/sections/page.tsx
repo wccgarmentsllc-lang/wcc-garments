@@ -18,7 +18,6 @@ import { ExpansionEditor } from './components/ExpansionEditor'
 import { DubaiPipelineEditor } from './components/DubaiPipelineEditor'
 import { NewsletterEditor } from './components/NewsletterEditor'
 import { AboutPageEditor } from './components/AboutPageEditor'
-import { BannerCarouselEditor } from './components/BannerCarouselEditor'
 
 import {
   DEFAULT_BULK_OFFER,
@@ -33,19 +32,17 @@ import {
   DEFAULT_ABOUT,
   DEFAULT_UNIFORMS,
   DEFAULT_HOME_SHOWCASE,
-  DEFAULT_FRAGRANCE,
-  DEFAULT_BANNER_CAROUSEL
+  DEFAULT_FRAGRANCE
 } from './defaults'
 
-type ActiveSection = 'global' | 'bulk' | 'hero' | 'who' | 'garment' | 'hospitality' | 'household' | 'uniforms' | 'homeShowcase' | 'fragrance' | 'expansion' | 'pipeline' | 'newsletter' | 'aboutPage' | 'bannerCarousel'
+type ActiveSection = 'global' | 'bulk' | 'hero' | 'who' | 'garment' | 'hospitality' | 'household' | 'uniforms' | 'homeShowcase' | 'fragrance' | 'expansion' | 'pipeline' | 'newsletter' | 'aboutPage'
 
 export default function AdminSectionsPage() {
-  const [activeTab, setActiveTab] = useState<ActiveSection>('bannerCarousel')
+  const [activeTab, setActiveTab] = useState<ActiveSection>('hero')
 
   const [siteConfig, setSiteConfig] = useState<any>(null)
   const [bulkOffer, setBulkOffer] = useState<any>(null)
   const [hero, setHero] = useState<any>(null)
-  const [bannerCarousel, setBannerCarousel] = useState<any>(null)
   const [whoWeAre, setWhoWeAre] = useState<any>(null)
   const [garments, setGarments] = useState<any>(null)
   const [households, setHouseholds] = useState<any>(null)
@@ -76,7 +73,6 @@ export default function AdminSectionsPage() {
         setSiteConfig(getSec('site_config', contentStore.getSiteConfig()))
         setBulkOffer(getSec('bulk-offer', DEFAULT_BULK_OFFER))
         setHero(getSec('hero', DEFAULT_HERO))
-        setBannerCarousel(getSec('banner-carousel', DEFAULT_BANNER_CAROUSEL))
         setWhoWeAre(getSec('who-we-are', DEFAULT_WHO_WE_ARE))
         setGarments(getSec('garments-showcase', DEFAULT_GARMENTS))
         setHouseholds(getSec('households-showcase-v2', DEFAULT_HOUSEHOLDS))
@@ -138,10 +134,6 @@ export default function AdminSectionsPage() {
           <span className={`px-3 font-mono text-[9px] font-bold uppercase tracking-[0.2em] block mb-2 ${themeTextMuted}`}>
             Section Nav Matrix
           </span>
-          <button onClick={() => setActiveTab('bannerCarousel')} className={tabClass('bannerCarousel')}>
-            <Sliders className="h-4 w-4 shrink-0" />
-            <span className="whitespace-nowrap truncate">0. Banner Carousel</span>
-          </button>
           <button onClick={() => setActiveTab('hero')} className={tabClass('hero')}>
             <Layout className="h-4 w-4 shrink-0" />
             <span className="whitespace-nowrap truncate">1. Hero Section</span>
@@ -268,7 +260,6 @@ export default function AdminSectionsPage() {
                 />
               )}
 
-              {activeTab === 'bannerCarousel' && bannerCarousel && <BannerCarouselEditor initialData={bannerCarousel} />}
               {activeTab === 'expansion' && expansion && <ExpansionEditor initialData={expansion} />}
               {activeTab === 'pipeline' && dubaiPipeline && <DubaiPipelineEditor initialData={dubaiPipeline} />}
               {activeTab === 'newsletter' && newsletter && <NewsletterEditor initialData={newsletter} />}

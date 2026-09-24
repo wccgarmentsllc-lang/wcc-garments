@@ -299,35 +299,171 @@ export function HeroEditor({ initialData }: Props) {
               />
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            {/* CTA Division & Category Preset Selector */}
+            <div className="space-y-3">
               <div>
-                <label className={labelClass}>CTA Button Text</label>
-                <input
-                  type="text"
-                  value={slide.ctaText}
-                  onChange={(e) => {
-                    const updated = [...slides]
-                    updated[sIdx].ctaText = e.target.value
-                    setSlides(updated)
-                  }}
-                  placeholder="EXPLORE GARMENTS"
-                  className={inputClass}
-                />
-              </div>
-
-              <div>
-                <label className={labelClass}>CTA Button Link URL</label>
-                <input
-                  type="text"
+                <label className={labelClass}>Quick Target Division & Category Preset</label>
+                <select
                   value={slide.ctaLink}
                   onChange={(e) => {
-                    const updated = [...slides]
-                    updated[sIdx].ctaLink = e.target.value
-                    setSlides(updated)
+                    const val = e.target.value
+                    if (val === 'custom') return
+                    const allPresets = [
+                      // Garments
+                      { link: '/products/garments', text: 'EXPLORE GARMENTS' },
+                      { link: '/products/garments?category=shirts', text: 'EXPLORE SHIRTS' },
+                      { link: '/products/garments?category=t-shirts', text: 'EXPLORE T-SHIRTS' },
+                      { link: '/products/garments?category=jeans', text: 'EXPLORE JEANS' },
+                      { link: '/products/garments?category=trousers', text: 'EXPLORE TROUSERS' },
+                      { link: '/products/garments?category=cargos', text: 'EXPLORE CARGOS' },
+                      { link: '/products/garments?category=track-pants', text: 'EXPLORE TRACK PANTS' },
+                      // Households
+                      { link: '/products/households', text: 'EXPLORE HOUSEHOLDS' },
+                      { link: '/products/households?category=cookware', text: 'EXPLORE COOKWARE' },
+                      { link: '/products/households?category=cutlery', text: 'EXPLORE CUTLERY' },
+                      { link: '/products/households?category=table-top', text: 'EXPLORE SERVEWARE' },
+                      { link: '/products/households?category=utility', text: 'EXPLORE ORGANIZERS' },
+                      // Hospitality
+                      { link: '/products/hospitality', text: 'EXPLORE HOSPITALITY' },
+                      { link: '/products/hospitality?category=barware', text: 'EXPLORE BARWARE' },
+                      { link: '/products/hospitality?category=cookware', text: 'EXPLORE COOKWARE' },
+                      { link: '/products/hospitality?category=kitchen-tools', text: 'EXPLORE KITCHEN TOOLS' },
+                      { link: '/products/hospitality?category=cutlery', text: 'EXPLORE CUTLERY' },
+                      { link: '/products/hospitality?category=storage', text: 'EXPLORE STORAGE' },
+                      { link: '/products/hospitality?category=serving', text: 'EXPLORE SERVING' },
+                      { link: '/products/hospitality?category=towels', text: 'EXPLORE TOWELS' },
+                      { link: '/products/hospitality?category=fragrance', text: 'EXPLORE FRAGRANCE' },
+                      { link: '/products/hospitality?category=hotel-linen', text: 'EXPLORE HOTEL LINEN' },
+                      { link: '/products/hospitality?category=chef-uniforms', text: 'EXPLORE CHEF UNIFORMS' },
+                      // Uniforms
+                      { link: '/products/uniforms', text: 'EXPLORE UNIFORMS' },
+                      { link: '/products/uniforms?category=corporate-workwear', text: 'EXPLORE WORKWEAR' },
+                      { link: '/products/uniforms?category=security-attire', text: 'EXPLORE SECURITY ATTIRE' },
+                      { link: '/products/uniforms?category=industrial-ppe', text: 'EXPLORE INDUSTRIAL & PPE' },
+                      { link: '/products/uniforms?category=chef-kitchen-wear', text: 'EXPLORE CHEF WEAR' },
+                      { link: '/products/uniforms?category=protective-aprons', text: 'EXPLORE APRONS' },
+                      { link: '/products/uniforms?category=medical-scrubs', text: 'EXPLORE MEDICAL SCRUBS' },
+                      // Home
+                      { link: '/products/home', text: 'EXPLORE HOME LINEN' },
+                      { link: '/products/home?category=bedsheets', text: 'EXPLORE BEDSETS' },
+                      { link: '/products/home?category=bath-textiles', text: 'EXPLORE BATH TOWELS' },
+                      { link: '/products/home?category=luxury-throws', text: 'EXPLORE LUXURY THROWS' },
+                      { link: '/products/home?category=table-linen', text: 'EXPLORE TABLE LINEN' },
+                      // Fragrance
+                      { link: '/products/fragrance', text: 'EXPLORE FRAGRANCE' },
+                      { link: '/products/fragrance?category=arabian-oud', text: 'EXPLORE ARABIAN OUD' },
+                      { link: '/products/fragrance?category=bakhoor-incense', text: 'EXPLORE BAKHOOR' },
+                      { link: '/products/fragrance?category=eau-de-parfum', text: 'EXPLORE EAU DE PARFUM' },
+                      { link: '/products/fragrance?category=private-label', text: 'EXPLORE PRIVATE LABEL' },
+                      { link: '/products/fragrance?category=raw-materials', text: 'EXPLORE RAW MATERIALS' },
+                      // Contact
+                      { link: '/contact', text: 'REQUEST QUOTATION' },
+                    ]
+                    const match = allPresets.find(p => p.link === val)
+                    if (match) {
+                      const updated = [...slides]
+                      updated[sIdx].ctaText = match.text
+                      updated[sIdx].ctaLink = match.link
+                      setSlides(updated)
+                    }
                   }}
-                  placeholder="/products/garments"
                   className={inputClass}
-                />
+                >
+                  <option value="custom">-- Custom / Manual Entry --</option>
+                  
+                  <optgroup label="👔 Garments Division">
+                    <option value="/products/garments">All Garments (EXPLORE GARMENTS)</option>
+                    <option value="/products/garments?category=shirts">Shirts (EXPLORE SHIRTS)</option>
+                    <option value="/products/garments?category=t-shirts">T-Shirts (EXPLORE T-SHIRTS)</option>
+                    <option value="/products/garments?category=jeans">Jeans (EXPLORE JEANS)</option>
+                    <option value="/products/garments?category=trousers">Trousers (EXPLORE TROUSERS)</option>
+                    <option value="/products/garments?category=cargos">Cargos (EXPLORE CARGOS)</option>
+                    <option value="/products/garments?category=track-pants">Track Pants (EXPLORE TRACK PANTS)</option>
+                  </optgroup>
+
+                  <optgroup label="🍳 Households & Kitchenware">
+                    <option value="/products/households">All Households (EXPLORE HOUSEHOLDS)</option>
+                    <option value="/products/households?category=cookware">Triply Cookware (EXPLORE COOKWARE)</option>
+                    <option value="/products/households?category=cutlery">Premium Cutlery (EXPLORE CUTLERY)</option>
+                    <option value="/products/households?category=table-top">Table & Serveware (EXPLORE SERVEWARE)</option>
+                    <option value="/products/households?category=utility">Storage & Organizers (EXPLORE ORGANIZERS)</option>
+                  </optgroup>
+
+                  <optgroup label="🏨 Hospitality Division">
+                    <option value="/products/hospitality">All Hospitality (EXPLORE HOSPITALITY)</option>
+                    <option value="/products/hospitality?category=barware">Barware Products (EXPLORE BARWARE)</option>
+                    <option value="/products/hospitality?category=cookware">Cookware Products (EXPLORE COOKWARE)</option>
+                    <option value="/products/hospitality?category=kitchen-tools">Kitchen Tools (EXPLORE KITCHEN TOOLS)</option>
+                    <option value="/products/hospitality?category=cutlery">Table Cutlery (EXPLORE CUTLERY)</option>
+                    <option value="/products/hospitality?category=storage">Storage (EXPLORE STORAGE)</option>
+                    <option value="/products/hospitality?category=serving">Serving (EXPLORE SERVING)</option>
+                    <option value="/products/hospitality?category=towels">Towels & Linens (EXPLORE TOWELS)</option>
+                    <option value="/products/hospitality?category=fragrance">Fragrance & Amenities (EXPLORE FRAGRANCE)</option>
+                  </optgroup>
+
+                  <optgroup label="🛡️ Uniforms & Workwear">
+                    <option value="/products/uniforms">All Uniforms (EXPLORE UNIFORMS)</option>
+                    <option value="/products/uniforms?category=corporate-workwear">Corporate Workwear (EXPLORE WORKWEAR)</option>
+                    <option value="/products/uniforms?category=security-attire">Security Attire (EXPLORE SECURITY ATTIRE)</option>
+                    <option value="/products/uniforms?category=industrial-ppe">Industrial & PPE (EXPLORE INDUSTRIAL & PPE)</option>
+                    <option value="/products/uniforms?category=chef-kitchen-wear">Chef & Kitchen Wear (EXPLORE CHEF WEAR)</option>
+                    <option value="/products/uniforms?category=protective-aprons">Protective Aprons (EXPLORE APRONS)</option>
+                    <option value="/products/uniforms?category=medical-scrubs">Medical & Scrubs (EXPLORE MEDICAL SCRUBS)</option>
+                  </optgroup>
+
+                  <optgroup label="🛏️ Home Textiles Division">
+                    <option value="/products/home">All Home Linens (EXPLORE HOME LINEN)</option>
+                    <option value="/products/home?category=bedsheets">Bedsheets (EXPLORE BEDSETS)</option>
+                    <option value="/products/home?category=bath-textiles">Bath Textiles (EXPLORE BATH TOWELS)</option>
+                    <option value="/products/home?category=luxury-throws">Luxury Throws (EXPLORE LUXURY THROWS)</option>
+                    <option value="/products/home?category=table-linen">Table Linen (EXPLORE TABLE LINEN)</option>
+                  </optgroup>
+
+                  <optgroup label="✨ Fragrance Division">
+                    <option value="/products/fragrance">All Fragrances (EXPLORE FRAGRANCE)</option>
+                    <option value="/products/fragrance?category=arabian-oud">Arabian Oud (EXPLORE ARABIAN OUD)</option>
+                    <option value="/products/fragrance?category=bakhoor-incense">Bakhoor & Incense (EXPLORE BAKHOOR)</option>
+                    <option value="/products/fragrance?category=eau-de-parfum">Eau de Parfum (EXPLORE EAU DE PARFUM)</option>
+                    <option value="/products/fragrance?category=private-label">Private Label (EXPLORE PRIVATE LABEL)</option>
+                    <option value="/products/fragrance?category=raw-materials">Raw Materials (EXPLORE RAW MATERIALS)</option>
+                  </optgroup>
+
+                  <optgroup label="📞 General Enquiries">
+                    <option value="/contact">Contact Page (REQUEST QUOTATION)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className={labelClass}>CTA Button Text</label>
+                  <input
+                    type="text"
+                    value={slide.ctaText}
+                    onChange={(e) => {
+                      const updated = [...slides]
+                      updated[sIdx].ctaText = e.target.value
+                      setSlides(updated)
+                    }}
+                    placeholder="EXPLORE GARMENTS"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div>
+                  <label className={labelClass}>CTA Button Link URL</label>
+                  <input
+                    type="text"
+                    value={slide.ctaLink}
+                    onChange={(e) => {
+                      const updated = [...slides]
+                      updated[sIdx].ctaLink = e.target.value
+                      setSlides(updated)
+                    }}
+                    placeholder="/products/garments"
+                    className={inputClass}
+                  />
+                </div>
               </div>
             </div>
 
