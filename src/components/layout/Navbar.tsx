@@ -162,12 +162,9 @@ export function Navbar() {
                 sizes="48px"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col justify-center">
               <span className="font-poppins font-bold text-black dark:text-white tracking-widest text-[13px]">
                 {config.name.toUpperCase()}
-              </span>
-              <span className="font-poppins text-[7px] font-medium uppercase tracking-[0.40em] text-gold/80">
-                {displayFullName}
               </span>
             </div>
           </Link>
@@ -396,7 +393,7 @@ export function Navbar() {
               {/* Title Section inside drawer */}
               <div className="relative z-10 flex items-center justify-between px-6 pt-6 pb-4 border-b border-[var(--border)]">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-[9px] font-bold text-gold uppercase tracking-[0.25em]">{displayFullName}</span>
+                  <span className="font-mono text-[9px] font-bold text-gold uppercase tracking-[0.25em]">{config.name.toUpperCase()}</span>
                 </div>
                 <div className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-wider text-[var(--text-muted)]">
                   <Globe className="h-3 w-3 text-gold" />
