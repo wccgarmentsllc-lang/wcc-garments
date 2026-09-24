@@ -19,7 +19,7 @@ export default function HomePage() {
       <div className="fixed inset-0 z-0">
         <HeroSection />
       </div>
-      <main className="relative z-20 mx-auto max-w-[1440px] px-0 mt-[100vh]">    
+      <main className="relative z-20 w-full px-0 mt-[100vh] bg-[var(--bg)] shadow-2xl">    
           <WhyChooseUs/>   
           <DivisionsCarousel />
           <BulkOfferBanner />
