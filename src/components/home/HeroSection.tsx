@@ -93,7 +93,7 @@ export function HeroSection(): JSX.Element | null {
   const mobileImgSrc = slide.mobileImage || slide.desktopImage || slide.image;
 
   return (
-    <section className="relative w-full h-screen min-h-screen bg-[#08080a] text-white overflow-hidden flex items-center justify-center select-none pt-10">
+    <section className="relative w-full h-[100dvh] min-h-[100dvh] md:h-screen md:min-h-screen bg-[#08080a] text-white overflow-hidden flex items-center justify-center select-none pt-12 md:pt-10">
       {/* Full Section Background Image Layer */}
       {(desktopImgSrc || mobileImgSrc) && (
         <div className="absolute inset-0 z-0">
@@ -134,7 +134,7 @@ export function HeroSection(): JSX.Element | null {
       )}
 
       {/* Main Container */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 flex flex-col justify-end md:justify-center h-full pb-5 sm:pb-24 md:py-0">
+      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-12 md:px-16 flex flex-col justify-end md:justify-center h-full pb-8 sm:pb-24 md:py-0">
         {/* Left Side: Content Text */}
         <div className="max-w-2xl flex flex-col justify-end md:justify-center items-start text-left">
           <AnimatePresence mode="wait">
@@ -144,12 +144,12 @@ export function HeroSection(): JSX.Element | null {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="space-y-6 w-full"
+              className="space-y-2.5 sm:space-y-4 md:space-y-6 w-full"
             >
               {/* Category Tag Line */}
               {slide.tag && (
-                <div className="flex flex-col items-start gap-2">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.45em] text-gold">
+                <div className="flex flex-col items-start gap-1 sm:gap-2">
+                  <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.35em] sm:tracking-[0.45em] text-gold">
                     {slide.tag}
                   </span>
                 </div>
@@ -157,10 +157,10 @@ export function HeroSection(): JSX.Element | null {
 
               {/* Main Headline */}
               {(slide.titleLine1 || slide.titleLine2) && (
-                <h1 className="font-sans font-medium text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight text-white">
+                <h1 className="font-sans font-medium text-2xl sm:text-4xl lg:text-6xl leading-[1.15] sm:leading-[1.08] tracking-tight text-white">
                   {slide.titleLine1 && <span className="block">{slide.titleLine1}</span>}
                   {slide.titleLine2 && (
-                    <span className="block mt-1">
+                    <span className="block mt-0.5 sm:mt-1">
                       {renderHighlightedTitle(slide.titleLine2, slide.highlightWord || "")}
                     </span>
                   )}
@@ -169,22 +169,22 @@ export function HeroSection(): JSX.Element | null {
 
               {/* Description */}
               {slide.description && (
-                <p className="font-sans text-gray-300 text-sm sm:text-base leading-relaxed max-w-xl">
+                <p className="font-sans text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-xl line-clamp-2 sm:line-clamp-3 md:line-clamp-none">
                   {slide.description}
                 </p>
               )}
 
               {/* Action CTA Button */}
               {slide.ctaText && (
-                <div className="pt-2">
+                <div className="pt-1 sm:pt-2">
                   <Link
                     href={slide.ctaLink || "#"}
-                    className="inline-flex items-center gap-3 px-7 py-3.5 border border-[#3b82f6]/60 hover:border-gold bg-black/40 text-white hover:bg-blue-600 font-mono text-xs font-bold tracking-[0.18em] uppercase transition-all duration-300 group rounded-none"
+                    className="inline-flex items-center gap-2.5 sm:gap-3 px-5 py-2.5 sm:px-7 sm:py-3.5 border border-[#3b82f6]/60 hover:border-gold bg-black/50 text-white hover:bg-blue-600 font-mono text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.18em] uppercase transition-all duration-300 group rounded-none backdrop-blur-sm shadow-lg"
                   >
                     <span>{slide.ctaText}</span>
-                    <span className="relative flex h-4 w-4 items-center justify-center">
-                      <ArrowUpRight className="absolute h-4 w-4 text-[#3b82f6] group-hover:text-gold transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:scale-75 group-hover:translate-x-2" />
-                      <ArrowRight className="absolute h-4 w-4 text-[#3b82f6] group-hover:text-white opacity-0 scale-75 -translate-x-2 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0" />
+                    <span className="relative flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center">
+                      <ArrowUpRight className="absolute h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#3b82f6] group-hover:text-gold transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:scale-75 group-hover:translate-x-2" />
+                      <ArrowRight className="absolute h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#3b82f6] group-hover:text-white opacity-0 scale-75 -translate-x-2 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-0" />
                     </span>
                   </Link>
                 </div>
