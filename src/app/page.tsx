@@ -15,9 +15,11 @@ import { WhyChooseUs } from '@/components/home/WhyChooseUs'
 
 export default function HomePage() {
   return (
-    <div className="relative w-full bg-[#08080a] text-white">
-      <HeroSection />
-      <main className="relative z-20 mx-auto max-w-[1440px] px-0">    
+    <>
+      <div className="fixed inset-0 z-0">
+        <HeroSection />
+      </div>
+      <main className="relative z-20 mx-auto max-w-[1440px] px-0 mt-[100vh]">    
           <WhyChooseUs/>   
           <DivisionsCarousel />
           <BulkOfferBanner />
@@ -31,6 +33,6 @@ export default function HomePage() {
           <EnquiryConsole />
           <SEOFAQ />
       </main>
-    </div>
+    </>
   )
 }
