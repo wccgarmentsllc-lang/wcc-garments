@@ -338,7 +338,6 @@ export function Navbar() {
                             <h5 className="font-body text-xs font-bold uppercase tracking-wider text-black dark:text-white group-hover:text-gold transition-colors">{item.title}</h5>
                             <p className="text-[10px] text-black/50 dark:text-white/50 font-body mt-0.5">{item.sub}</p>
                             <div className="flex items-center gap-2 mt-1">
-                              <span className="text-[9px] font-mono text-gold font-semibold">{item.moq}</span>
                               <span className={`inline-flex items-center text-[8px] font-body font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${item.badgeColor}`}>
                                 {item.badge}
                               </span>
@@ -662,7 +661,6 @@ export function Navbar() {
                           <div className="min-w-0">
                             <h4 className="font-semibold text-sm text-neutral-900 dark:text-white group-hover:text-gold truncate transition-colors">{product.name}</h4>
                             <p className="text-xs text-neutral-500 dark:text-white/50 capitalize font-mono mt-0.5">{product.division?.name || product.division || ''} · {product.category?.name || product.category || ''}</p>
-                            <span className="inline-block font-mono text-[10px] text-gold font-bold mt-1">MOQ: {product.moq || '500 Pcs'}</span>
                           </div>
                         </Link>
                       )

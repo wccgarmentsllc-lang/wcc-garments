@@ -239,12 +239,6 @@ export default function ProductDetailClient({
                   <p className="mt-1 text-sm font-medium text-[var(--text)]">{categoryName}</p>
                 </div>
                 <div className="border border-[var(--border)] bg-[var(--bg)]/60 px-4 py-3">
-                  <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-muted)]">MOQ</p>
-                  <p className="mt-1 text-sm font-medium text-[var(--text)]">
-                    {product.moq || 'On request'}
-                  </p>
-                </div>
-                <div className="border border-[var(--border)] bg-[var(--bg)]/60 px-4 py-3 sm:col-span-2">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-muted)]">
                     Lead Time
                   </p>

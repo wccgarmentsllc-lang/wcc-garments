@@ -175,11 +175,7 @@ export function ProductCard({ product, index = 0, coverColor = '#ffffff', divisi
               ? product.categories.map((c: any) => c.name).join(', ')
               : product.category?.name || 'Textile'}
           </span>
-          {product.moq && (
-            <span className="border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--text-muted)] whitespace-nowrap shrink-0">
-              MOQ {product.moq}
-            </span>
-          )}
+          {/* MOQ badge hidden during launch */}
         </div>
       </div>
     </motion.div>
