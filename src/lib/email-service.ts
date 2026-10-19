@@ -8,13 +8,30 @@ const getResendClient = () => {
   return new Resend(key)
 }
 
-// Gmail SMTP transporter initializer
-const getGmailTransporter = () => {
+// SMTP transporter initializer (Supports Hostinger, custom SMTP, or Gmail fallback)
+const getSmtpTransporter = () => {
   const user = process.env.EMAIL_USER
   const pass = process.env.EMAIL_APP_PASSWORD
 
   if (!user || !pass || user === 'placeholder_email_user') {
     return null
+  }
+
+  // If host is explicitly set (e.g. smtp.hostinger.com) or user has a domain email
+  const host = process.env.EMAIL_HOST || (user.includes('@gmail.com') ? undefined : 'smtp.hostinger.com')
+  const port = Number(process.env.EMAIL_PORT) || 465
+  const secure = process.env.EMAIL_SECURE !== undefined ? process.env.EMAIL_SECURE === 'true' : port === 465
+
+  if (host) {
+    return nodemailer.createTransport({
+      host,
+      port,
+      secure,
+      auth: {
+        user,
+        pass,
+      },
+    })
   }
 
   return nodemailer.createTransport({
@@ -51,26 +68,27 @@ export async function sendEmail({ to, subject, html, attachments }: SendEmailPar
       console.log(`Email dispatched via Resend to: ${recipients.join(', ')}`)
       return true
     } catch (resendError) {
-      console.error('Resend delivery failed. Trying Gmail SMTP fallback...', resendError)
+      console.error('Resend delivery failed. Trying SMTP fallback...', resendError)
     }
   }
 
-  // Try 2: Gmail SMTP (Developer / Small-business fallback)
-  const gmailTransporter = getGmailTransporter()
-  if (gmailTransporter) {
+  // Try 2: SMTP (Hostinger / Custom SMTP / Gmail fallback)
+  const smtpTransporter = getSmtpTransporter()
+  if (smtpTransporter) {
     try {
       const recipientString = recipients.join(', ')
-      await gmailTransporter.sendMail({
-        from: `"WCC Platform Support" <${process.env.EMAIL_USER}>`,
+      const fromName = process.env.EMAIL_FROM_NAME || 'WCC Fashions'
+      await smtpTransporter.sendMail({
+        from: `"${fromName}" <${process.env.EMAIL_USER || 'info@wccfashions.com'}>`,
         to: recipientString,
         subject,
         html,
         attachments,
       })
-      console.log(`Email dispatched via Gmail SMTP to: ${recipientString}`)
+      console.log(`Email dispatched via SMTP to: ${recipientString}`)
       return true
-    } catch (gmailError) {
-      console.error('Gmail SMTP delivery failed:', gmailError)
+    } catch (smtpError) {
+      console.error('SMTP delivery failed:', smtpError)
     }
   }
 
