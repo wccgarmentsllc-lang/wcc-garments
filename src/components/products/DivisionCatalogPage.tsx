@@ -250,14 +250,17 @@ export async function DivisionCatalogPage({
                 </div>
 
                 <div className="mt-10 grid grid-cols-2 md:flex md:flex-row border-l border-t border-[var(--border)] bg-[var(--bg)]/60 backdrop-blur-sm w-full md:w-fit">
-                  <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
-                    <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                  <Link
+                    href={`/contact?source=division-header&division=${encodeURIComponent(division.name)}&intent=order-guidance`}
+                    className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)] group hover:bg-gold/5 transition-colors"
+                  >
+                    <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)] group-hover:text-gold transition-colors">
                       {division.stat1Label}
                     </p>
-                    <p className="mt-0.5 text-base font-semibold text-[var(--text)]">
-                      {division.stat1Value}
+                    <p className="mt-0.5 text-base font-semibold text-[var(--text)] group-hover:text-gold transition-colors flex items-center gap-1">
+                      {division.stat1Value} <span className="text-xs text-gold">→</span>
                     </p>
-                  </div>
+                  </Link>
                   <div className="px-4 sm:px-5 py-3 border-r border-b border-[var(--border)]">
                     <p className="text-[9px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
                       {division.stat2Label}

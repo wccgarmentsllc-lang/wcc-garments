@@ -246,6 +246,22 @@ export default function ProductDetailClient({
                     {product.lead_time || 'As per production schedule'}
                   </p>
                 </div>
+                <div className="border border-[var(--border)] bg-[var(--bg)]/60 px-4 py-3 sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-gold font-mono font-semibold">
+                      Order Guidance
+                    </p>
+                    <p className="mt-0.5 text-xs text-[var(--text-muted)]">
+                      Flexible quantities tailored to your business scale. Contact us and our team will guide you.
+                    </p>
+                  </div>
+                  <Link
+                    href={`/contact?interest=${encodeURIComponent(product.name)}&source=product-detail&intent=request-quote`}
+                    className="shrink-0 text-[11px] font-semibold uppercase tracking-wider text-gold hover:underline inline-flex items-center gap-1"
+                  >
+                    Reach Out To Us →
+                  </Link>
+                </div>
               </div>
 
               {Object.keys(specs).length > 0 && (

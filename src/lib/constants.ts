@@ -27,7 +27,7 @@ export const DIVISIONS = [
     keywords: ['wholesale garments manufacturer UAE', 'bulk t-shirt manufacturer Dubai', 'cotton shirts wholesale UAE', 'garment factory Dubai', 'polo shirt bulk order UAE', 'formal shirts wholesale Dubai', 'B2B garment supplier UAE', 'custom garment manufacturer Middle East', 'blazer manufacturer UAE', 'corporate wear bulk Dubai'],
     heroHeading: 'Premium Garments. Precision-Built for Global Wholesale.',
     heroSubtitle: 'From cotton formal shirts to velvet blazers — crafted for large-scale B2B buyers across 50+ countries.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '12–25 Days',
     stat3Label: 'Export QC', stat3Value: 'Grade A',
     categories: [
@@ -51,7 +51,7 @@ export const DIVISIONS = [
     keywords: ['Hometra UAE', 'wholesale kitchenware Dubai', 'triply cookware bulk order', 'cutlery supplier UAE', 'wooden serveware wholesale', 'kitchen organizers bulk Dubai', 'B2B home essentials UAE', 'hotel kitchenware supplier Middle East'],
     heroHeading: 'Premium Cookware & Kitchen Essentials at Scale.',
     heroSubtitle: 'Triply stainless steel cookware, premium cutlery, artisan wood serveware, and smart organizers — manufactured in collaboration with Hometra.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '10–20 Days',
     stat3Label: 'Brand Partner', stat3Value: 'Hometra',
     categories: [
@@ -73,7 +73,7 @@ export const DIVISIONS = [
     keywords: ['hotel linen supplier UAE', 'hospitality uniform manufacturer Dubai', 'Horeca24h UAE', 'commercial kitchenware bulk Dubai', 'hotel cutlery supplier UAE', 'restaurant cookware wholesale', 'barware wholesale UAE', 'hotel buffet serving tools'],
     heroHeading: 'Finest B2B Hospitality Textiles & Horeca Equipment.',
     heroSubtitle: 'From 5-star hotel linens to Horeca24h professional cookware, cutlery, barware, and buffet serving tools — outfitting global hospitality.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '12–20 Days',
     stat3Label: 'Brand Partner', stat3Value: 'Horeca24h',
     categories: [
@@ -99,7 +99,7 @@ export const DIVISIONS = [
     keywords: ['uniform supplier Dubai', 'workwear manufacturer UAE', 'corporate uniform bulk order', 'security uniform supplier UAE', 'industrial workwear Dubai', 'hotel staff uniform manufacturer', 'safety uniform UAE', 'bulk uniform order Middle East', 'tactical uniform supplier', 'B2B uniform factory Dubai'],
     heroHeading: 'Professional Uniforms for Every Sector.',
     heroSubtitle: 'From industrial cargo wear to tactical security suites — bulk uniform solutions engineered for performance and compliance.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '15–30 Days',
     stat3Label: 'Sectors', stat3Value: '10+',
     categories: [
@@ -123,7 +123,7 @@ export const DIVISIONS = [
     keywords: ['home linen wholesale UAE', 'bedsheet manufacturer Dubai', 'bath towel bulk order UAE', 'home textile supplier Middle East', 'luxury throws wholesale', 'cotton bedding manufacturer UAE', 'wholesale home furnishing textiles', 'cashmere blanket bulk supplier', 'ring spun towel manufacturer Dubai', 'B2B home linen distributor'],
     heroHeading: 'Luxury Home Textiles for Retailers & Distributors.',
     heroSubtitle: 'Premium bedsheets, plush bath towels, and cashmere throws — built for bulk retail and private-label distribution.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '10–30 Days',
     stat3Label: 'Thread Count', stat3Value: 'Up to 600TC',
     categories: [
@@ -171,7 +171,7 @@ export const DIVISIONS = [
     keywords: ['wholesale perfume manufacturer UAE', 'oud fragrance supplier Dubai', 'private label perfume UAE', 'bakhoor supplier wholesale', 'Arabian fragrance manufacturer', 'Eau de Parfum bulk order', 'incense wholesale UAE', 'fragrance raw material supplier Dubai', 'luxury perfume B2B UAE', 'custom fragrance manufacturer Middle East'],
     heroHeading: 'Authentic Arabian Fragrances. Private Label Ready.',
     heroSubtitle: 'Oud, Bakhoor, Eau de Parfum — crafted in the UAE for retail chains, duty-free operators, and private label buyers worldwide.',
-    stat1Label: 'Supply Model', stat1Value: 'B2B Wholesale',
+    stat1Label: 'Orders', stat1Value: 'Contact Us',
     stat2Label: 'Lead Time', stat2Value: '10–16 Days',
     stat3Label: 'Label Options', stat3Value: 'Private Label',
     categories: [

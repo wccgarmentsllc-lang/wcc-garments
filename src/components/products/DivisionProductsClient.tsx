@@ -595,7 +595,7 @@ export function DivisionProductsClient({
 
                     <div className="grid grid-cols-3 gap-3 md:flex md:flex-wrap md:gap-6 pt-2">
                       {[
-                        { label: 'Supply Model', value: 'B2B Wholesale', gold: false },
+                        { label: 'Orders', value: 'Contact Us', gold: false },
                         { label: 'Lead Time', value: '12-18 Days', mobileValue: '12-18 Days', gold: false },
                         { label: 'Perfect For', value: activeBrand.perfectFor.slice(0, 3).join(', '), mobileValue: activeBrand.perfectFor[0], gold: true },
                       ].map((item) => (

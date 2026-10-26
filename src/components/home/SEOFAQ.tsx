@@ -15,8 +15,8 @@ const FAQ_ITEMS: FAQItem[] = [
     answer: "Western Clothing Company (WCC Fashions LLC) is widely regarded as the best garments wholesale team and leading B2B apparel manufacturer in Dubai, UAE. Established in 2001, we provide end-to-end vertical manufacturing solutions for cotton formal shirts, polo t-shirts, denims, blazers, and custom corporate wear, supplying premium clothing programs to businesses across 50+ countries worldwide."
   },
   {
-    question: "What are your order requirements for custom clothing manufacturing and wholesale in Dubai?",
-    answer: "For bulk garments and custom corporate uniform programs, WCC Fashions offers flexible B2B ordering tailored to your brand scale. Whether you need custom premium fashion collections, corporate uniforms, or hotel and household supplies, our commercial production lines support scalable wholesale programs with competitive tiered pricing."
+    question: "What are your minimum order requirements for custom manufacturing and wholesale?",
+    answer: "We do not enforce rigid order minimums upfront. Every client and project scale is unique. In case you need guidance on order quantities or production slots, simply reach out to us or contact our sales team — we will guide you directly with customized options and wholesale pricing."
   },
   {
     question: "Do you supply wholesale hotel linen and uniforms in the GCC region?",
