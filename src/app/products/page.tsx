@@ -203,7 +203,7 @@ export default async function ProductsHubPage() {
           <div className="mx-auto max-w-[1560px] px-3 py-10 lg:px-12 bg-[var(--bg-surface)] ">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { label: 'Quote-Based Pricing', desc: 'No public pricing. MOQ-tiered quotes provided within 24 hrs.' },
+                { label: 'Quote-Based Pricing', desc: 'No public pricing. Volume-tiered quotes provided within 24 hrs.' },
                 { label: 'Export-Grade QC', desc: 'Every batch passes multi-stage quality inspection before dispatch.' },
                 { label: 'Custom Branding', desc: 'Private label, woven labels, embroidery and packaging available.' },
                 { label: 'Global Logistics', desc: 'We ship to 50+ countries — CIF, FOB, EXW terms available.' },

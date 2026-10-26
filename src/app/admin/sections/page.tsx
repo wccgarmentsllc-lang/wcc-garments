@@ -228,7 +228,7 @@ export default function AdminSectionsPage() {
                   initialData={hospitality} 
                   sectionId="hospitality-showcase-v2"
                   title="6.5 Hospitality Manufacturing Showcase"
-                  subtitle="Configure active hospitality items, description parameters, MOQ values, and card images"
+                  subtitle="Configure active hospitality items, description parameters, badge values, and card images"
                   matrixTitle="Hospitality Categories Matrix (5 Portrait Cards)"
                 />
               )}
@@ -237,7 +237,7 @@ export default function AdminSectionsPage() {
                   initialData={households} 
                   sectionId="households-showcase-v2"
                   title="6. Household Manufacturing Showcase"
-                  subtitle="Configure active household items, description parameters, MOQ values, and card images"
+                  subtitle="Configure active household items, description parameters, badge values, and card images"
                   matrixTitle="Household Categories Matrix (4 Cinematic Cards)"
                 />
               )}

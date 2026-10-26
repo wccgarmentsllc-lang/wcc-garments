@@ -130,10 +130,10 @@ export const DEFAULT_HOUSEHOLDS = {
   headingHighlight: "Kitchenware",
   description: "Explore our premium kitchenware, culinary tools, and home essentials. In collaboration with Hometra, we offer tri-ply cookware, artisan table serveware, and smart organization solutions for modern home and commercial kitchens.",
   categories: [
-    { name: 'Triply Cookware', slug: 'cookware', tagline: 'Professional triply cookware for healthier, faster and even cooking', count: '100+ MOQ', image: '/images/hh-1.png' },
-    { name: 'Premium Cutlery', slug: 'cutlery', tagline: 'Elegant stainless steel cutlery for refined everyday dining', count: '250+ MOQ', image: '/images/hh-2.png' },
-    { name: 'Table & Serveware', slug: 'table-top', tagline: 'Stylish serveware to elevate presentation for every meal', count: '100+ MOQ', image: '/images/hh-3.png' },
-    { name: 'Storage & Organizer', slug: 'utility', tagline: 'Smart storage and organizers to keep your kitchen clutter-free', count: '200+ MOQ', image: '/images/hh-4.png' }
+    { name: 'Triply Cookware', slug: 'cookware', tagline: 'Professional triply cookware for healthier, faster and even cooking', count: '100+ Styles', image: '/images/hh-1.png' },
+    { name: 'Premium Cutlery', slug: 'cutlery', tagline: 'Elegant stainless steel cutlery for refined everyday dining', count: '250+ Styles', image: '/images/hh-2.png' },
+    { name: 'Table & Serveware', slug: 'table-top', tagline: 'Stylish serveware to elevate presentation for every meal', count: '100+ Styles', image: '/images/hh-3.png' },
+    { name: 'Storage & Organizer', slug: 'utility', tagline: 'Smart storage and organizers to keep your kitchen clutter-free', count: '200+ Styles', image: '/images/hh-4.png' }
   ]
 }
 
@@ -143,14 +143,14 @@ export const DEFAULT_HOSPITALITY = {
   headingHighlight: "Products",
   description: "Outfitting the world's finest hospitality with Horeca24h premium barware, commercial cookware, kitchen utensils, elegant table cutlery, and buffet serving solutions.",
   categories: [
-    { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ MOQ', image: '/images/hos-1.png' },
-    { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ MOQ', image: '/images/hos-2.png' },
-    { name: 'Serving & Kitchen Tools', slug: 'serving-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
-    { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ MOQ', image: '/images/hos-4.png' },
-    { name: 'Storage & Serving', slug: 'storage-serving', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' },
-    { name: 'Hotel Bed Linen', slug: 'hotel-linen', tagline: 'Luxury 600TC Egyptian cotton hotel sheets & bedding', count: '100+ MOQ', image: '/images/products/hotel_bed_linen.png' },
-    { name: 'Chef Uniforms', slug: 'chef-uniforms', tagline: 'Professional double-breasted chef coats & aprons', count: '100+ MOQ', image: '/images/products/chef_uniform.png' },
-    { name: 'Buffet & Serveware', slug: 'buffet-serveware', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ MOQ', image: '/images/hos-3.png' }
+    { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ Styles', image: '/images/hos-1.png' },
+    { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ Styles', image: '/images/hos-2.png' },
+    { name: 'Serving & Kitchen Tools', slug: 'serving-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ Styles', image: '/images/hos-3.png' },
+    { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ Styles', image: '/images/hos-4.png' },
+    { name: 'Storage & Serving', slug: 'storage-serving', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ Styles', image: '/images/hos-5.png' },
+    { name: 'Hotel Bed Linen', slug: 'hotel-linen', tagline: 'Luxury 600TC Egyptian cotton hotel sheets & bedding', count: '100+ Styles', image: '/images/products/hotel_bed_linen.png' },
+    { name: 'Chef Uniforms', slug: 'chef-uniforms', tagline: 'Professional double-breasted chef coats & aprons', count: '100+ Styles', image: '/images/products/chef_uniform.png' },
+    { name: 'Buffet & Serveware', slug: 'buffet-serveware', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ Styles', image: '/images/hos-3.png' }
   ]
 }
 
@@ -237,12 +237,12 @@ export const DEFAULT_UNIFORMS = {
   headingHighlight: "Categories",
   description: "Professional uniform solutions for all sectors. From industrial cargo wear to tactical security suites — bulk uniform solutions engineered for performance and compliance.",
   categories: [
-    { name: 'Corporate Workwear', slug: 'corporate-workwear', tagline: 'Premium executive suits, shirts and formal wear', count: '100+ MOQ', image: '/images/uniform-workwear.png' },
-    { name: 'Security Attire', slug: 'security-attire', tagline: 'Tactical security uniforms, badges and safety gear', count: '80+ MOQ', image: '/images/uniform-workwear.png' },
-    { name: 'Industrial & PPE', slug: 'industrial-ppe', tagline: 'High-visibility safety vests, boots and overalls', count: '120+ MOQ', image: '/images/uniform-workwear.png' },
-    { name: 'Chef & Kitchen Wear', slug: 'chef-kitchen-wear', tagline: 'Professional double-breasted chef coats and caps', count: '90+ MOQ', image: '/images/uniform-workwear.png' },
-    { name: 'Protective Aprons', slug: 'protective-aprons', tagline: 'Heavy-duty industrial and server waist aprons', count: '70+ MOQ', image: '/images/uniform-workwear.png' },
-    { name: 'Medical & Scrubs', slug: 'medical-scrubs', tagline: 'High-comfort antibacterial medical doctor scrubs', count: '60+ MOQ', image: '/images/uniform-workwear.png' }
+    { name: 'Corporate Workwear', slug: 'corporate-workwear', tagline: 'Premium executive suits, shirts and formal wear', count: '100+ Styles', image: '/images/uniform-workwear.png' },
+    { name: 'Security Attire', slug: 'security-attire', tagline: 'Tactical security uniforms, badges and safety gear', count: '80+ Styles', image: '/images/uniform-workwear.png' },
+    { name: 'Industrial & PPE', slug: 'industrial-ppe', tagline: 'High-visibility safety vests, boots and overalls', count: '120+ Styles', image: '/images/uniform-workwear.png' },
+    { name: 'Chef & Kitchen Wear', slug: 'chef-kitchen-wear', tagline: 'Professional double-breasted chef coats and caps', count: '90+ Styles', image: '/images/uniform-workwear.png' },
+    { name: 'Protective Aprons', slug: 'protective-aprons', tagline: 'Heavy-duty industrial and server waist aprons', count: '70+ Styles', image: '/images/uniform-workwear.png' },
+    { name: 'Medical & Scrubs', slug: 'medical-scrubs', tagline: 'High-comfort antibacterial medical doctor scrubs', count: '60+ Styles', image: '/images/uniform-workwear.png' }
   ]
 }
 
@@ -252,10 +252,10 @@ export const DEFAULT_HOME_SHOWCASE = {
   headingHighlight: "Categories",
   description: "Luxury home linen and furnishing textiles. Premium bedsheets, flat sheets, bath towels, and luxury throws — built for bulk retail and private-label distribution.",
   categories: [
-    { name: 'Bedsheets', slug: 'bedsheets', tagline: 'Fitted sheets, flat sheets and pillow covers up to 600TC', count: '120+ MOQ', image: '/images/home furnishing.png' },
-    { name: 'Bath Textiles', slug: 'bath-textiles', tagline: 'Plush ring-spun cotton bath towels and hand towels', count: '90+ MOQ', image: '/images/home furnishing.png' },
-    { name: 'Luxury Throws', slug: 'luxury-throws', tagline: 'Cashmere throws and premium merino wool blankets', count: '80+ MOQ', image: '/images/home furnishing.png' },
-    { name: 'Table Linen', slug: 'table-linen', tagline: 'Elegant table runners, linen placemats and napkins', count: '50+ MOQ', image: '/images/home furnishing.png' }
+    { name: 'Bedsheets', slug: 'bedsheets', tagline: 'Fitted sheets, flat sheets and pillow covers up to 600TC', count: '120+ Styles', image: '/images/home furnishing.png' },
+    { name: 'Bath Textiles', slug: 'bath-textiles', tagline: 'Plush ring-spun cotton bath towels and hand towels', count: '90+ Styles', image: '/images/home furnishing.png' },
+    { name: 'Luxury Throws', slug: 'luxury-throws', tagline: 'Cashmere throws and premium merino wool blankets', count: '80+ Styles', image: '/images/home furnishing.png' },
+    { name: 'Table Linen', slug: 'table-linen', tagline: 'Elegant table runners, linen placemats and napkins', count: '50+ Styles', image: '/images/home furnishing.png' }
   ]
 }
 
@@ -265,11 +265,11 @@ export const DEFAULT_FRAGRANCE = {
   headingHighlight: "Categories",
   description: "Authentic Arabian Fragrances. Oud, Bakhoor, Eau de Parfum, and raw materials — crafted in the UAE for retail chains, duty-free operators, and private label buyers worldwide.",
   categories: [
-    { name: 'Arabian Oud', slug: 'arabian-oud', tagline: 'Pure premium oud oil, warm woody blends and attar', count: '40+ MOQ', image: '/images/fragrance.png' },
-    { name: 'Bakhoor & Incense', slug: 'bakhoor-incense', tagline: 'Aromatic home bakhoor chips, incense burners and coals', count: '35+ MOQ', image: '/images/fragrance.png' },
-    { name: 'Eau de Parfum', slug: 'eau-de-parfum', tagline: 'Long lasting French and oriental designer perfumes', count: '60+ MOQ', image: '/images/fragrance.png' },
-    { name: 'Private Label', slug: 'private-label', tagline: 'Custom perfume bottle design, outer box and labels', count: '20+ MOQ', image: '/images/fragrance.png' },
-    { name: 'Raw Materials', slug: 'raw-materials', tagline: 'High-grade perfume ingredients, essential oils and bases', count: '15+ MOQ', image: '/images/fragrance.png' }
+    { name: 'Arabian Oud', slug: 'arabian-oud', tagline: 'Pure premium oud oil, warm woody blends and attar', count: '40+ Styles', image: '/images/fragrance.png' },
+    { name: 'Bakhoor & Incense', slug: 'bakhoor-incense', tagline: 'Aromatic home bakhoor chips, incense burners and coals', count: '35+ Styles', image: '/images/fragrance.png' },
+    { name: 'Eau de Parfum', slug: 'eau-de-parfum', tagline: 'Long lasting French and oriental designer perfumes', count: '60+ Styles', image: '/images/fragrance.png' },
+    { name: 'Private Label', slug: 'private-label', tagline: 'Custom perfume bottle design, outer box and labels', count: '20+ Styles', image: '/images/fragrance.png' },
+    { name: 'Raw Materials', slug: 'raw-materials', tagline: 'High-grade perfume ingredients, essential oils and bases', count: '15+ Styles', image: '/images/fragrance.png' }
   ]
 }
 

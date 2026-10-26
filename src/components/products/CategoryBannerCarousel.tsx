@@ -156,8 +156,6 @@ export function CategoryBannerCarousel({
           <div className="mt-5 md:mt-6 flex flex-wrap items-center gap-3 font-mono text-[10px] text-white/50 uppercase tracking-wider">
             <span>{styleCount}</span>
             <span className="text-white/20">·</span>
-            <span>MOQ {moq}</span>
-            <span className="text-white/20">·</span>
             <span>Lead Time {leadTime}</span>
           </div>
         </div>

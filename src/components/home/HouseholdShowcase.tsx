@@ -14,10 +14,10 @@ const DEFAULT_HOUSEHOLDS = {
   headingHighlight: "Kitchenware",
   description: "Explore our premium kitchenware, culinary tools, and home essentials. In collaboration with Hometra, we offer tri-ply cookware, artisan table serveware, and smart organization solutions for modern home and commercial kitchens.",
   categories: [
-    { name: 'Triply Cookware', slug: 'cookware', tagline: 'Professional triply cookware for healthier, faster and even cooking', count: '100+ MOQ', image: '/images/hh-1.png' },
-    { name: 'Premium Cutlery', slug: 'cutlery', tagline: 'Elegant stainless steel cutlery for refined everyday dining', count: '250+ MOQ', image: '/images/hh-2.png' },
-    { name: 'Table & Serveware', slug: 'table-top', tagline: 'Stylish serveware to elevate presentation for every meal', count: '100+ MOQ', image: '/images/hh-3.png' },
-    { name: 'Storage & Organizer', slug: 'utility', tagline: 'Smart storage and organizers to keep your kitchen clutter-free', count: '200+ MOQ', image: '/images/hh-4.png' }
+    { name: 'Triply Cookware', slug: 'cookware', tagline: 'Professional triply cookware for healthier, faster and even cooking', count: '100+ Styles', image: '/images/hh-1.png' },
+    { name: 'Premium Cutlery', slug: 'cutlery', tagline: 'Elegant stainless steel cutlery for refined everyday dining', count: '250+ Styles', image: '/images/hh-2.png' },
+    { name: 'Table & Serveware', slug: 'table-top', tagline: 'Stylish serveware to elevate presentation for every meal', count: '100+ Styles', image: '/images/hh-3.png' },
+    { name: 'Storage & Organizer', slug: 'utility', tagline: 'Smart storage and organizers to keep your kitchen clutter-free', count: '200+ Styles', image: '/images/hh-4.png' }
   ]
 }
 

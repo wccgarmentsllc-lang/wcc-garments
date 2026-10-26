@@ -17,12 +17,12 @@ const TEMPLATES = [
   {
     name: 'Wholesale Offer',
     subject: 'Exclusive B2B Sourcing: Premium Egyptian Cotton Collection Offer',
-    body: `Dear Valued Partner,\n\nWe are pleased to extend an exclusive high-volume offer on our flagship 100% Egyptian Cotton Shirts.\n\nAs we optimize our production schedules this quarter, we are offering an additional 15% discount for bulk orders starting from 500 units.\n\nCustom private labeling and brand embroidery options are fully supported. Reply directly to this email or contact your executive account manager on WhatsApp to request custom samples and secure this production slot.\n\nBest regards,\nB2B Procurement Team\nWCC Fashions LLC — Dubai, UAE`
+    body: `Dear Valued Partner,\n\nWe are pleased to extend an exclusive high-volume offer on our flagship 100% Egyptian Cotton Shirts.\n\nAs we optimize our production schedules this quarter, we are offering an exclusive tier discount for bulk corporate and wholesale orders.\n\nCustom private labeling and brand embroidery options are fully supported. Reply directly to this email or contact your executive account manager on WhatsApp to request custom samples and secure this production slot.\n\nBest regards,\nB2B Procurement Team\nWCC Fashions LLC — Dubai, UAE`
   },
   {
     name: 'New Catalog',
     subject: 'WCC Fashions: New B2B Apparel & Household Catalog 2026',
-    body: `Dear Partner,\n\nWe are thrilled to present our newly released 2026 Collection catalog, crafted with precision at our Dubai manufacturing facility.\n\nFeatured highlights:\n- Premium Executive Velvet Blazers (Italian weave)\n- Commercial Microfiber Towels (engineered for 90°C wash cycles)\n- Hospitality Combed Cotton Linens (300TC - 600TC)\n\nView the complete range directly on our online catalog: http://localhost:3000/products\n\nTo request specifications, custom fabric samples, or bulk MOQ pricing sheets, simply let us know by replying to this email.\n\nSincerely,\nSales & Operations Group\nWCC Fashions LLC`
+    body: `Dear Partner,\n\nWe are thrilled to present our newly released 2026 Collection catalog, crafted with precision at our Dubai manufacturing facility.\n\nFeatured highlights:\n- Premium Executive Velvet Blazers (Italian weave)\n- Commercial Microfiber Towels (engineered for 90°C wash cycles)\n- Hospitality Combed Cotton Linens (300TC - 600TC)\n\nView the complete range directly on our online catalog: http://localhost:3000/products\n\nTo request specifications, custom fabric samples, or bulk wholesale pricing sheets, simply let us know by replying to this email.\n\nSincerely,\nSales & Operations Group\nWCC Fashions LLC`
   },
   {
     name: 'Welcome Email',

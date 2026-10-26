@@ -142,7 +142,7 @@ export function KillingOffers() {
                         </h3>
                         {division.stat1Value && (
                           <p className="mt-1 text-[11px] text-white/70">
-                            MOQ: {division.stat1Value}
+                            {division.stat1Value}
                           </p>
                         )}
                         <div className="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-gold opacity-0 transition-all duration-300 transform translate-y-1 group-hover:opacity-100 group-hover:translate-y-0">

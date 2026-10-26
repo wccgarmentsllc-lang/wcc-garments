@@ -18,7 +18,7 @@ const PILLARS = [
   {
     id: 'portals',
     title: 'Dedicated B2B workspaces',
-    desc: 'Collaborative procurement portals allowing distributor teams to manage repeat orders, MOQs, and pro-forma invoices instantly.',
+    desc: 'Collaborative procurement portals allowing distributor teams to manage repeat orders, order schedules, and pro-forma invoices instantly.',
   },
 ]
 

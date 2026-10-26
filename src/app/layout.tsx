@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    'WCC Fashions LLC (formerly WCC Garments) is the best garments wholesale team and premier B2B textile manufacturer in Dubai, UAE. Wholesale clothing, uniforms, hospitality linen, and home furnishings. MOQ from 50 units. Exporting to 50+ countries.',
+    'WCC Fashions LLC (formerly WCC Garments) is the best garments wholesale team and premier B2B textile manufacturer in Dubai, UAE. Wholesale clothing, uniforms, hospitality linen, and home furnishings. Exporting to 50+ countries.',
 
   keywords: [
     // Brand & Target Target Keywords
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     'garment manufacturing company', 'textile export company', 'OEM garment manufacturer',
     'private label clothing manufacturer',
     // Long-tail conversions
-    'Egyptian cotton shirts 500 MOQ', 'hotel bedding 300 thread count supplier',
+    'Egyptian cotton shirts wholesale bulk', 'hotel bedding 300 thread count supplier',
     'custom branded uniforms manufacturer Dubai', 'wholesale denim jeans bulk order',
     'export quality garments UAE',
     // GCC
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     siteName: 'WCC Fashions LLC',
     title: 'WCC Fashions — Leading B2B Textile Manufacturer in UAE',
     description:
-      'Premier wholesale garment, uniform, and hotel linen manufacturer in Dubai. Export-quality production. 50+ countries served. MOQ from 50 units.',
+      'Premier wholesale garment, uniform, and hotel linen manufacturer in Dubai. Export-quality production. 50+ countries served. Bulk supply with quote-based pricing.',
     images: [
       {
         url: '/og-image-main.jpg',

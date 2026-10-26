@@ -279,10 +279,10 @@ export function DivisionsCarousel() {
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1.5">
                         <Package className="h-3 w-3 text-gold" />
-                        <p className="text-[9px] font-mono uppercase tracking-wider text-neutral-400">Min. Order</p>
+                        <p className="text-[9px] font-mono uppercase tracking-wider text-neutral-400">Supply Model</p>
                       </div>
                       <p className="text-xs font-bold text-[#0A0A0A] dark:text-white">
-                        {active.stat1Value || '50 Units'}
+                        {active.stat1Value || 'B2B Wholesale'}
                       </p>
                     </div>
                     <div className="flex flex-col gap-1">

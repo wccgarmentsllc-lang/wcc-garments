@@ -14,12 +14,12 @@ const DEFAULT_HOSPITALITY = {
   headingHighlight: "Products",
   description: "Outfitting the world's finest hospitality with Horeca24h premium barware, commercial cookware, kitchen utensils, elegant table cutlery, and buffet serving solutions.",
   categories: [
-    { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ MOQ', image: '/images/hos-1.png' },
-    { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ MOQ', image: '/images/hos-2.png' },
-    { name: 'Kitchen Tools', slug: 'kitchen-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ MOQ', image: '/images/hos-3.png' },
-    { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ MOQ', image: '/images/hos-4.png' },
-    { name: 'Storage', slug: 'storage', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ MOQ', image: '/images/hos-5.png' },
-    { name: 'Serving', slug: 'serving', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ MOQ', image: '/images/hos-3.png' }
+    { name: 'Barware Products', slug: 'barware', tagline: 'Premium ice buckets, coolers & shaker tools', count: '100+ Styles', image: '/images/hos-1.png' },
+    { name: 'Cookware Products', slug: 'cookware', tagline: 'Professional triply stainless steel cook pots', count: '50+ Styles', image: '/images/hos-2.png' },
+    { name: 'Kitchen Tools', slug: 'kitchen-tools', tagline: 'High-end serving tongs and chef prep utensils', count: '200+ Styles', image: '/images/hos-3.png' },
+    { name: 'Table Cutlery', slug: 'cutlery', tagline: 'Mirror polished hotel-grade cutlery sets', count: '250+ Styles', image: '/images/hos-4.png' },
+    { name: 'Storage', slug: 'storage', tagline: 'Wire buffet baskets and wood serving trays', count: '150+ Styles', image: '/images/hos-5.png' },
+    { name: 'Serving', slug: 'serving', tagline: 'Elegant copper and stainless buffet serveware', count: '100+ Styles', image: '/images/hos-3.png' }
   ]
 }
 

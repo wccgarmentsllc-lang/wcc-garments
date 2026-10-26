@@ -58,7 +58,7 @@ export function NewArrivals() {
               Latest <span className="text-gold">releases</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
-              B2B-only product launches for wholesale buyers. No public pricing; enquire based on MOQ, lead time, and customization scope.
+              B2B-only product launches for wholesale buyers. No public pricing; enquire for volume pricing, lead time, and customization scope.
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export function NewArrivals() {
               </span>
             </Link>
             <a
-              href={`https://wa.me/${whatsappBase}?text=${encodeURIComponent('Hi WCC Garments, I need a quote for your new arrivals. Please share MOQ, lead times, and available customization options.')}`}
+              href={`https://wa.me/${whatsappBase}?text=${encodeURIComponent('Hi WCC Garments, I need a quote for your new arrivals. Please share wholesale pricing, lead times, and available customization options.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-[var(--border)] bg-[var(--bg-surface)] bg-green-500 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-all hover:border-green-100 hover:text-white whitespace-nowrap"

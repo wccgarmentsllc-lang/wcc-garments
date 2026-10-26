@@ -37,7 +37,7 @@ export default function ContactClient() {
     ].filter(Boolean)
 
     const message = contextBits.length
-      ? `I would like a B2B quotation.\n${contextBits.join('\n')}\nPlease share MOQ, lead time, and customization options.`
+      ? `I would like a B2B quotation.\n${contextBits.join('\n')}\nPlease share pricing, lead time, and customization options.`
       : ''
 
     return {

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'B2B Enquiry & Quotation Request | WCC Fashions Dubai',
     description:
-      'Direct channel to our Dubai sales office. Inquire about MOQ, production schedules, custom branding, and shipping logistics.',
+      'Direct channel to our Dubai sales office. Inquire about volume pricing, production schedules, custom branding, and shipping logistics.',
     type: 'website',
     url: `${SITE_CONFIG.url}/contact`,
   },

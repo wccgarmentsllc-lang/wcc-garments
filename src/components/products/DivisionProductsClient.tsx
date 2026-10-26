@@ -68,7 +68,7 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
       name: 'Horeca24h',
       tagline: 'Professional Hospitality Serveware & Bar Accessories',
       desc: 'Elegant serveware, copper mule mugs, cocktail tools, and table cutlery designed for F&B establishments, hotels, and luxury catering services. Built to commercial grade standards.',
-      moq: '50 units',
+      moq: 'B2B Wholesale',
       styles: '120+ STYLES',
       segment: 'core',
       badge: 'COMMERCIAL GRADE',
@@ -85,7 +85,7 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
       name: 'Hometra',
       tagline: 'Artisanal Woodenware & High-Performance Cookware',
       desc: 'Premium tri-ply stainless steel cookware and handcrafted acacia wood serving bowls. Fusing traditional craftsmanship with modern kitchen utility.',
-      moq: '100 units',
+      moq: 'B2B Wholesale',
       styles: '80+ STYLES',
       segment: 'core',
       badge: 'ARTISANAL LUXURY',
@@ -102,7 +102,7 @@ const BRANDS_CONFIG_BY_DIVISION: Record<string, BrandConfig[]> = {
       name: 'Vandegraff',
       tagline: 'Premium Towels & Bath Textiles',
       desc: 'Exclusive collection of luxury bath towels, recycled towels, and home textiles designed for comfort, luxury, and durability.',
-      moq: '100 units',
+      moq: 'B2B Wholesale',
       styles: '120+ STYLES',
       segment: 'core',
       badge: 'LUXURY TEXTILES',
@@ -333,7 +333,7 @@ export function DivisionProductsClient({
       name: b.name,
       tagline: b.tagline || 'Verified Brand',
       desc: b.description || 'Premium products from this manufacturer.',
-      moq: 'Contact for MOQ',
+      moq: 'B2B Wholesale',
       styles: 'Various Styles',
       segment: 'core',
       badge: 'VERIFIED BRAND',
@@ -595,7 +595,7 @@ export function DivisionProductsClient({
 
                     <div className="grid grid-cols-3 gap-3 md:flex md:flex-wrap md:gap-6 pt-2">
                       {[
-                        { label: 'Minimum Order', value: activeBrand.moq, gold: false },
+                        { label: 'Supply Model', value: 'B2B Wholesale', gold: false },
                         { label: 'Lead Time', value: '12-18 Days', mobileValue: '12-18 Days', gold: false },
                         { label: 'Perfect For', value: activeBrand.perfectFor.slice(0, 3).join(', '), mobileValue: activeBrand.perfectFor[0], gold: true },
                       ].map((item) => (
@@ -639,7 +639,7 @@ export function DivisionProductsClient({
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">Download WCC {activeBrand.name} Brochure</h4>
-                      <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                      <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, specifications and dimensions delivered directly to your inbox.</p>
                     </div>
                   </div>
                   <a
@@ -826,7 +826,6 @@ export function DivisionProductsClient({
                   categoryName={activeCategory.name}
                   images={categoryImages}
                   styleCount={styleCount}
-                  moq={activeBrand ? activeBrand.moq : 'Varies'}
                   leadTime="12-18 Days"
                 />
               )
@@ -843,7 +842,7 @@ export function DivisionProductsClient({
                     <h4 className="text-xs font-bold uppercase text-[var(--text)] tracking-wider text-left">
                       DOWNLOAD WCC {activeCategory.name.toUpperCase()} BROCHURE
                     </h4>
-                    <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, MOQs, specifications and dimensions delivered directly to your inbox.</p>
+                    <p className="hidden sm:block text-[10px] text-[var(--text-muted)] mt-1 font-sans font-light text-left">Get our comprehensive product listing, specifications and dimensions delivered directly to your inbox.</p>
                   </div>
                 </div>
                 <a

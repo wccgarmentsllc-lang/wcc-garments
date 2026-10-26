@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   // World-class B2B optimized title & description
   const title = `Wholesale ${product.name} | B2B ${categoryName} Supplier UAE — WCC Fashions`
-  const description = `${product.short_description || product.description || ''} Export quality, low MOQ, custom private label branding. Manufacturer headquartered in Dubai, UAE.`
+  const description = `${product.short_description || product.description || ''} Export quality, bulk wholesale, custom private label branding. Manufacturer headquartered in Dubai, UAE.`
 
   const imageUrl = product.images?.[0] || '/og-image-main.jpg'
   const absoluteImageUrl = imageUrl.startsWith('http') ? imageUrl : `${SITE_CONFIG.url}${imageUrl}`

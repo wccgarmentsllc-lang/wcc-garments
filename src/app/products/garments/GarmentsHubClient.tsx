@@ -91,7 +91,7 @@ const BRANDS_CONFIG = [
     name: 'Treasure',
     tagline: 'Sleek Corporate Tailoring & Bespoke Formal Wear',
     desc: 'Egyptian cotton. Italian finishing. Export-grade quality. Crafted for global leaders demanding pristine fits and executive weight profiles.',
-    moq: '500 PCS',
+    moq: 'B2B Wholesale',
     styles: '320+ STYLES',
     segment: 'core',
     badge: 'PREMIUM LINE',
@@ -106,7 +106,7 @@ const BRANDS_CONFIG = [
     name: 'Vandegraff',
     tagline: 'Heavy-Duty Corporate Attire & Technical Workwear',
     desc: 'Smart Everyday Essentials. Competitive pricing. Volume production. Engineered with high-tensile weave structures to optimize scaled commercial operations.',
-    moq: '1,500 PCS',
+    moq: 'B2B Wholesale',
     styles: '280+ STYLES',
     segment: 'core',
     badge: 'VALUE LINE',
@@ -121,7 +121,7 @@ const BRANDS_CONFIG = [
     name: 'Tom & Jack',
     tagline: 'Contemporary Active Apparel & Refined Team Wear',
     desc: 'Active Premium. Smart-casual for the modern professional. Business-casual meets urban lifestyle. The ultimate hybrid collection combining flex comfort with sleek aesthetics.',
-    moq: '250 PCS',
+    moq: 'B2B Wholesale',
     styles: '410+ STYLES',
     segment: 'incentives',
     badge: 'ACTIVE PREMIUM',
@@ -482,7 +482,7 @@ export default function GarmentsHubClient() {
 
                     <div className="flex flex-wrap gap-4 pt-2">
                       {[
-                        { label: 'Minimum Order', value: activeBrand.moq, gold: false },
+                        { label: 'Supply Model', value: 'B2B Wholesale', gold: false },
                         { label: 'Lead Time', value: division.stat2Value, gold: false },
                         { label: 'Perfect For', value: activeBrand.perfectFor.slice(0, 2).join(', '), gold: true },
                       ].map((item) => (
@@ -684,8 +684,6 @@ export default function GarmentsHubClient() {
                   <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">
                     {STYLE_COUNT[activeCategory.slug] ?? '80+ Styles'}
                   </span>
-                  <span className="text-white/20">·</span>
-                  <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">MOQ {activeBrand ? activeBrand.moq : division.stat1Value}</span>
                   <span className="text-white/20">·</span>
                   <span className="font-mono text-[10px] text-white/40 uppercase tracking-wider">Lead Time {division.stat2Value}</span>
                 </div>

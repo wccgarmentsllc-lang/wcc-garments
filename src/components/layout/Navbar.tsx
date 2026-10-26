@@ -126,7 +126,7 @@ export function Navbar() {
         alt: p.name,
         title: p.name,
         sub: p.short_description || p.description || '',
-        moq: `MOQ: ${p.moq || '500 Pcs'}`,
+        moq: '',
         badge,
         badgeColor
       }
@@ -324,8 +324,8 @@ export function Navbar() {
                     </div>
                     <div className="space-y-4">
                       {getMenuProducts(householdsItems, [
-                        { href: getProductHref('households', 'triply-stainless-steel-casserole'), img: '/images/hh-1.png', alt: 'Triply Casserole', title: 'Triply Casserole', sub: 'Hometra premium cookware', moq: 'MOQ: 100 Pcs', badge: 'New Arrival', badgeColor: 'text-emerald-400 bg-emerald-400/10' },
-                        { href: getProductHref('hospitality', 'hotel-bed-linen-collection'), img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80', alt: 'Bedding', title: 'Hotel Bed Linen Collection', sub: '400TC Combed Egyptian Cotton', moq: 'MOQ: 200 Sets', badge: 'Premium Tier', badgeColor: 'text-amber-400 bg-amber-400/10' },
+                        { href: getProductHref('households', 'triply-stainless-steel-casserole'), img: '/images/hh-1.png', alt: 'Triply Casserole', title: 'Triply Casserole', sub: 'Hometra premium cookware', moq: '', badge: 'New Arrival', badgeColor: 'text-emerald-400 bg-emerald-400/10' },
+                        { href: getProductHref('hospitality', 'hotel-bed-linen-collection'), img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80', alt: 'Bedding', title: 'Hotel Bed Linen Collection', sub: '400TC Combed Egyptian Cotton', moq: '', badge: 'Premium Tier', badgeColor: 'text-amber-400 bg-amber-400/10' },
                       ], 'households').map((item) => (
                         <Link key={item.href} href={item.href} onClick={() => setMegaMenuOpen(false)} className="group flex items-center gap-4 rounded-none border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/5 p-3 transition-all hover:border-gold hover:bg-black/[0.05] dark:hover:bg-white/10">
                           {/* Pure White Background Container for Product Image */}

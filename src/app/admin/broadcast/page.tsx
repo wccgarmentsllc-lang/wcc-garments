@@ -19,7 +19,7 @@ interface BroadcastHistoryItem {
 
 const TEMPLATES = [
   { label: 'New Catalog Launch', subject: 'WCC 2026 High-Performance Uniform Collection & Specifications', body: 'Dear Partner,\n\nWe are pleased to announce the deployment of our 2026 High-Performance Uniform & Industrial Safety catalog. All garments are manufactured according to ISO 9001 standards with anti-microbial and flame-retardant options.\n\nInspect full technical datasheets on our portal.' },
-  { label: 'Bulk Discount Offer', subject: 'Limited Allocation: 15% Commercial Tier Discount on Hospitality Linen', body: 'Executive Notice:\n\nFor the next 7 days, WCC Garments is releasing a 15% volume tier discount on all luxury 400-thread count sateen hotel bedding sets. Minimum order quantity: 1,000 units.\n\nSecure your supply allocation via your account representative.' },
+  { label: 'Bulk Discount Offer', subject: 'Limited Allocation: 15% Commercial Tier Discount on Hospitality Linen', body: 'Executive Notice:\n\nFor the next 7 days, WCC Garments is releasing a 15% volume tier discount on all luxury 400-thread count sateen hotel bedding sets. Commercial wholesale tier pricing applies.\n\nSecure your supply allocation via your account representative.' },
   { label: 'Custom Notice', subject: '', body: '' },
 ]
 
